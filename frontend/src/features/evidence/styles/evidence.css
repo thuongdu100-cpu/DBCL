@@ -1,0 +1,84 @@
+.evidence-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* FILTER */
+.evidence-filter {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.evidence-filter input,
+.evidence-filter select {
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* GRID (KHÁC BOARD TASK) */
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* CARD */
+.evidence-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: 0.2s;
+}
+
+.evidence-card:hover {
+  transform: translateY(-2px);
+  background: var(--surface);
+}
+
+.file-icon {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.file-title {
+  font-weight: 700;
+}
+
+.file-meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* STATUS */
+.file-status {
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.approved {
+  color: #10b981;
+}
+
+.submitted {
+  color: #3b82f6;
+}
+
+.rejected {
+  color: #ef4444;
+}
+
+.draft {
+  color: #6b7280;
+}
+
+/* DETAIL */
+.evidence-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

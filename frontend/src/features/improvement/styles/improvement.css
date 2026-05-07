@@ -1,0 +1,51 @@
+.improvement-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* FILTER */
+.improvement-filter {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.improvement-filter input,
+.improvement-filter select {
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* TABLE */
+.improvement-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.improvement-table th,
+.improvement-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.improvement-table tbody tr:hover {
+  background: var(--surface);
+}
+
+/* STATUS */
+.not_started {
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.in_progress {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.done {
+  color: #10b981;
+  font-weight: 600;
+}

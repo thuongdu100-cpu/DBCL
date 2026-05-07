@@ -1,0 +1,158 @@
+
+/* =========================
+   DASHBOARD ROOT
+========================= */
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* =========================
+   KPI GRID
+========================= */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* KPI CARD UPGRADE */
+.kpi-card {
+  background: #ffffff;
+  border: 1px solid #e6e8ec;
+  border-radius: 12px;
+  padding: 14px 16px;
+
+  font-weight: 600;
+  font-size: 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: 0.2s;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+/* KPI COLORS */
+.kpi-title {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.kpi-value {
+  font-size: 18px;
+  color: #111827;
+}
+
+/* =========================
+   GRID SYSTEM
+========================= */
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+}
+
+/* =========================
+   PANEL
+========================= */
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #e6e8ec;
+  border-radius: 12px;
+  padding: 16px;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.panel-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.badge {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+/* =========================
+   CHART BOX
+========================= */
+
+.chart-box {
+  height: 200px;
+  background: #f3f4f6;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* =========================
+   TREE BOX
+========================= */
+
+.tree-box {
+  height: 250px;
+  background: #f9fafb;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* =========================
+   LIST
+========================= */
+
+.list {
+  margin-top: 10px;
+  padding-left: 18px;
+  color: #374151;
+}
+
+.list li {
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #111827;
+}

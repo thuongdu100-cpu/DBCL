@@ -1,0 +1,11 @@
+.profile-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}

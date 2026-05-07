@@ -1,0 +1,165 @@
+
+.standard-layout {
+  display: flex;
+  height: 100%;
+  gap: 12px;
+}
+
+/* =========================
+   PANELS
+========================= */
+
+.col-list,
+.col-workspace,
+.col-detail {
+  background: var(--bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 12px;
+  overflow-y: auto;
+}
+
+/* LEFT */
+.col-list {
+  width: 22%;
+}
+
+/* MIDDLE */
+.col-workspace {
+  flex: 1;
+  background: var(--surface);
+}
+
+/* RIGHT */
+.col-detail {
+  width: 28%;
+}
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 6px 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* =========================
+   ITEM (SHARED)
+========================= */
+
+.item {
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  border: 1px solid transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: var(--text);
+}
+
+/* hover */
+.item:hover {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+/* active */
+.item.active {
+  background: var(--active-bg);
+  border-left: 3px solid var(--primary);
+  padding-left: 9px;
+  font-weight: 600;
+}
+
+/* =========================
+   WORKSPACE EMPTY STATE
+========================= */
+
+.empty {
+  color: var(--muted);
+  padding: 16px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* =========================
+   DETAIL PANEL
+========================= */
+
+.box {
+  background: var(--surface);
+  padding: 12px;
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+}
+
+.box b {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+/* =========================
+   DETAIL ACTIONS
+========================= */
+
+.col-detail button {
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.col-detail button:hover {
+  background: var(--surface);
+  border-color: #d1d5db;
+}
+
+/* =========================
+   SCROLL IMPROVEMENT
+========================= */
+
+.col-list,
+.col-workspace,
+.col-detail {
+  scrollbar-width: thin;
+}
+
+/* =========================
+   RESPONSIVE (NHẸ)
+========================= */
+
+@media (max-width: 1200px) {
+  .col-list {
+    width: 25%;
+  }
+
+  .col-detail {
+    width: 35%;
+  }
+}
+
+@media (max-width: 900px) {
+  .standard-layout {
+    flex-direction: column;
+  }
+
+  .col-list,
+  .col-detail {
+    width: 100%;
+  }
+}
