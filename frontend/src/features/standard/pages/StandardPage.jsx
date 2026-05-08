@@ -1,86 +1,92 @@
 import { useState } from "react";
 import { mockStandards } from "../data/mockData";
-
-import StandardList from "../components/StandardList";
-import CriteriaList from "../components/CriteriaList";
-import IndicatorList from "../components/IndicatorList";
-import DetailPanel from "../components/DetailPanel";
-
+import TableBlock from "../components/TableBlock";
 import "../styles/standard.css";
 
 export default function StandardPage() {
-  const [selectedStandard, setSelectedStandard] = useState(null);
-  const [selectedCriteria, setSelectedCriteria] = useState(null);
-  const [selectedIndicator, setSelectedIndicator] = useState(null);
+  const [stack, setStack] = useState([]);
+  const [data, setData] = useState(mockStandards);
 
-  const criteria = selectedStandard?.criteria || [];
-  const indicators = selectedCriteria?.indicators || [];
+  const push = (item) => setStack((p) => [...p, item]);
+  const reset = () => setStack([]);
+  const backTo = (index) =>
+    setStack((p) => p.slice(0, index));
+
+  const currentStandard = stack[0];
+
+  // ================= CRUD =================
+  const create = (item) =>
+    setData((prev) => [item, ...prev]);
+
+  const update = (item) =>
+    setData((prev) =>
+      prev.map((x) => (x.id === item.id ? item : x))
+    );
+
+  const remove = (id) =>
+    setData((prev) =>
+      prev.filter((x) => x.id !== id)
+    );
 
   return (
-    <div className="standard-layout">
+    <div className="standard-stack">
 
-      {/* LEFT - STANDARD */}
-      <div className="col-list">
-        <h3>Tiêu chuẩn</h3>
+      {/* ================= HEADER ================= */}
+      <div className="stack-header">
+        <span onClick={reset} className="breadcrumb-root">
+          Bộ tiêu chuẩn
+        </span>
 
-        <StandardList
-          data={mockStandards}
-          selected={selectedStandard}
-          onSelect={(s) => {
-            setSelectedStandard(s);
-            setSelectedCriteria(null);
-            setSelectedIndicator(null);
-          }}
-        />
+        {stack.map((s, i) => (
+          <span key={i} className="breadcrumb-item">
+            {" / "}
+            <span onClick={() => backTo(i + 1)}>
+              {s.name}
+            </span>
+          </span>
+        ))}
       </div>
 
-      {/* MIDDLE - DRILL DOWN CONTEXT */}
-      <div className="col-workspace">
+      {/* ================= CONTENT ================= */}
+      <div className="stack-content">
 
-        {!selectedStandard && (
-          <div className="empty">
-            Chọn một tiêu chuẩn để bắt đầu
-          </div>
+        {/* LEVEL 0 */}
+        {stack.length === 0 && (
+          <TableBlock
+            title="Standards"
+            data={data}
+            onSelect={push}
+            onCreate={create}
+            onUpdate={update}
+            onDelete={remove}
+            renderMeta={(s) => s.year}
+            showFields={{ name: true, description: true, year: true }}
+          />
+        )}
+        
+        {/* LEVEL 1 */}
+        {stack.length === 1 && (
+          <TableBlock
+            title="Criteria"
+            data={currentStandard?.criteria || []}
+            onSelect={push}
+            renderMeta={(c) => c.code || "-"}
+            showFields={{ name: true, description: true, year: false }}
+          />
         )}
 
-        {selectedStandard && (
-          <>
-            <h3>Tiêu chí</h3>
-
-            <CriteriaList
-              data={criteria}
-              selected={selectedCriteria}
-              onSelect={(c) => {
-                setSelectedCriteria(c);
-                setSelectedIndicator(null);
-              }}
-            />
-
-            {selectedCriteria && (
-              <>
-                <h3>Chỉ số đánh giá</h3>
-
-                <IndicatorList
-                  data={indicators}
-                  selected={selectedIndicator}
-                  onSelect={(i) => setSelectedIndicator(i)}
-                />
-              </>
-            )}
-          </>
+        {/* LEVEL 2 */}
+        {stack.length === 2 && (
+          <TableBlock
+            title="Indicators"
+            data={stack[1]?.indicators || []}
+            onSelect={push}
+            renderMeta={(i) => i.value || "-"}
+            showFields={{ name: true, description: true, year: false }}
+          />
         )}
 
       </div>
-
-      {/* RIGHT - DETAIL */}
-      <div className="col-detail">
-        <DetailPanel
-          standard={selectedStandard}
-          criteria={selectedCriteria}
-          indicator={selectedIndicator}
-        />
-      </div>
-
     </div>
   );
 }

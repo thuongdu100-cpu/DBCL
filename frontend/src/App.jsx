@@ -1,15 +1,12 @@
 import { useState } from "react";
 import AppRouter from "./routes/AppRouter";
+import { AuthProvider } from "./auth/AuthContext";
 import "./styles/main.css";
-function App() {
-  const [count, setCount] = useState(0);
 
+export default function App() {
   return (
-    <>
-      {/* MAIN ROUTER */}
+    <AuthProvider>
       <AppRouter />
-    </>
+    </AuthProvider>
   );
 }
-
-export default App;

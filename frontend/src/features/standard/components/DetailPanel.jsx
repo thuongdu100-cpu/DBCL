@@ -3,43 +3,47 @@ export default function DetailPanel({
   criteria,
   indicator,
 }) {
-  if (!standard) {
-    return <div className="empty">Chọn tiêu chuẩn để xem chi tiết</div>;
-  }
-
   return (
-    <div>
+    <div className="col-detail">
 
-      <h3>Detail</h3>
-
-      {/* STANDARD */}
-      <div className="box">
-        <b>Standard:</b>
-        <div>{standard.name}</div>
+      <div className="detail-title">
+        Chi tiết đối tượng
       </div>
 
-      {/* CRITERIA */}
+      {!standard && (
+        <div className="detail-empty">
+          Chọn một tiêu chuẩn để xem chi tiết
+        </div>
+      )}
+
+      {standard && (
+        <div className="detail-card">
+          <div className="detail-label">Tiêu chuẩn</div>
+          <div className="detail-value">{standard.name}</div>
+          <div className="detail-desc">{standard.description}</div>
+        </div>
+      )}
+
       {criteria && (
-        <div className="box">
-          <b>Criteria:</b>
-          <div>{criteria.name}</div>
+        <div className="detail-card">
+          <div className="detail-label">Tiêu chí</div>
+          <div className="detail-value">{criteria.name}</div>
+          <div className="detail-desc">{criteria.description}</div>
         </div>
       )}
 
-      {/* INDICATOR */}
       {indicator && (
-        <div className="box">
-          <b>Indicator:</b>
-          <div>{indicator.name}</div>
-          <p>{indicator.description}</p>
+        <div className="detail-card">
+          <div className="detail-label">Chỉ báo</div>
+          <div className="detail-value">{indicator.name}</div>
+          <div className="detail-desc">{indicator.description}</div>
         </div>
       )}
 
-      {/* ACTIONS */}
       {indicator && (
-        <div style={{ marginTop: 12 }}>
-          <button>Create Evaluation</button>
-          <button style={{ marginLeft: 8 }}>View Evidence</button>
+        <div className="detail-actions">
+          <button>Tạo đánh giá</button>
+          <button>Xem minh chứng</button>
         </div>
       )}
 

@@ -1,30 +1,46 @@
+import { PERMISSIONS } from "../../../auth/permissions";
+
 export const sidebarMenu = [
+
   {
-    name: "Tổng quan",
-    path: "/dbcl/dashboard"
+    label: "Dashboard",
+    path: "/dbcl/dashboard",
+    permission: PERMISSIONS.VIEW_DASHBOARD,
   },
+
   {
-    name: "Quản lý tiêu chuẩn",
-    path: "/dbcl/standard"
+    label: "Quản lý tiêu chuẩn",
+    path: "/dbcl/standard",
+    permission: PERMISSIONS.MANAGE_STANDARD,
   },
+
   {
-    name: "Quản lý đánh giá",
-    path: "/dbcl/evaluation"
+    label: "Quản lý đánh giá",
+    path: "/dbcl/evaluation",
+    permission: PERMISSIONS.MANAGE_EVALUATION,
   },
+
   {
-    name: "Gán phụ trách",
-    path: "/dbcl/assignment"
+    label: "Gán phụ trách",
+    path: "/dbcl/assignment",
+    permission: PERMISSIONS.MANAGE_ASSIGNMENT,
   },
+
   {
-    name: "Minh chứng",
-    path: "/dbcl/evidence"
+    label: "Hộp minh chứng",
+    path: "/dbcl/evidence",
+    permission: PERMISSIONS.VIEW_EVIDENCE,
   },
+
   {
-    name: "Kế hoạch cải tiến",
-    path: "/dbcl/improvement"
+    label: "Kế hoạch cải tiến",
+    path: "/dbcl/improvement",
+    permission: PERMISSIONS.MANAGE_IMPROVEMENT,
   },
+
   {
-    name: "Báo cáo",
-    path: "/dbcl/report"
-  }
+    label: "Báo cáo",
+    path: "/dbcl/report",
+    permission: PERMISSIONS.VIEW_REPORT,
+  },
 ];

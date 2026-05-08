@@ -1,43 +1,75 @@
-// src/features/standard/data/mockData.js
-
 export const mockStandards = [
   {
     id: "S1",
-    name: "Standard 1 - Quality Assurance",
+    name: "Bộ tiêu chuẩn kiểm định chất lượng giảng dạy",
+    description:
+      "Đánh giá toàn diện hoạt động giảng dạy, phương pháp và hiệu quả đào tạo",
+    year: 2026,
+
     criteria: [
       {
         id: "C1",
-        name: "Criteria 1.1 - Teaching Quality",
+        name: "Hoạt động giảng dạy",
+        description:
+          "Đánh giá quá trình tổ chức và thực hiện giảng dạy",
+
         indicators: [
           {
             id: "I1",
-            name: "Indicator 1.1.1 - Lesson Plan",
-            description: "Check lesson plan compliance"
+            name: "Kế hoạch giảng dạy",
+            description:
+              "Mức độ đầy đủ và tuân thủ kế hoạch giảng dạy",
           },
           {
             id: "I2",
-            name: "Indicator 1.1.2 - Assessment Method",
-            description: "Evaluate assessment method quality"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: "S2",
-    name: "Standard 2 - Curriculum",
-    criteria: [
+            name: "Phương pháp giảng dạy",
+            description:
+              "Sự phù hợp và hiệu quả của phương pháp giảng dạy",
+          },
+        ],
+      },
+
       {
         id: "C2",
-        name: "Criteria 2.1 - Curriculum Design",
+        name: "Đánh giá kết quả học tập",
+        description:
+          "Đánh giá quá trình kiểm tra và đánh giá sinh viên",
+
         indicators: [
           {
             id: "I3",
-            name: "Indicator 2.1.1 - Structure",
-            description: "Curriculum structure evaluation"
-          }
-        ]
-      }
-    ]
-  }
+            name: "Công cụ đánh giá",
+            description:
+              "Sự đa dạng và phù hợp của công cụ đánh giá",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "S2",
+    name: "Bộ tiêu chuẩn chương trình đào tạo",
+    description:
+      "Đánh giá thiết kế, cấu trúc và chất lượng chương trình đào tạo",
+    year: 2026,
+
+    criteria: [
+      {
+        id: "C3",
+        name: "Cấu trúc chương trình",
+        description:
+          "Mức độ hợp lý trong thiết kế chương trình",
+
+        indicators: [
+          {
+            id: "I4",
+            name: "Phân bổ học phần",
+            description:
+              "Tính hợp lý của phân bổ tín chỉ",
+          },
+        ],
+      },
+    ],
+  },
 ];
