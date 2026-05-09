@@ -1,7 +1,5 @@
 import { NavLink } from "react-router-dom";
-
-import { sidebarMenu } from "./sidebar.menu";
-
+import { routes } from "../../../routes/route.config";
 import { useAuth } from "../../../auth/AuthContext";
 import hasPermission from "../../../auth/hasPermission";
 
@@ -9,38 +7,33 @@ export default function Sidebar() {
 
   const { user } = useAuth();
 
-  const filteredMenus = sidebarMenu.filter((item) =>
-    hasPermission(user.role, item.permission)
+  const filteredRoutes = routes.filter(r =>
+    hasPermission(user.role, r.permission)
   );
 
-  if (!user) {
-    return null;
-  }
   return (
-    <aside className="sidebar">
+    <div className="sidebar">
 
-      <h2 className="sidebar-title">
-        Hệ thống ĐBCL
-      </h2>
+      <div className="sidebar-title">
+        ĐBCL SYSTEM
+      </div>
 
-      <nav className="sidebar-nav">
+      <div className="sidebar-nav">
 
-        {filteredMenus.map((item) => (
+        {filteredRoutes.map(r => (
           <NavLink
-            key={item.path}
-            to={item.path}
+            key={r.path}
+            to={`/dbcl/${r.path}`}
             className={({ isActive }) =>
-              isActive
-                ? "sidebar-link active"
-                : "sidebar-link"
+              "sidebar-link" + (isActive ? " active" : "")
             }
           >
-            {item.label}
+            {r.label}
           </NavLink>
         ))}
 
-      </nav>
+      </div>
 
-    </aside>
+    </div>
   );
 }

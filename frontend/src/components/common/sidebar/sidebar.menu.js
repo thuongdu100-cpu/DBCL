@@ -1,46 +1,67 @@
 import { PERMISSIONS } from "../../../auth/permissions";
+export const SIDEBAR_ITEMS = [
 
-export const sidebarMenu = [
-
+  // DASHBOARD
   {
     label: "Dashboard",
     path: "/dbcl/dashboard",
     permission: PERMISSIONS.VIEW_DASHBOARD,
   },
 
+  // AUTH
   {
-    label: "Quản lý tiêu chuẩn",
-    path: "/dbcl/standard",
+    label: "Quản lý người dùng",
+    path: "/dbcl/users",
+    permission: PERMISSIONS.MANAGE_USERS,
+  },
+  {
+    label: "Quản lý vai trò",
+    path: "/dbcl/roles",
+    permission: PERMISSIONS.MANAGE_ROLES,
+  },
+
+  // STANDARD
+  {
+    label: "Bộ tiêu chuẩn",
+    path: "/dbcl/standards",
     permission: PERMISSIONS.MANAGE_STANDARD,
   },
 
+  // ASSIGNMENT
   {
-    label: "Quản lý đánh giá",
-    path: "/dbcl/evaluation",
-    permission: PERMISSIONS.MANAGE_EVALUATION,
-  },
-
-  {
-    label: "Gán phụ trách",
-    path: "/dbcl/assignment",
+    label: "Phân công",
+    path: "/dbcl/assignments",
     permission: PERMISSIONS.MANAGE_ASSIGNMENT,
   },
-
   {
-    label: "Hộp minh chứng",
+    label: "My Assignments",
+    path: "/dbcl/my-assignments",
+    permission: PERMISSIONS.VIEW_MY_ASSIGNMENTS,
+  },
+
+  // EVIDENCE
+  {
+    label: "Minh chứng",
     path: "/dbcl/evidence",
     permission: PERMISSIONS.VIEW_EVIDENCE,
   },
-
   {
-    label: "Kế hoạch cải tiến",
+    label: "Rà soát",
+    path: "/dbcl/review",
+    permission: PERMISSIONS.REVIEW_EVIDENCE,
+  },
+
+  // IMPROVEMENT
+  {
+    label: "Cải tiến",
     path: "/dbcl/improvement",
     permission: PERMISSIONS.MANAGE_IMPROVEMENT,
   },
 
+  // REPORT
   {
     label: "Báo cáo",
-    path: "/dbcl/report",
+    path: "/dbcl/reports",
     permission: PERMISSIONS.VIEW_REPORT,
   },
 ];

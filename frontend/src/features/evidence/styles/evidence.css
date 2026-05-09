@@ -1,84 +1,175 @@
+/* =========================
+   EVIDENCE PAGE ROOT
+========================= */
 .evidence-page {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
-/* FILTER */
+/* =========================
+   FILTER BAR
+========================= */
 .evidence-filter {
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .evidence-filter input,
 .evidence-filter select {
-  padding: 8px;
+  padding: 8px 10px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  outline: none;
+  transition: 0.2s;
 }
 
-/* GRID (KHÁC BOARD TASK) */
+.evidence-filter input:focus,
+.evidence-filter select:focus {
+  border-color: #3b82f6;
+}
+
+/* =========================
+   GRID LIST
+========================= */
 .evidence-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 14px;
 }
 
-/* CARD */
+@media (max-width: 1200px) {
+  .evidence-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .evidence-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .evidence-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   CARD (WORKFLOW VERSION)
+========================= */
 .evidence-card {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 16px;
-  transition: 0.2s;
+  padding: 14px;
+  transition: 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .evidence-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   background: var(--surface);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
 }
 
+/* =========================
+   FILE INFO
+========================= */
 .file-icon {
   font-size: 26px;
-  margin-bottom: 8px;
 }
 
 .file-title {
   font-weight: 700;
+  font-size: 14px;
 }
 
 .file-meta {
   font-size: 12px;
   color: var(--muted);
-  margin-top: 4px;
 }
 
-/* STATUS */
+/* =========================
+   STATUS BADGE (UPDATED FLOW)
+========================= */
 .file-status {
   font-size: 12px;
-  margin-top: 8px;
+  margin-top: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  width: fit-content;
+  font-weight: 600;
 }
 
-.approved {
+/* Workflow states */
+.status-pending {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.status-approved {
   color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
 }
 
-.submitted {
-  color: #3b82f6;
-}
-
-.rejected {
+.status-rejected {
   color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
 }
 
-.draft {
-  color: #6b7280;
+.status-resubmitted {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
 }
 
-/* DETAIL */
+/* =========================
+   DETAIL VIEW
+========================= */
 .evidence-detail {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* =========================
+   ACTION BUTTONS (REVIEW FLOW)
+========================= */
+.evidence-actions {
+  display: flex;
   gap: 8px;
+  margin-top: 8px;
+}
+
+.evidence-actions button {
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.2s;
+}
+
+.btn-approve {
+  background: #10b981;
+  color: white;
+}
+
+.btn-reject {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-approve:hover,
+.btn-reject:hover {
+  opacity: 0.85;
 }

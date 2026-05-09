@@ -1,0 +1,55 @@
+.role-page {
+  padding: 20px;
+}
+
+.role-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.role-table th,
+.role-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.role-table th {
+  background: #f5f5f5;
+}
+
+button {
+  margin: 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  width: 600px;
+  border-radius: 10px;
+}
+
+.perm-group {
+  margin-top: 10px;
+}
+
+.perm-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
