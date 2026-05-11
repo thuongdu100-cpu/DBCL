@@ -93,6 +93,7 @@ body {
   padding: 18px 14px;
 
   gap: 10px;
+  
 }
 
 /* =========================
@@ -113,6 +114,8 @@ body {
   margin-bottom: 24px;
 
   border-bottom: 1px solid rgba(255,255,255,0.15);
+  
+
 }
 
 /* =========================
@@ -126,6 +129,7 @@ body {
   gap: 12px;
 
   margin-top: 8px;
+  overflow-y: auto;
 }
 
 /* =========================
@@ -223,7 +227,7 @@ body {
 button {
   padding: 8px 12px;
   border: 1px solid var(--border);
-  background: var(--bg);
+  background: transparent;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.2s;

@@ -1,5 +1,6 @@
 import useEvidenceWorkflow from "../hooks/useEvidenceWorkflow";
 import EvidenceStatusBadge from "../components/EvidenceStatusBadge";
+import "../styles/evidence.css";
 
 export default function EvidenceQueuePage() {
 

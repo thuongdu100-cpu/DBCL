@@ -65,7 +65,7 @@ export default function Header() {
 
       {/* LEFT */}
       <div className="header-title">
-        Dashboard phân hệ ĐBCL
+        Hệ thống đánh giá chất lượng 
       </div>
 
       {/* RIGHT */}

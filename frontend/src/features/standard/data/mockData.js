@@ -1,46 +1,63 @@
-export const mockStandards = [
+export const standards = [
   {
-    id: "S1",
-    name: "Bộ tiêu chuẩn kiểm định chất lượng giảng dạy",
-    description:
-      "Đánh giá toàn diện hoạt động giảng dạy, phương pháp và hiệu quả đào tạo",
-    year: 2026,
+    id: "STD-01",
+    name: "Tiêu chuẩn đào tạo",
+    description: "Đánh giá chất lượng đào tạo toàn diện",
 
     criteria: [
       {
-        id: "C1",
-        name: "Hoạt động giảng dạy",
-        description:
-          "Đánh giá quá trình tổ chức và thực hiện giảng dạy",
+        id: "CRI-01",
+        name: "Đội ngũ giảng viên",
+        description: "Chất lượng và năng lực giảng viên",
 
         indicators: [
           {
-            id: "I1",
-            name: "Kế hoạch giảng dạy",
-            description:
-              "Mức độ đầy đủ và tuân thủ kế hoạch giảng dạy",
+            id: "IND-01",
+            name: "Tỷ lệ tiến sĩ",
+            description: "Tỷ lệ giảng viên có học vị tiến sĩ",
           },
           {
-            id: "I2",
-            name: "Phương pháp giảng dạy",
-            description:
-              "Sự phù hợp và hiệu quả của phương pháp giảng dạy",
+            id: "IND-02",
+            name: "Nghiên cứu khoa học",
+            description: "Số lượng công trình nghiên cứu",
+          },
+          {
+            id: "IND-05",
+            name: "Giảng viên quốc tế",
+            description: "Tỷ lệ giảng viên nước ngoài",
           },
         ],
       },
 
       {
-        id: "C2",
-        name: "Đánh giá kết quả học tập",
-        description:
-          "Đánh giá quá trình kiểm tra và đánh giá sinh viên",
+        id: "CRI-02",
+        name: "Cơ sở vật chất",
+        description: "Hạ tầng phục vụ đào tạo",
 
         indicators: [
           {
-            id: "I3",
-            name: "Công cụ đánh giá",
-            description:
-              "Sự đa dạng và phù hợp của công cụ đánh giá",
+            id: "IND-03",
+            name: "Thiết bị giảng dạy",
+            description: "Thiết bị hỗ trợ học tập",
+          },
+          {
+            id: "IND-06",
+            name: "Phòng học thông minh",
+            description: "Smart classroom readiness",
+          },
+        ],
+      },
+
+      {
+        id: "CRI-04",
+        name: "Chương trình đào tạo",
+        description: "Chất lượng chương trình học",
+
+        indicators: [
+          {
+            id: "IND-07",
+            name: "Cập nhật giáo trình",
+            description: "Chu kỳ cập nhật nội dung",
           },
         ],
       },
@@ -48,28 +65,135 @@ export const mockStandards = [
   },
 
   {
-    id: "S2",
-    name: "Bộ tiêu chuẩn chương trình đào tạo",
-    description:
-      "Đánh giá thiết kế, cấu trúc và chất lượng chương trình đào tạo",
-    year: 2026,
+    id: "STD-02",
+    name: "Tiêu chuẩn kiểm định",
+    description: "Hệ thống đảm bảo chất lượng",
 
     criteria: [
       {
-        id: "C3",
-        name: "Cấu trúc chương trình",
-        description:
-          "Mức độ hợp lý trong thiết kế chương trình",
+        id: "CRI-03",
+        name: "Quản lý chất lượng",
+        description: "Hệ thống QA/QC",
 
         indicators: [
           {
-            id: "I4",
-            name: "Phân bổ học phần",
-            description:
-              "Tính hợp lý của phân bổ tín chỉ",
+            id: "IND-04",
+            name: "ISO nội bộ",
+            description: "Triển khai ISO",
+          },
+          {
+            id: "IND-08",
+            name: "Kiểm định nội bộ",
+            description: "Audit nội bộ định kỳ",
+          },
+        ],
+      },
+
+      {
+        id: "CRI-05",
+        name: "Báo cáo & minh chứng",
+        description: "Hệ thống báo cáo",
+
+        indicators: [
+          {
+            id: "IND-09",
+            name: "Tần suất báo cáo",
+            description: "Chu kỳ báo cáo chất lượng",
           },
         ],
       },
     ],
+  },
+];
+
+export const workflowData = [
+  {
+    indicatorId: "IND-01",
+    progress: 75,
+    status: "IN_PROGRESS",
+    assignmentCount: 5,
+    evidenceCount: 18,
+    feedbackCount: 3,
+    approvedCount: 10,
+  },
+
+  {
+    indicatorId: "IND-02",
+    progress: 92,
+    status: "IN_PROGRESS",
+    assignmentCount: 6,
+    evidenceCount: 22,
+    feedbackCount: 5,
+    approvedCount: 15,
+  },
+
+  {
+    indicatorId: "IND-03",
+    progress: 45,
+    status: "NEED_FIX",
+    assignmentCount: 2,
+    evidenceCount: 5,
+    feedbackCount: 4,
+    approvedCount: 2,
+  },
+
+  {
+    indicatorId: "IND-04",
+    progress: 100,
+    status: "APPROVED",
+    assignmentCount: 4,
+    evidenceCount: 12,
+    feedbackCount: 1,
+    approvedCount: 12,
+  },
+
+  {
+    indicatorId: "IND-05",
+    progress: 60,
+    status: "IN_PROGRESS",
+    assignmentCount: 3,
+    evidenceCount: 9,
+    feedbackCount: 2,
+    approvedCount: 5,
+  },
+
+  {
+    indicatorId: "IND-06",
+    progress: 30,
+    status: "PENDING",
+    assignmentCount: 1,
+    evidenceCount: 3,
+    feedbackCount: 0,
+    approvedCount: 0,
+  },
+
+  {
+    indicatorId: "IND-07",
+    progress: 80,
+    status: "IN_PROGRESS",
+    assignmentCount: 4,
+    evidenceCount: 14,
+    feedbackCount: 2,
+    approvedCount: 9,
+  },
+
+  {
+    indicatorId: "IND-08",
+    progress: 55,
+    status: "NEED_FIX",
+    assignmentCount: 2,
+    evidenceCount: 6,
+    feedbackCount: 3,
+    approvedCount: 3,
+  },
+
+  {
+    indicatorId: "IND-09",
+    progress: 10,
+    status: "PENDING",
+    assignmentCount: 1,
+    evidenceCount: 1,
+    feedbackCount: 0,
+    approvedCount: 0,
   },
 ];

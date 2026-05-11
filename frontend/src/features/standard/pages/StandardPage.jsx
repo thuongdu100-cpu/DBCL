@@ -1,92 +1,77 @@
-import { useState } from "react";
-import { mockStandards } from "../data/mockData";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import TableBlock from "../components/TableBlock";
-import "../styles/standard.css";
+import StandardBreadcrumb from "../components/StandardBreadcrumb";
+import { standardService } from "../services/standard.service";
 
 export default function StandardPage() {
-  const [stack, setStack] = useState([]);
-  const [data, setData] = useState(mockStandards);
 
-  const push = (item) => setStack((p) => [...p, item]);
-  const reset = () => setStack([]);
-  const backTo = (index) =>
-    setStack((p) => p.slice(0, index));
+  const navigate = useNavigate();
+  const [standards, setStandards] = useState([]);
 
-  const currentStandard = stack[0];
+  useEffect(() => {
+    standardService.getAll().then(setStandards);
+  }, []);
 
-  // ================= CRUD =================
-  const create = (item) =>
-    setData((prev) => [item, ...prev]);
+  const handleAdd = async (row) => {
 
-  const update = (item) =>
-    setData((prev) =>
-      prev.map((x) => (x.id === item.id ? item : x))
-    );
+    const newItem = {
+      id: `STD-${Date.now()}`,
+      name: row.name || "",
+      description: row.description || "",
+      year: row.year || new Date().getFullYear(),
+      criteria: [],
+    };
 
-  const remove = (id) =>
-    setData((prev) =>
-      prev.filter((x) => x.id !== id)
-    );
+    await standardService.create(newItem);
+    setStandards(await standardService.getAll());
+  };
+
+  const handleDelete = async (id) => {
+
+  await standardService.remove(id);
+
+  const updated = await standardService.getAll();
+  setStandards(updated);
+};
+
+  const handleUpdate = async (id, payload) => {
+
+    await standardService.update(id, payload);
+    setStandards(await standardService.getAll());
+  };
 
   return (
-    <div className="standard-stack">
+    <div className="standard-page">
 
-      {/* ================= HEADER ================= */}
-      <div className="stack-header">
-        <span onClick={reset} className="breadcrumb-root">
-          Bộ tiêu chuẩn
-        </span>
+      <div className="standard-left">
 
-        {stack.map((s, i) => (
-          <span key={i} className="breadcrumb-item">
-            {" / "}
-            <span onClick={() => backTo(i + 1)}>
-              {s.name}
-            </span>
-          </span>
-        ))}
-      </div>
+        <StandardBreadcrumb />
 
-      {/* ================= CONTENT ================= */}
-      <div className="stack-content">
+        <div className="page-header">
+          <div className="page-subtitle">Quản lý tiêu chuẩn</div>
+          <div className="page-title">Bộ tiêu chuẩn</div>
+        </div>
 
-        {/* LEVEL 0 */}
-        {stack.length === 0 && (
-          <TableBlock
-            title="Standards"
-            data={data}
-            onSelect={push}
-            onCreate={create}
-            onUpdate={update}
-            onDelete={remove}
-            renderMeta={(s) => s.year}
-            showFields={{ name: true, description: true, year: true }}
-          />
-        )}
-        
-        {/* LEVEL 1 */}
-        {stack.length === 1 && (
-          <TableBlock
-            title="Criteria"
-            data={currentStandard?.criteria || []}
-            onSelect={push}
-            renderMeta={(c) => c.code || "-"}
-            showFields={{ name: true, description: true, year: false }}
-          />
-        )}
-
-        {/* LEVEL 2 */}
-        {stack.length === 2 && (
-          <TableBlock
-            title="Indicators"
-            data={stack[1]?.indicators || []}
-            onSelect={push}
-            renderMeta={(i) => i.value || "-"}
-            showFields={{ name: true, description: true, year: false }}
-          />
-        )}
+        <TableBlock
+          title="Bộ tiêu chuẩn"
+          data={standards}
+          columns={[
+            { key: "name", label: "Tên" },
+            { key: "description", label: "Mô tả" },
+            { key: "year", label: "Năm" },
+          ]}
+          onRowClick={(item) =>
+            navigate(`/dbcl/standard/${item.id}`)
+          }
+          onCreate={handleAdd}
+          onUpdate={handleUpdate}
+          onDelete={handleDelete}
+        />
 
       </div>
+
     </div>
   );
 }

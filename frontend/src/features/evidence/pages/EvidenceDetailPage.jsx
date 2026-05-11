@@ -1,6 +1,6 @@
 import useEvidenceWorkflow from "../hooks/useEvidenceWorkflow";
 import EvidenceTimeline from "../components/EvidenceTimeline";
-
+import "../styles/evidence.css";
 export default function EvidenceDetailPage({ id = 1 }) {
 
   const { list } = useEvidenceWorkflow();

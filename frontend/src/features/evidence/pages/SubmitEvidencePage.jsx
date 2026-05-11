@@ -1,5 +1,6 @@
 import EvidenceForm from "../components/EvidenceForm";
 import useEvidenceWorkflow from "../hooks/useEvidenceWorkflow";
+import "../styles/evidence.css";
 
 export default function SubmitEvidencePage() {
 

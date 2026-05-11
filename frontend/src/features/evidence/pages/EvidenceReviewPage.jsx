@@ -1,4 +1,5 @@
 import useEvidenceWorkflow from "../hooks/useEvidenceWorkflow";
+import "../styles/evidence.css";
 
 export default function EvidenceReviewPage() {
 

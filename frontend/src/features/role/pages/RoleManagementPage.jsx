@@ -2,6 +2,7 @@ import { useState } from "react";
 import useRoles from "../hooks/useRoles";
 import RoleTable from "../components/RoleTable";
 import RoleFormModal from "../components/RoleFormModal";
+import "../styles/role.css";
 
 export default function RoleManagementPage() {
 

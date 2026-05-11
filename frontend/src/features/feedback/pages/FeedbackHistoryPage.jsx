@@ -1,5 +1,5 @@
 import useFeedback from "../hooks/useFeedback";
-
+import "../styles/feedback.css";
 export default function FeedbackHistoryPage() {
 
   const { feedbacks } = useFeedback();

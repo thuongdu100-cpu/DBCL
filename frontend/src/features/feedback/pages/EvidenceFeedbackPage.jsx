@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useFeedback from "../hooks/useFeedback";
-
+import "../styles/feedback.css";
 export default function EvidenceFeedbackPage() {
 
   const { feedbacks, createFeedback } = useFeedback();

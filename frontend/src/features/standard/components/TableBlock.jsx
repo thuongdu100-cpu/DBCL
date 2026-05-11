@@ -3,249 +3,188 @@ import { useState } from "react";
 export default function TableBlock({
   title,
   data = [],
-  onSelect,
+  columns = [],
+  onRowClick,
   onCreate,
   onUpdate,
   onDelete,
-  renderMeta,
-
-  // 👉 FIELD CONTROL (IMPORTANT)
-  showFields = {
-    name: true,
-    description: true,
-    year: false,
-  },
 }) {
   const [creating, setCreating] = useState(false);
-  const [createForm, setCreateForm] = useState({
-    name: "",
-    description: "",
-    year: "",
-  });
+  const [createForm, setCreateForm] = useState({});
 
   const [editId, setEditId] = useState(null);
   const [editForm, setEditForm] = useState({});
 
-  // ================= CREATE =================
+  // CREATE
   const handleCreate = () => {
-    if (!createForm.name) return;
-
-    onCreate?.({
-      id: Date.now().toString(),
-      ...createForm,
-    });
-
-    setCreateForm({ name: "", description: "", year: "" });
+    onCreate?.(createForm);
+    setCreateForm({});
     setCreating(false);
   };
 
-  // ================= UPDATE =================
+  // UPDATE
   const handleUpdate = (item) => {
-    onUpdate?.({
-      ...item,
-      ...editForm,
-    });
-
+    onUpdate?.(item.id, editForm);
     setEditId(null);
     setEditForm({});
   };
-
   return (
     <div className="table-wrapper">
 
-      {/* ================= TITLE ================= */}
-      <h3 className="section-title">{title}</h3>
+      <div className="section-header">
+        <div className="section-title">{title}</div>
+      </div>
 
-      {/* ================= LIST ================= */}
-      {data.map((item, index) => (
-        <div key={item.id} className="item">
+      <div className="table-container">
 
-          {/* CLICK ZONE */}
-          <div
-            className="item-click-zone"
-            onClick={() => {
-              if (editId !== item.id) onSelect?.(item);
-            }}
-          >
+        <table className="data-table">
 
-            {/* INDEX */}
-            <div className="item-index">
-              {index + 1}
-            </div>
+          <thead>
+            <tr>
+              <th className="col-stt">STT</th>
 
-            {/* MAIN */}
-            <div className="item-main">
+              {columns.map(col => (
+                <th key={col.key}>{col.label}</th>
+              ))}
 
-              {editId === item.id ? (
-                <>
-                  {showFields.name && (
-                    <input
-                      className="table-input"
-                      value={editForm.name ?? item.name}
-                      onChange={(e) =>
-                        setEditForm({
-                          ...editForm,
-                          name: e.target.value,
-                        })
-                      }
-                    />
-                  )}
+              <th className="col-action"></th>
+            </tr>
+          </thead>
 
-                  {showFields.description && (
-                    <input
-                      className="table-input"
-                      value={editForm.description ?? item.description}
-                      onChange={(e) =>
-                        setEditForm({
-                          ...editForm,
-                          description: e.target.value,
-                        })
-                      }
-                    />
-                  )}
+          <tbody>
 
-                  {showFields.year && (
-                    <input
-                      className="table-input"
-                      value={editForm.year ?? item.year}
-                      onChange={(e) =>
-                        setEditForm({
-                          ...editForm,
-                          year: e.target.value,
-                        })
-                      }
-                    />
-                  )}
-                </>
-              ) : (
-                <>
-                  <div className="item-title">
-                    {item.name}
-                  </div>
+            {data.map((item, index) => {
+              const isEditing = editId === item.id;
 
-                  <div className="item-desc">
-                    {item.description}
-                  </div>
-                </>
-              )}
-
-            </div>
-
-            {/* META */}
-            <div className="item-meta">
-              {renderMeta?.(item)}
-            </div>
-
-          </div>
-
-          {/* ================= ACTIONS ================= */}
-          <div className="item-actions">
-
-            {editId === item.id ? (
-              <>
-                <button onClick={() => handleUpdate(item)}>
-                  Save
-                </button>
-
-                <button onClick={() => setEditId(null)}>
-                  Cancel
-                </button>
-              </>
-            ) : (
-              <>
-                <button
+              return (
+                <tr
+                  key={item.id}
+                  className="table-row"
                   onClick={() => {
-                    setEditId(item.id);
-                    setEditForm(item);
+                    if (!isEditing) onRowClick?.(item);
                   }}
                 >
-                  Edit
-                </button>
+                  <td className="col-stt">{index + 1}</td>
 
-                <button
-                  className="danger"
-                  onClick={() => onDelete?.(item.id)}
-                >
-                  Delete
-                </button>
-              </>
+                  {columns.map(col => (
+                    <td key={col.key}>
+                      {isEditing ? (
+                        <input
+                          className="table-input"
+                          value={editForm[col.key] ?? ""}
+                          onChange={(e) =>
+                            setEditForm({
+                              ...editForm,
+                              [col.key]: e.target.value,
+                            })
+                          }
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      ) : (
+                        item[col.key]
+                      )}
+                    </td>
+                  ))}
+
+                  <td onClick={(e) => e.stopPropagation()}>
+                    <div className="table-actions">
+
+                      {isEditing ? (
+                        <>
+                          <button onClick={() => handleUpdate(item)}>Lưu</button>
+                          <button
+                            className="secondary"
+                            onClick={() => {
+                              setEditId(null);
+                              setEditForm({});
+                            }}
+                          >
+                            Hủy
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => {
+                              setEditId(item.id);
+                              setEditForm(item);
+                            }}
+                          >
+                            Sửa
+                          </button>
+
+                          <button
+                            className="danger"
+                            onClick={() => onDelete?.(item.id)}
+                          >
+                            Xóa
+                          </button>
+                        </>
+                      )}
+
+                    </div>
+                  </td>
+
+                </tr>
+              );
+            })}
+
+            {/* CREATE ROW */}
+            {creating ? (
+              <tr className="create-row">
+
+                <td>+</td>
+
+                {columns.map(col => (
+                  <td key={col.key}>
+                    <input
+                      className="table-input"
+                      placeholder={col.label}
+                      value={createForm[col.key] || ""}
+                      onChange={(e) =>
+                        setCreateForm({
+                          ...createForm,
+                          [col.key]: e.target.value,
+                        })
+                      }
+                    />
+                  </td>
+                ))}
+
+                <td>
+                  <div className="table-actions">
+                    <button onClick={handleCreate}>Lưu</button>
+                    <button
+                      className="secondary"
+                      onClick={() => setCreating(false)}
+                    >
+                      Hủy
+                    </button>
+                  </div>
+                </td>
+
+              </tr>
+            ) : (
+              <tr className="add-row">
+                <td colSpan={columns.length + 2}>
+                  <button
+                    className="add-button"
+                    onClick={() => setCreating(true)}
+                  >
+                    + Thêm mới
+                  </button>
+                </td>
+              </tr>
+              
             )}
+        
 
-          </div>
 
-        </div>
-      ))}
+          </tbody>
 
-      {/* ================= CREATE ROW ================= */}
-      {creating ? (
-        <div className="item create-row">
+        </table>
 
-          <div className="item-click-zone">
-
-            <div className="item-index">+</div>
-
-            <div className="item-main">
-
-              {showFields.name && (
-                <input
-                  className="table-input"
-                  placeholder="Name"
-                  value={createForm.name}
-                  onChange={(e) =>
-                    setCreateForm({
-                      ...createForm,
-                      name: e.target.value,
-                    })
-                  }
-                />
-              )}
-
-              {showFields.description && (
-                <input
-                  className="table-input"
-                  placeholder="Description"
-                  value={createForm.description}
-                  onChange={(e) =>
-                    setCreateForm({
-                      ...createForm,
-                      description: e.target.value,
-                    })
-                  }
-                />
-              )}
-
-              {showFields.year && (
-                <input
-                  className="table-input"
-                  placeholder="Year"
-                  value={createForm.year}
-                  onChange={(e) =>
-                    setCreateForm({
-                      ...createForm,
-                      year: e.target.value,
-                    })
-                  }
-                />
-              )}
-
-            </div>
-
-          </div>
-
-          <div className="item-actions">
-            <button onClick={handleCreate}>✔</button>
-            <button onClick={() => setCreating(false)}>✖</button>
-          </div>
-
-        </div>
-      ) : (
-        <button
-          className="add-button"
-          onClick={() => setCreating(true)}
-        >
-          + Thêm mới
-        </button>
-      )}
+      </div>
 
     </div>
   );
