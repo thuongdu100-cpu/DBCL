@@ -1,32 +1,18 @@
-
-export default function UserToolbar({
-  search,
-  setSearch,
-  onCreate,
-}) {
+export default function UserToolbar({ search, setSearch, onCreate }) {
   return (
     <div className="user-toolbar">
 
-      {/* SEARCH */}
       <input
         className="user-search"
-        placeholder="Tìm theo tên, email..."
         value={search}
-        onChange={(e) =>
-          setSearch(e.target.value)
-        }
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Tìm username, email..."
       />
 
-      {/* RIGHT */}
-      <div className="user-toolbar-right">
-
-        <button
-          className="user-create-btn"
-          onClick={onCreate}
-        >
+      <div className="toolbar-actions">
+        <button className="action-btn create" onClick={onCreate}>
           + Tạo User
         </button>
-
       </div>
 
     </div>

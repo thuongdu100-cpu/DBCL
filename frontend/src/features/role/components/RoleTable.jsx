@@ -1,15 +1,17 @@
 import RoleRow from "./RoleRow";
 
-export default function RoleTable({ roles, onEdit }) {
+export default function RoleTable({ roles = [], onEdit }) {
+
   return (
     <table className="role-table">
+
       <thead>
         <tr>
           <th>Code</th>
-          <th>Name</th>
-          <th>Users</th>
-          <th>Status</th>
-          <th>Actions</th>
+          <th>Tên</th>
+          <th>Số lượng người dùng</th>
+          <th>Trạng thái</th>
+          <th>Action</th>
         </tr>
       </thead>
 
@@ -22,6 +24,7 @@ export default function RoleTable({ roles, onEdit }) {
           />
         ))}
       </tbody>
+
     </table>
   );
 }

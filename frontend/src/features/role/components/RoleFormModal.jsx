@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import PermissionMatrix from "./PermissionMatrix";
 
+const emptyRole = {
+  code: "",
+  name: "",
+  permissions: [],
+};
+
 export default function RoleFormModal({
   open,
   onClose,
@@ -8,15 +14,18 @@ export default function RoleFormModal({
   role
 }) {
 
-  const [form, setForm] = useState({
-    code: "",
-    name: "",
-    permissions: [],
-  });
+  const [form, setForm] = useState(emptyRole);
 
   useEffect(() => {
-    if (role) setForm(role);
-  }, [role]);
+    if (role) {
+      setForm({
+        ...role,
+        permissions: [...(role.permissions || [])],
+      });
+    } else {
+      setForm(emptyRole);
+    }
+  }, [role, open]);
 
   const togglePermission = (p) => {
     setForm(prev => ({
@@ -30,11 +39,11 @@ export default function RoleFormModal({
   if (!open) return null;
 
   return (
-    <div className="modal">
+    <div className="role-modal-overlay">
 
-      <div className="modal-content">
+      <div className="role-modal">
 
-        <h3>Role Form</h3>
+        <h3>{role ? "Update Role" : "Create Role"}</h3>
 
         <input
           placeholder="Code"
@@ -57,11 +66,16 @@ export default function RoleFormModal({
           onToggle={togglePermission}
         />
 
-        <div className="modal-actions">
-          <button onClick={onClose}>Cancel</button>
+        <div className="role-modal-actions">
+
+          <button onClick={onClose}>
+            Cancel
+          </button>
+
           <button onClick={() => onSave(form)}>
             Save
           </button>
+
         </div>
 
       </div>
