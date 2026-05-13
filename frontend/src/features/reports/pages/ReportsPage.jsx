@@ -1,29 +1,57 @@
-import { useState } from "react";
-
-import ReportsFilter from "../components/ReportsFilter";
-import ReportsTable from "../components/ReportsTable";
-
+import ReportsStats from "../components/ReportsStats";
+import ReportsAnalytics from "../components/ReportsAnalytics";
+import ReportsExportBar from "../components/ReportsExportBar";
+import ReportsActivity from "../components/ReportsActivity";
+import ReportsTabs from "../components/ReportsTabs";
+import { Outlet } from "react-router-dom";
 import "../styles/reports.css";
-
 export default function ReportsPage() {
-  const [filters, setFilters] = useState({
-    keyword: "",
-    type: "all",
-  });
-
   return (
-    <div className="reports-page">
+    <div className="reports-layout">
 
-      <div className="panel">
-        <h2>Báo cáo hệ thống ĐBCL</h2>
-      </div>
+      {/* HEADER */}
+      <header className="reports-header">
+        <div className="reports-title">
+          <h2>Reports System</h2>
+          <p>Analytics & workflow dashboard</p>
+        </div>
+      </header>
 
-      <ReportsFilter
-        filters={filters}
-        setFilters={setFilters}
-      />
+      {/* KPI */}
+      <section className="reports-kpi">
+        <ReportsStats />
+      </section>
 
-      <ReportsTable filters={filters} />
+      
+      {/* ANALYTICS */}
+      <section className="reports-analytics-wrapper">
+        <ReportsAnalytics />
+      </section>
+        
+        <div className="reports-chrome">
+
+          {/* LEFT SIDE */}
+          <div className="reports-chrome-left">
+
+            {/* TABBAR */}
+            <div className="reports-body-tabs">
+              <ReportsTabs />
+            </div>
+
+            {/* SUBPAGE */}
+            <div className="reports-subpage-container">
+              <Outlet />
+            </div>
+
+          </div>
+
+          {/* RIGHT SIDE */}
+          <aside className="reports-export-panel">
+            <ReportsExportBar />
+          </aside>
+
+        </div>
+
 
     </div>
   );

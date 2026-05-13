@@ -1,25 +1,359 @@
-.reports-page {
+/* =========================================================
+   BASE LAYOUT
+========================================================= */
+
+.reports-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+
+  background: #f9fafb;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reports-title h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.reports-title p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* =========================================================
+   KPI
+========================================================= */
+
+.reports-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.stat-card {
+  padding: 14px;
+  border-radius: 12px;
+  background: white;
+  border-left: 4px solid;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* =========================================================
+   ANALYTICS (UPDATED - IMPORTANT FIX)
+========================================================= */
+
+.reports-analytics {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+
+  width: 100%;
+  min-height: 380px;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* FILTER */
+.reports-analytics-wrapper {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: stretch;
+
+  flex: 0 0 auto; /* QUAN TRỌNG: không bị stretch */
+}
+/* =========================================================
+   CHART CONTAINER (TradingView style)
+========================================================= */
+
+.chart-container {
+  width: 100%;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+}
+
+/* =========================================================
+   SVG
+========================================================= */
+
+.chart-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* =========================================================
+   GRID (very light like TradingView)
+========================================================= */
+
+.grid-line {
+  stroke: rgba(148, 163, 184, 0.25);
+  stroke-width: 1;
+}
+
+.grid-line-vertical {
+  stroke: rgba(148, 163, 184, 0.12);
+  stroke-width: 1;
+}
+
+/* =========================================================
+   AXIS
+========================================================= */
+
+.axis-line {
+  stroke: rgba(148, 163, 184, 0.4);
+  stroke-width: 1;
+}
+
+/* =========================================================
+   LINE (TradingView style)
+========================================================= */
+
+.chart-line {
+  fill: none;
+  stroke: #2962ff;
+  stroke-width: 2;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* =========================================================
+   POINTS (hidden by default)
+========================================================= */
+
+.chart-point {
+  fill: #2962ff;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+g:hover .chart-point {
+  opacity: 1;
+}
+
+/* =========================================================
+   HOVER CROSSHAIR
+========================================================= */
+
+.hover-line {
+  stroke: rgba(148, 163, 184, 0.5);
+  stroke-dasharray: 4 4;
+}
+
+/* =========================================================
+   TOOLTIP
+========================================================= */
+
+.tooltip-box {
+  fill: #111827;
+  opacity: 0.95;
+}
+
+.tooltip-text {
+  fill: white;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   LABEL X
+========================================================= */
+
+.chart-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* =========================================================
+   CHROME WRAPPER
+========================================================= */
+
+.reports-chrome {
+  display: grid;
+  grid-template-columns: 1fr 160px;
+
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+.reports-chrome-left {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* =========================================================
+   TABBAR
+========================================================= */
+
+.reports-body-tabs {
+  display: flex;
+  gap: 8px;
+
+  padding: 12px;
+  background: #f3f4f6;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.reports-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.reports-tabs a {
+  padding: 10px 16px;
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #6b7280;
+  text-decoration: none;
+
+  transition: all 0.2s ease;
+}
+
+.reports-tabs a:hover {
+  background: #e5e7eb;
+}
+
+.reports-tabs a.active {
+  background: white;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+}
+
+/* =========================================================
+   SUBPAGE
+========================================================= */
+
+.reports-subpage-container {
+  padding: 16px;
+  background: white;
+  min-height: 300px;
+}
+
+/* =========================================================
+   EXPORT PANEL
+========================================================= */
+
+.reports-export-panel {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 16px;
+
+  padding: 10px;
+
+  background: #fafafa;
+  border-left: 1px solid #e5e7eb;
+}
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  width: 120px;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+
+  background: white;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.export-btn.primary {
+  background: #2563eb;
+  color: white;
+  border: none;
+}
+
+/* =========================================================
+   FILTER
+========================================================= */
+
 .reports-filter {
   display: flex;
-  gap: 12px;
-  align-items: center;
+  gap: 10px;
 }
 
 .reports-filter input,
 .reports-filter select {
-  padding: 8px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg);
+  height: 40px;
+  padding: 0 12px;
+
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+
+  outline: none;
 }
 
-/* TABLE */
+/* =========================================================
+   TABLE
+========================================================= */
+
+.reports-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: white;
+}
+
 .reports-table {
   width: 100%;
   border-collapse: collapse;
@@ -27,26 +361,152 @@
 
 .reports-table th,
 .reports-table td {
-  padding: 10px;
-  border-bottom: 1px solid var(--border);
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 13px;
+  border-bottom: 1px solid #f1f5f9;
 }
 
-.reports-table tbody tr:hover {
-  background: var(--surface);
+.reports-row:hover {
+  background: #f9fafb;
 }
 
-/* TYPE COLORS */
-.evaluation {
-  color: var(--primary);
-  font-weight: 600;
+/* =========================================================
+   ACTIVITY
+========================================================= */
+
+.reports-activity {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  padding: 14px;
+  background: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
 }
 
-.evidence {
-  color: #10b981;
-  font-weight: 600;
+.reports-activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.improvement {
-  color: #f59e0b;
-  font-weight: 600;
+.reports-activity-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.reports-activity-header p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.reports-live {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.reports-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #16a34a;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.reports-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.reports-activity-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+  border: 1px solid #f1f5f9;
+
+  background: #fafafa;
+}
+
+.reports-activity-item:hover {
+  background: #f3f4f6;
+}
+
+.reports-activity-content {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.reports-activity-time {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* =========================================================
+   DRAWER
+========================================================= */
+
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 999;
+}
+
+.drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+.drawer-panel {
+  width: 420px;
+  height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  width: 320px;
 }

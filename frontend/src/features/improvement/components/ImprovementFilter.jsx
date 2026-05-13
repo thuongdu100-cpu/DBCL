@@ -1,26 +1,64 @@
-export default function ImprovementFilter({ filters, setFilters }) {
+
+
+export default function ImprovementFilter({
+  filters,
+  setFilters,
+}) {
+
   return (
-    <div className="panel improvement-filter">
 
-      <input
-        placeholder="Tìm theo tiêu chí hoặc kế hoạch..."
-        value={filters.keyword}
-        onChange={(e) =>
-          setFilters({ ...filters, keyword: e.target.value })
-        }
-      />
+    <div className="im-filter">
 
-      <select
-        value={filters.status}
-        onChange={(e) =>
-          setFilters({ ...filters, status: e.target.value })
-        }
-      >
-        <option value="all">Tất cả</option>
-        <option value="not_started">Chưa bắt đầu</option>
-        <option value="in_progress">Đang thực hiện</option>
-        <option value="done">Hoàn thành</option>
-      </select>
+      <div className="im-filter-search">
+
+        <input
+          type="text"
+          placeholder="Tìm theo tiêu chí, vấn đề..."
+          value={filters.keyword}
+          onChange={(e) =>
+            setFilters(prev => ({
+              ...prev,
+              keyword: e.target.value,
+            }))
+          }
+        />
+
+      </div>
+
+      <div className="im-filter-right">
+
+        <select
+          value={filters.status}
+          onChange={(e) =>
+            setFilters(prev => ({
+              ...prev,
+              status: e.target.value,
+            }))
+          }
+        >
+          <option value="all">
+            Tất cả trạng thái
+          </option>
+
+          <option value="not_started">
+            Chưa bắt đầu
+          </option>
+
+          <option value="in_progress">
+            Đang thực hiện
+          </option>
+
+          <option value="review">
+            Đánh giá
+          </option>
+
+          <option value="done">
+            Hoàn thành
+          </option>
+
+        </select>
+
+      </div>
 
     </div>
   );

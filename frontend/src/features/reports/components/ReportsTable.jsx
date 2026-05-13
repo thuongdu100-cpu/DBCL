@@ -1,65 +1,80 @@
-export default function ReportsTable({ filters }) {
-  const data = [
-    {
-      id: "RP001",
-      title: "Báo cáo đánh giá học kỳ I",
-      type: "evaluation",
-      createdAt: "2026-05-07",
-    },
-    {
-      id: "RP002",
-      title: "Báo cáo minh chứng tổng hợp",
-      type: "evidence",
-      createdAt: "2026-05-06",
-    },
-    {
-      id: "RP003",
-      title: "Báo cáo kế hoạch cải tiến",
-      type: "improvement",
-      createdAt: "2026-05-05",
-    },
-  ];
+import { useMemo } from "react";
 
-  const filtered = data.filter((item) => {
-    return (
-      (filters.type === "all" || item.type === filters.type) &&
-      item.title.toLowerCase().includes(filters.keyword.toLowerCase())
-    );
-  });
+export default function ReportsTable({
+  data = [],
+  filters = {},
+  onRowClick,
+}) {
+
+  // =========================
+  // SAFE DATA LAYER
+  // =========================
+  const safeData = Array.isArray(data) ? data : [];
+
+  // =========================
+  // FILTER ENGINE (MEMOIZED)
+  // =========================
+  const filtered = useMemo(() => {
+
+    return safeData.filter((item) => {
+
+      const matchType =
+        !filters?.type ||
+        filters.type === "all" ||
+        item.type === filters.type;
+
+      const matchKeyword =
+        (item.title || "")
+          .toLowerCase()
+          .includes((filters?.keyword || "").toLowerCase());
+
+      return matchType && matchKeyword;
+    });
+
+  }, [safeData, filters]);
 
   return (
-    <div className="panel">
+    <div className="reports-table-wrapper">
 
       <table className="reports-table">
 
+        {/* HEADER */}
         <thead>
           <tr>
             <th>Mã</th>
             <th>Tiêu đề</th>
             <th>Loại</th>
             <th>Ngày tạo</th>
-            <th>Hành động</th>
           </tr>
         </thead>
 
+        {/* BODY */}
         <tbody>
-          {filtered.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.title}</td>
 
-              <td className={item.type}>
-                {item.type}
-              </td>
-
-              <td>{item.createdAt}</td>
-
-              <td>
-                <button>Xem</button>
-                <button>Export</button>
+          {filtered.length > 0 ? (
+            filtered.map((item) => (
+              <tr
+                key={item.id}
+                onClick={() => onRowClick?.(item)}
+                className="reports-row"
+              >
+                <td>{item.id}</td>
+                <td>{item.title}</td>
+                <td>{item.type}</td>
+                <td>{item.createdAt}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td
+                colSpan="4"
+                style={{ textAlign: "center" }}
+              >
+                No data
               </td>
             </tr>
-          ))}
+          )}
+
         </tbody>
 
       </table>

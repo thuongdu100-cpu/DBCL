@@ -1,51 +1,914 @@
-.improvement-page {
+/* =========================================================
+   IMPROVEMENT PAGE
+========================================================= */
+
+.im-page {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
+
+  padding: 20px;
+
+  width: 100%;
+  max-width: 100%;
+
+  overflow-x: hidden;
+
+  box-sizing: border-box;
 }
 
-/* FILTER */
-.improvement-filter {
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.im-page-header {
   display: flex;
-  gap: 12px;
+  justify-content: space-between;
   align-items: center;
 }
 
-.improvement-filter input,
-.improvement-filter select {
-  padding: 8px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+.im-page-header h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
 }
 
-/* TABLE */
-.improvement-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.improvement-table th,
-.improvement-table td {
-  padding: 10px;
-  border-bottom: 1px solid var(--border);
-}
-
-.improvement-table tbody tr:hover {
-  background: var(--surface);
-}
-
-/* STATUS */
-.not_started {
+.im-page-header p {
+  margin-top: 6px;
   color: #6b7280;
-  font-weight: 600;
+  font-size: 14px;
 }
 
-.in_progress {
-  color: #f59e0b;
-  font-weight: 600;
+/* =========================================================
+   FILTER
+========================================================= */
+
+.im-filter {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  padding: 16px;
+
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
 }
 
-.done {
-  color: #10b981;
+.im-filter input,
+.im-filter select {
+  height: 42px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+
+  font-size: 14px;
+
+  background: white;
+
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.im-filter input {
+  flex: 1;
+  min-width: 240px;
+}
+
+.im-filter input:focus,
+.im-filter select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.08);
+}
+
+/* =========================================================
+   BOARD
+========================================================= */
+
+.im-board {
+  width: 100%;
+  max-width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(250px, 1fr));
+
+  gap: 16px;
+
+  align-items: start;
+
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   COLUMN
+========================================================= */
+
+.im-column {
+  width: 100%;
+  min-width: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #f8fafc,
+      #f1f5f9
+    );
+
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+
+  height: 78vh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   COLUMN HEADER
+========================================================= */
+
+.im-column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.im-column-header h3 {
+  margin: 0;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.im-column-header span {
+  min-width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 8px;
+
+  border-radius: 999px;
+
+  background: white;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: #374151;
+}
+
+/* =========================================================
+   COLUMN BODY
+========================================================= */
+
+.im-column-body {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  padding: 14px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  min-height: 0;
+
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.im-card {
+  position: relative;
+
+  width: 100%;
+  max-width: 100%;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  padding: 14px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  word-break: break-word;
+}
+.im-card::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 4px;
+
+  border-radius: 14px 0 0 14px;
+}
+
+/* PRIORITY COLORS */
+
+.im-card.high::before {
+  background: #dc2626;
+}
+
+.im-card.medium::before {
+  background: #d97706;
+}
+
+.im-card.low::before {
+  background: #2563eb;
+}
+
+.im-card:hover {
+  transform: translateY(-2px);
+
+  border-color: #cbd5e1;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.im-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 12px;
+}
+
+/* =========================================================
+   PRIORITY
+========================================================= */
+
+.im-priority {
+  padding: 4px 10px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.im-priority.high {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.im-priority.medium {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.im-priority.low {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+/* =========================================================
+   CARD PROGRESS TEXT
+========================================================= */
+
+.im-card-progress {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b7280;
+
+  flex-shrink: 0;
+} 
+
+
+/* =========================================================
+   CARD TITLE
+========================================================= */
+
+.im-card-title {
+  margin: 0 0 8px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: #111827;
+
+  line-height: 1.5;
+
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* =========================================================
+   CARD ISSUE
+========================================================= */
+
+.im-card-issue {
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.6;
+
+  color: #6b7280;
+
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.im-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  gap: 10px;
+
+  margin-top: 16px;
+
+  font-size: 12px;
+  color: #9ca3af;
+
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   DRAWER OVERLAY
+========================================================= */
+
+.im-drawer-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+/* =========================================================
+   BACKDROP
+========================================================= */
+.im-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(15,23,42,.45);
+
+  backdrop-filter: blur(3px);
+}
+
+/* =========================================================
+   DRAWER
+========================================================= */
+
+.im-drawer {
+  position: relative;
+
+  width: min(92vw, 760px);
+  max-height: 88vh;
+
+  background: white;
+
+  border-radius: 22px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.18);
+
+  animation: modalScale .22s ease;
+
+  z-index: 2;
+}
+
+@keyframes drawerSlide {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   DRAWER HEADER
+========================================================= */
+
+.im-drawer-header {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    28px
+    72px
+    22px;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #f8fafc,
+      #ffffff
+    );
+
+  text-align: center;
+}
+
+.im-drawer-header-content {
+  width: 100%;
+  max-width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 12px;
+}
+/* ID */
+
+.im-drawer-id {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 14px;
+
+  border-radius: 999px;
+
+  background: #dbeafe;
+  color: #2563eb;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  margin: 0 auto;
+}
+
+/* TITLE */
+
+.im-drawer-header h2 {
+  margin: 0;
+
+  width: 100%;
+
+  font-size: 26px;
+  font-weight: 700;
+
+  line-height: 1.35;
+
+  color: #111827;
+
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* CLOSE */
+
+.im-drawer-close {
+  position: absolute;
+
+  top: 18px;
+  right: 18px;
+
+  width: 38px;
+  height: 38px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: white;
+
+  font-size: 16px;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.08);
+}
+
+.im-drawer-close:hover {
+  background: #e5e7eb;
+}
+
+/* =========================================================
+   DRAWER BODY
+========================================================= */
+
+.im-drawer-body {
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  min-height: 0;
+}
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.im-detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  padding: 18px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  background: #ffffff;
+}
+
+/* ISSUE */
+
+.im-detail-section.issue {
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+/* OBJECTIVE */
+
+.im-detail-section.objective {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+/* PROGRESS */
+
+.im-detail-section.progress-section {
+  background: #f8fafc;
+}
+
+.im-detail-section.status-center {
+  align-items: center;
+  text-align: center;
+}
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.im-detail-section label,
+.im-detail-card label {
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: .4px;
+  text-transform: uppercase;
+
+  color: #6b7280;
+}
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.im-detail-section p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.7;
+
+  color: #374151;
+}
+
+/* =========================================================
+   STATUS BADGE
+========================================================= */
+
+.im-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 130px;
+
+  padding: 10px 18px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: .5px;
+}
+
+/* STATUS COLORS */
+
+.im-badge.not_started {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.im-badge.in_progress {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.im-badge.review {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.im-badge.done {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* =========================================================
+   GRID INFO
+========================================================= */
+
+.im-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* =========================================================
+   INFO CARD
+========================================================= */
+
+.im-detail-card {
+  padding: 18px;
+
+  border-radius: 16px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e5e7eb;
+}
+
+.im-detail-card p {
+  margin-top: 10px;
+
+  font-size: 15px;
   font-weight: 600;
+
+  color: #111827;
+}
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.im-progress {
+  position: relative;
+
+  width: 100%;
+  height: 10px;
+
+  border-radius: 999px;
+
+  background: #e5e7eb;
+
+  overflow: hidden;
+}
+
+/* BAR */
+
+.im-progress-bar {
+  height: 100%;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #60a5fa,
+      #2563eb
+    );
+
+  transition: width .3s ease;
+
+  min-width: 6px;
+}
+
+.im-progress-bar::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      rgba(255,255,255,.4),
+      transparent
+    );
+
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* TEXT */
+
+.im-progress-text {
+  margin-top: 8px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  color: #2563eb;
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.im-drawer-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 18px 24px;
+
+  border-top: 1px solid #e5e7eb;
+
+  background: white;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  margin-top: auto;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.im-btn-primary,
+.im-btn-secondary {
+  height: 42px;
+
+  padding: 0 18px;
+
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 140px;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+/* PRIMARY */
+
+.im-btn-primary {
+  border: none;
+
+  background: #2563eb;
+  color: white;
+}
+
+.im-btn-primary:hover {
+  background: #1d4ed8;
+}
+
+/* SECONDARY */
+
+.im-btn-secondary {
+  border: 1px solid #d1d5db;
+
+  background: white;
+  color: #374151;
+}
+
+.im-btn-secondary:hover {
+  background: #f3f4f6;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 1400px) {
+
+  .im-board {
+    grid-template-columns:
+      repeat(2, minmax(250px, 1fr));
+  }
+
+}
+
+
+@media (max-width: 768px) {
+
+  .im-board {
+    grid-template-columns: 1fr;
+  }
+
+  .im-column {
+    height: auto;
+    max-height: 75vh;
+  }
+
+  .im-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .im-filter {
+    flex-direction: column;
+  }
+
+  .im-filter input,
+  .im-filter select {
+    width: 100%;
+  }
+
+  .im-drawer {
+    width: 100%;
+    max-height: 95vh;
+    border-radius: 18px;
+  }
+
+}
+
+@keyframes modalScale {
+
+  from {
+    transform: scale(.94);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+
 }

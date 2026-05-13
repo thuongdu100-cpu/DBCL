@@ -1,5 +1,5 @@
 import { PERMISSIONS } from "../auth/permissions";
-
+import { Navigate } from "react-router-dom";
 // =========================
 // DASHBOARD
 // =========================
@@ -52,6 +52,10 @@ import RoleManagementPage from "../features/role/pages/RoleManagementPage";
 
 import ImprovementPage from "../features/improvement/pages/ImprovementPage";
 import ReportsPage from "../features/reports/pages/ReportsPage";
+import ReportsEvaluationPage from "../features/reports/pages/ReportsEvaluationPage";
+import ReportsEvidencePage from "../features/reports/pages/ReportsEvidencePage";
+import ReportsImprovementPage from "../features/reports/pages/ReportsImprovementPage";
+import ReportsActivityPage from "../features/reports/pages/ReportsActivityPage";
 
 export const routes = [
 
@@ -245,6 +249,56 @@ export const routes = [
     element: ReportsPage,
 
     permission: PERMISSIONS.VIEW_REPORT,
-  },
 
+    children: [
+
+      /* DEFAULT */
+
+      {
+        index: true,
+
+        element: () => (
+          <Navigate
+            to="evaluation"
+            replace
+          />
+        ),
+      },
+
+      /* EVALUATION */
+
+      {
+        path: "evaluation",
+
+        element: ReportsEvaluationPage,
+
+        permission: PERMISSIONS.VIEW_REPORT,
+      },
+
+      /* EVIDENCE */
+
+      {
+        path: "evidence",
+
+        element: ReportsEvidencePage,
+
+        permission: PERMISSIONS.VIEW_REPORT,
+      },
+
+      /* IMPROVEMENT */
+
+      {
+        path: "improvement",
+
+        element: ReportsImprovementPage,
+
+        permission: PERMISSIONS.VIEW_REPORT,
+      },
+      
+      { path: "activity", 
+        element: ReportsActivityPage,
+        permission: PERMISSIONS.VIEW_REPORT,
+      }
+    ],
+  },
 ];

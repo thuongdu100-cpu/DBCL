@@ -1,22 +1,45 @@
 import { useState } from "react";
 
+import useImprovement from "../hooks/useImprovement";
+
+import ImprovementBoard from "../components/ImprovementBoard";
 import ImprovementFilter from "../components/ImprovementFilter";
-import ImprovementTable from "../components/ImprovementTable";
+import ImprovementDetailDrawer from "../components/ImprovementDetailDrawer";
 
 import "../styles/improvement.css";
 
 export default function ImprovementPage() {
+
+  const { grouped } = useImprovement();
+
   const [filters, setFilters] = useState({
     keyword: "",
-    status: "all",
+    priority: "all",
+    owner: "all",
   });
 
-  return (
-    <div className="improvement-page">
+  const [selectedItem, setSelectedItem] =
+    useState(null);
 
-      <div className="panel">
-        <h2>Kế hoạch cải tiến chất lượng</h2>
-        <p>Tạo từ các tiêu chí đánh giá chưa đạt yêu cầu</p>
+  return (
+
+    <div className="im-page">
+
+      <div className="im-page-header">
+
+        <div>
+
+          <h2>
+            Cải tiến chất lượng
+          </h2>
+
+          <p>
+            Quản lý tiến độ cải tiến
+            theo từng tiêu chí và vấn đề
+          </p>
+
+        </div>
+
       </div>
 
       <ImprovementFilter
@@ -24,7 +47,19 @@ export default function ImprovementPage() {
         setFilters={setFilters}
       />
 
-      <ImprovementTable filters={filters} />
+      <ImprovementBoard
+        grouped={grouped}
+        filters={filters}
+        onSelect={setSelectedItem}
+      />
+
+      <ImprovementDetailDrawer
+        open={!!selectedItem}
+        item={selectedItem}
+        onClose={() =>
+          setSelectedItem(null)
+        }
+      />
 
     </div>
   );
