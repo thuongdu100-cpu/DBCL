@@ -1,11 +1,11 @@
-import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useEvidenceWorkflow from "../hooks/useEvidenceWorkflow";
 
+import EvidenceFilter from "../components/EvidenceFilter";
 import EvidenceRepositoryTable from "../components/EvidenceRepositoryTable";
-
-export default function EvidenceHistoryPage() {
+import "../styles/evidence.css";
+export default function EvidenceRepositoryPage() {
 
   const navigate = useNavigate();
 
@@ -15,28 +15,18 @@ export default function EvidenceHistoryPage() {
 
   const {
 
-    evidences,
+    filteredEvidences,
+
+    search,
+    setSearch,
+
+    statusFilter,
+    setStatusFilter,
 
   } = useEvidenceWorkflow();
 
   /* ======================================================
-     HISTORY
-  ====================================================== */
-
-  const historyData = useMemo(() => {
-
-    return evidences.filter((item) => {
-
-      return (
-        item.status === "approved" ||
-        item.status === "rejected"
-      );
-    });
-
-  }, [evidences]);
-
-  /* ======================================================
-     DETAIL
+     VIEW DETAIL
   ====================================================== */
 
   const handleViewDetail = (item) => {
@@ -58,37 +48,36 @@ export default function EvidenceHistoryPage() {
         <div>
 
           <h2>
-            Lịch sử xử lý minh chứng
+            Kho minh chứng
           </h2>
 
           <p>
-            Theo dõi lịch sử phê duyệt và xử lý workflow minh chứng
+            Quản lý toàn bộ minh chứng phục vụ kiểm định chất lượng
           </p>
 
         </div>
 
       </div>
 
-      {/* EMPTY */}
-      {historyData.length === 0 ? (
+      {/* FILTER */}
+      <EvidenceFilter
 
-        <div className="evidence-empty">
+        search={search}
+        setSearch={setSearch}
 
-          Chưa có lịch sử xử lý
+        statusFilter={statusFilter}
+        setStatusFilter={setStatusFilter}
 
-        </div>
+      />
 
-      ) : (
+      {/* TABLE */}
+      <EvidenceRepositoryTable
 
-        <EvidenceRepositoryTable
+        data={filteredEvidences}
 
-          data={historyData}
+        onView={handleViewDetail}
 
-          onView={handleViewDetail}
-
-        />
-
-      )}
+      />
 
     </section>
   );

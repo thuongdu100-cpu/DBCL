@@ -18,7 +18,7 @@ export default function LoginPage() {
       return;
     }
 
-    navigate("/dbcl/dashboard");
+    navigate("/dashboard"); 
   };
 
   return (

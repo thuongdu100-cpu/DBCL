@@ -1,62 +1,512 @@
-.assignment-page {
+/* =====================================================
+   ASSIGNMENT MODULE - CLEAN UI VERSION
+===================================================== */
+
+.assignment-workspace {
+  padding: 18px;
   display: flex;
   flex-direction: column;
+  gap: 14px;
+  background: #f4f6f8;
+  min-height: 100vh;
+}
+
+/* =====================================================
+   HEADERS (UNIFIED)
+===================================================== */
+
+.assignment-header,
+.dashboard-header,
+.history-header,
+.detail-header,
+.board-header,
+.mywork-header {
+  background: #fff;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.assignment-header h2,
+.dashboard-header h2,
+.history-header h2,
+.detail-header h2,
+.board-header h2,
+.mywork-header h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.assignment-header p,
+.dashboard-header p,
+.history-header p,
+.board-header p,
+.mywork-header p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.assignment-dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 
-.assignment-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+.dashboard-card {
+  background: #fff;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
 }
+
+.dashboard-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.dashboard-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* =====================================================
+   BOARD / MYWORK
+===================================================== */
+
+.assignment-board,
+.mywork-grid {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.board-column,
+.mywork-column {
+  min-width: 270px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.board-column-title,
+.mywork-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.board-column-body,
+.mywork-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* =====================================================
+   CARD
+===================================================== */
 
 .assignment-card {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  transition: 0.2s;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px;
+  transition: 0.2s ease;
 }
 
 .assignment-card:hover {
   transform: translateY(-2px);
-  background: var(--surface);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
-.assignment-card h3 {
-  margin: 0;
+.assignment-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
 }
 
-.desc {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 6px 0;
+.assignment-desc {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
 }
 
-/* BOARD */
-.board {
+.assignment-meta {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 6px;
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 3px;
 }
 
-.board-item {
-  padding: 10px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg);
-}
-
-/* PROGRESS BAR */
-.progress-bar {
-  width: 100%;
-  height: 6px;
-  background: #e5e7eb;
-  border-radius: 999px;
+.assignment-actions {
   margin-top: 8px;
+  display: flex;
+  gap: 6px;
 }
 
-.progress-fill {
-  height: 100%;
-  background: #3b82f6;
+.assignment-actions button {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* =====================================================
+   PRIORITY INDICATORS
+===================================================== */
+
+.priority-high {
+  border-left: 4px solid #ef4444;
+}
+
+.priority-medium {
+  border-left: 4px solid #f59e0b;
+}
+
+.priority-low {
+  border-left: 4px solid #22c55e;
+}
+
+.priority-critical {
+  border-left: 4px solid #b91c1c;
+}
+
+/* =====================================================
+   STATUS BADGE (FIXED + CLEAN)
+===================================================== */
+
+.assignment-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 11px;
   border-radius: 999px;
+  font-weight: 500;
+}
+
+.status-assigned {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-progress {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-review {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.status-done {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status-overdue {
+  background: #ffe4e6;
+  color: #9f1239;
+}
+
+.status-unknown {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+.assignment-filter,
+.history-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 10px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.assignment-filter input,
+.assignment-filter select,
+.history-filters input,
+.history-filters select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.assignment-table {
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.assignment-table-ui {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.assignment-table-ui th,
+.assignment-table-ui td {
+  padding: 10px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+  text-align: left;
+}
+
+.assignment-table-ui th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* =====================================================
+   DETAIL PAGE
+===================================================== */
+
+.assignment-detail {
+  padding: 14px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+/* =====================================================
+   ASSIGNMENT HISTORY (AUDIT LOG UI)
+===================================================== */
+
+.assignment-history {
+  padding: 20px;
+  background: #f4f6f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.history-header {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.history-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.history-header p {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* =====================================================
+   FILTER BAR
+===================================================== */
+
+.history-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.history-filters input,
+.history-filters select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  outline: none;
+  min-width: 180px;
+  background: #fff;
+}
+
+.history-filters input:focus,
+.history-filters select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.15);
+}
+
+/* =====================================================
+   LOG LIST (TIMELINE FEEL)
+===================================================== */
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* =====================================================
+   SINGLE LOG ITEM
+===================================================== */
+
+.history-item {
+  display: grid;
+  grid-template-columns: 180px 1fr 120px;
+
+  gap: 12px;
+  padding: 14px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  transition: 0.2s ease;
+}
+
+.history-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+
+/* =====================================================
+   LEFT TIME
+===================================================== */
+
+.history-time {
+  font-size: 12px;
+  color: #6b7280;
+  font-variant-numeric: tabular-nums;
+}
+
+/* =====================================================
+   CENTER CONTENT
+===================================================== */
+
+.history-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.history-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.history-action {
+  font-size: 13px;
+  color: #374151;
+}
+
+.history-user {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.history-reason {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #b45309;
+  background: #fffbeb;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #fcd34d;
+}
+
+/* =====================================================
+   RIGHT STATUS
+===================================================== */
+
+.history-status {
+  align-self: start;
+  justify-self: end;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  background: #f3f4f6;
+  color: #374151;
+  text-transform: uppercase;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 768px) {
+  .history-item {
+    grid-template-columns: 1fr;
+  }
+
+  .history-status {
+    justify-self: start;
+  }
+
+  .history-time {
+    margin-bottom: 6px;
+  }
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1024px) {
+  .assignment-dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .assignment-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .assignment-board,
+  .mywork-grid {
+    flex-direction: column;
+  }
 }

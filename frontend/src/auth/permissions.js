@@ -39,7 +39,7 @@ export const PERMISSIONS = {
   SUBMIT_EVIDENCE: "submit_evidence",
   RESUBMIT_EVIDENCE: "resubmit_evidence",
   RECALL_EVIDENCE: "recall_evidence",
-
+  
   REVIEW_EVIDENCE: "review_evidence",
   APPROVE_EVIDENCE: "approve_evidence",
   REJECT_EVIDENCE: "reject_evidence",

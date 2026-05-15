@@ -1,14 +1,40 @@
+const STATUS_CONFIG = {
+
+  pending: {
+    label: "Chờ xử lý",
+    className: "pending",
+  },
+
+  reviewing: {
+    label: "Đang kiểm duyệt",
+    className: "reviewing",
+  },
+
+  approved: {
+    label: "Đã duyệt",
+    className: "approved",
+  },
+
+  rejected: {
+    label: "Từ chối",
+    className: "rejected",
+  },
+};
+
 export default function EvidenceStatusBadge({ status }) {
 
-  const colorMap = {
-    PENDING: "orange",
-    APPROVED: "green",
-    REJECTED: "red",
-  };
+  const config =
+    STATUS_CONFIG[status] || STATUS_CONFIG.pending;
 
   return (
-    <span style={{ color: colorMap[status] }}>
-      {status}
+
+    <span
+      className={`
+        evidence-status-badge
+        ${config.className}
+      `}
+    >
+      {config.label}
     </span>
   );
 }

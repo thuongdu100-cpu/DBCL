@@ -88,7 +88,7 @@ export default function CriteriaPage() {
             { key: "description", label: "Mô tả" },
           ]}
           onRowClick={(item) =>
-            navigate(`/dbcl/standard/${standardId}/${item.id}`)
+            navigate(`/standard/${standardId}/${item.id}`)
           }
           onCreate={handleAdd}
           onUpdate={handleUpdate}

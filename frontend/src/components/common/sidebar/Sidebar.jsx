@@ -8,47 +8,29 @@ export default function Sidebar() {
 
   const { user } = useAuth();
 
-  // =========================
-  // FILTER ROUTES
-  // =========================
-
   const filteredRoutes = routes.filter(r => {
 
-    // hidden khỏi sidebar
-    if (r.sidebar === false) {
-      return false;
-    }
+    if (r.sidebar === false) return false;
 
-    // check permission
-    return hasPermission(
-      user.role,
-      r.permission
-    );
+    return hasPermission(user.role, r.permission);
   });
 
   return (
     <div className="sidebar">
 
-      {/* =========================
-          LOGO
-      ========================= */}
       <div className="sidebar-title">
         Hệ Thống ĐBCL
       </div>
 
-      {/* =========================
-          NAVIGATION
-      ========================= */}
       <div className="sidebar-nav">
 
         {filteredRoutes.map(r => (
 
           <NavLink
             key={r.path}
-            to={`/dbcl/${r.path}`}
+            to={r.path}  
             className={({ isActive }) =>
-              "sidebar-link" +
-              (isActive ? " active" : "")
+              "sidebar-link" + (isActive ? " active" : "")
             }
           >
             {r.label}

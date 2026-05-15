@@ -1,22 +1,95 @@
+import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+
 import useEvidenceWorkflow from "../hooks/useEvidenceWorkflow";
-import EvidenceStatusBadge from "../components/EvidenceStatusBadge";
-import "../styles/evidence.css";
+
+import EvidenceRepositoryTable from "../components/EvidenceRepositoryTable";
 
 export default function EvidenceQueuePage() {
 
-  const { list } = useEvidenceWorkflow();
+  const navigate = useNavigate();
+
+  /* ======================================================
+     WORKFLOW
+  ====================================================== */
+
+  const {
+
+    evidences,
+
+  } = useEvidenceWorkflow();
+
+  /* ======================================================
+     QUEUE
+  ====================================================== */
+
+  const queueData = useMemo(() => {
+
+    return evidences.filter((item) => {
+
+      return (
+        item.status === "pending" ||
+        item.status === "reviewing"
+      );
+    });
+
+  }, [evidences]);
+
+  /* ======================================================
+     REVIEW
+  ====================================================== */
+
+  const handleReview = (item) => {
+
+    navigate(`/evidence/review/${item.id}`);
+  };
+
+  /* ======================================================
+     RENDER
+  ====================================================== */
 
   return (
-    <div>
-      <h2>Evidence Queue</h2>
 
-      {list.map(item => (
-        <div key={item.id}>
-          <h4>{item.title}</h4>
+    <section className="evidence-page">
 
-          <EvidenceStatusBadge status={item.status} />
+      {/* HEADER */}
+      <div className="evidence-page-header">
+
+        <div>
+
+          <h2>
+            Hàng chờ kiểm duyệt
+          </h2>
+
+          <p>
+            Danh sách minh chứng đang chờ xử lý và kiểm duyệt
+          </p>
+
         </div>
-      ))}
-    </div>
+
+      </div>
+
+      {/* EMPTY */}
+      {queueData.length === 0 ? (
+
+        <div className="evidence-empty">
+
+          Không có minh chứng chờ xử lý
+
+        </div>
+
+      ) : (
+
+        <EvidenceRepositoryTable
+
+          data={queueData}
+
+          onView={handleReview}
+
+        />
+
+      )}
+
+    </section>
   );
 }

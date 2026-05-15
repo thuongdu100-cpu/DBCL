@@ -128,7 +128,7 @@ export default function IndicatorPage() {
           ]}
           onRowClick={(item) =>
             navigate(
-              `/dbcl/standard/${standardId}/${criteriaId}/${item.id}`
+              `/standard/${standardId}/${criteriaId}/${item.id}`
             )
           }
           onCreate={handleAdd}

@@ -63,7 +63,7 @@ export default function StandardPage() {
             { key: "year", label: "Năm" },
           ]}
           onRowClick={(item) =>
-            navigate(`/dbcl/standard/${item.id}`)
+            navigate(`/standard/${item.id}`)
           }
           onCreate={handleAdd}
           onUpdate={handleUpdate}

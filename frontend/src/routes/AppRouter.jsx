@@ -12,7 +12,7 @@ import LoginPage from "../features/auth/LoginPage";
 import { routes } from "./route.config.jsx";
 
 /* =========================================================
-   RECURSIVE ROUTE RENDER
+   ROUTE RENDER
 ========================================================= */
 
 function renderRoutes(routeList) {
@@ -28,24 +28,18 @@ function renderRoutes(routeList) {
     ) : undefined;
 
     return (
-
       <Route
         key={r.path || "index"}
-
         path={r.path}
-
         index={r.index}
-
         element={routeElement}
       >
-
-        {r.children &&
-          renderRoutes(r.children)}
-
+        {r.children && renderRoutes(r.children)}
       </Route>
     );
   });
 }
+
 /* =========================================================
    APP ROUTER
 ========================================================= */
@@ -54,45 +48,29 @@ export default function AppRouter() {
 
   return (
 
-    <BrowserRouter>
+    <BrowserRouter basename="/dbcl">
 
       <Routes>
 
         {/* LOGIN */}
+        <Route path="/login" element={<LoginPage />} />
 
+        {/* ROOT */}
         <Route
-          path="/login"
-          element={<LoginPage />}
+          path="/"
+          element={<Navigate to="/dashboard" replace />}
         />
 
-        {/* ROOT REDIRECT */}
-
+        {/* MAIN APP */}
         <Route
           path="/"
           element={
-            <Navigate
-              to="/dbcl/dashboard"
-              replace
-            />
-          }
-        />
-
-        {/* MAIN SYSTEM */}
-
-        <Route
-          path="/dbcl"
-
-          element={
             <ProtectedRoute>
-
               <DBCLLayout />
-
             </ProtectedRoute>
           }
         >
-
           {renderRoutes(routes)}
-
         </Route>
 
       </Routes>

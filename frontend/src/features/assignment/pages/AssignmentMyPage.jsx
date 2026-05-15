@@ -2,12 +2,13 @@ import { useMemo } from "react";
 import useAssignmentWorkflow from "../hooks/useAssignmentWorkflow";
 import AssignmentCard from "../components/AssignmentCard";
 import { ASSIGNMENT_STATUS } from "../data/mockAssignments";
+import AssignmentTable from "../components/AssignmentTable";
 import "../styles/assignment.css";
 // ======================================================
-// BOARD GROUPING LOGIC
+// PERSONAL WORK INBOX
 // ======================================================
 
-export default function AssignmentBoardPage() {
+export default function AssignmentMyPage() {
 
   const {
     assignments,
@@ -15,52 +16,71 @@ export default function AssignmentBoardPage() {
     submitTask,
   } = useAssignmentWorkflow();
 
+  // giả lập user hiện tại (sau này lấy từ auth)
+  const currentUser = {
+    id: "U10",
+    role: "faculty",
+    name: "Nguyễn Văn A",
+  };
+
   // ======================================================
-  // GROUP BY STATUS (KANBAN LANE)
+  // FILTER MY TASKS
+  // ======================================================
+
+  const myTasks = useMemo(() => {
+
+    return assignments.filter(a =>
+      a.assignedTo?.id === currentUser.id
+    );
+
+  }, [assignments]);
+
+  // ======================================================
+  // GROUP BY STATUS (PERSONAL VIEW)
   // ======================================================
 
   const grouped = useMemo(() => {
 
     return {
-      assigned: assignments.filter(a =>
+      todo: myTasks.filter(a =>
         a.status === ASSIGNMENT_STATUS.ASSIGNED
       ),
 
-      inProgress: assignments.filter(a =>
+      doing: myTasks.filter(a =>
         a.status === ASSIGNMENT_STATUS.IN_PROGRESS
       ),
 
-      waitingReview: assignments.filter(a =>
+      review: myTasks.filter(a =>
         a.status === ASSIGNMENT_STATUS.WAITING_REVIEW
       ),
 
-      done: assignments.filter(a =>
+      done: myTasks.filter(a =>
         a.status === ASSIGNMENT_STATUS.DONE
       ),
 
-      rejected: assignments.filter(a =>
+      rejected: myTasks.filter(a =>
         a.status === ASSIGNMENT_STATUS.REJECTED
       ),
 
-      overdue: assignments.filter(a =>
+      overdue: myTasks.filter(a =>
         a.status === ASSIGNMENT_STATUS.OVERDUE
       ),
     };
 
-  }, [assignments]);
+  }, [myTasks]);
 
   // ======================================================
   // RENDER COLUMN
   // ======================================================
 
   const renderColumn = (title, items) => (
-    <div className="board-column">
+    <div className="mywork-column">
 
-      <div className="board-column-title">
+      <div className="mywork-title">
         {title} ({items.length})
       </div>
 
-      <div className="board-column-body">
+      <div className="mywork-body">
 
         {items.map(item => (
           <AssignmentCard
@@ -82,24 +102,24 @@ export default function AssignmentBoardPage() {
   );
 
   // ======================================================
-  // BOARD UI
+  // UI
   // ======================================================
 
   return (
-    <div className="assignment-board">
+    <div className="assignment-mywork">
 
-      <div className="board-header">
-        <h2>Assignment Workspace</h2>
-        <p>Điều phối và theo dõi toàn bộ công việc</p>
+      <div className="mywork-header">
+        <h2>Công việc của tôi</h2>
+        <p>Danh sách toàn bộ nhiệm vụ được giao</p>
       </div>
 
-      <div className="board-grid">
+      <div className="mywork-grid">
 
-        {renderColumn("Đã giao", grouped.assigned)}
+        {renderColumn("Cần làm", grouped.todo)}
 
-        {renderColumn("Đang thực hiện", grouped.inProgress)}
+        {renderColumn("Đang làm", grouped.doing)}
 
-        {renderColumn("Chờ duyệt", grouped.waitingReview)}
+        {renderColumn("Chờ duyệt", grouped.review)}
 
         {renderColumn("Hoàn thành", grouped.done)}
 
@@ -108,7 +128,11 @@ export default function AssignmentBoardPage() {
         {renderColumn("Quá hạn", grouped.overdue)}
 
       </div>
-
+    {/* TABLE VIEW */}
+    <div className="assignment-table-section">
+     
+      <AssignmentTable />
+    </div>
     </div>
   );
 }
