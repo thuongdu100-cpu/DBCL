@@ -1,163 +1,276 @@
 /* ======================================================
-   PROFILE MODULE BASE
-   ====================================================== */
+   GLOBAL PROFILE LAYOUT (PRO UI)
+====================================================== */
 
 .profile-page {
-  padding: 20px;
-  background: #f9fafb;
+  padding: 28px;
+  background: #f6f8fb;
   min-height: 100vh;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
 }
 
+/* ======================================================
+   HEADER
+====================================================== */
+
 .profile-header {
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e9ecef;
 }
 
 .profile-header h2 {
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.profile-header p {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ======================================================
+   GRID LAYOUT (PRO SPACING)
+====================================================== */
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.profile-left,
+.profile-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+/* ======================================================
+   PROFILE CARD (CLEANER + STRUCTURE FIX)
+====================================================== */
+
+.profile-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+/* CARD TITLE */
+.profile-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: #111827;
+}
+
+/* ======================================================
+   SPAN SYSTEM (LABEL / VALUE / BADGE CLEAN DESIGN)
+====================================================== */
+
+/* LABEL TEXT */
+.profile-span-label {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* VALUE TEXT */
+.profile-span-value {
+  font-size: 13.5px;
   font-weight: 600;
   color: #111827;
 }
 
-.profile-header p {
-  font-size: 13px;
-  color: #6b7280;
-  margin-top: 4px;
+/* INLINE INFO ROW (label + value) */
+.profile-span-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed #eef0f3;
+}
+
+.profile-span-row:last-child {
+  border-bottom: none;
 }
 
 /* ======================================================
-   LAYOUT
-   ====================================================== */
+   ROLE / STATUS BADGE (IMPORTANT FOR RBAC UI)
+====================================================== */
 
-.profile-grid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 16px;
+.profile-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  border-radius: 999px;
+  letter-spacing: 0.3px;
 }
 
-/* responsive */
-@media (max-width: 1024px) {
-  .profile-grid {
-    grid-template-columns: 1fr;
-  }
+/* ROLE COLORS */
+.badge-admin {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.badge-qa {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.badge-manager {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.badge-faculty {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.badge-leader {
+  background: #ede9fe;
+  color: #6d28d9;
 }
 
 /* ======================================================
-   CARD SYSTEM (REUSE CHO INFO / SECURITY / ACTIVITY)
-   ====================================================== */
+   CARD ACTION SPACING FIX
+====================================================== */
 
-.profile-card {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 12px;
-  padding: 16px;
+.profile-card button {
+  margin-top: 10px;
 }
 
 /* ======================================================
    PROFILE INFO
-   ====================================================== */
+====================================================== */
 
-.profile-info-header {
+.profile-info-item {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed #e5e7eb;
 }
 
-.profile-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #3b82f6;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.profile-info-item:last-child {
+  border-bottom: none;
+}
+
+.profile-info-label {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.profile-info-value {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ROLE BADGE */
+.profile-role-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #0284c7;
   font-weight: 600;
 }
 
-.profile-basic h3 {
-  font-size: 16px;
-  margin: 0;
-}
-
-.profile-basic p {
-  font-size: 13px;
-  color: #6b7280;
-  margin: 2px 0 0;
-}
-
-.profile-info-body {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.profile-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  padding: 6px 0;
-  border-bottom: 1px solid #f3f4f6;
-}
-
 /* ======================================================
-   SECURITY
-   ====================================================== */
+   BUTTON SYSTEM
+====================================================== */
 
 .profile-btn {
   width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  background: #fff;
+  padding: 10px 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
   cursor: pointer;
-  font-size: 13px;
-  margin-top: 8px;
-  transition: 0.2s;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: 0.2s ease;
+  background: #f3f4f6;
+  color: #111827;
 }
 
 .profile-btn:hover {
-  background: #f9fafb;
+  background: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+.profile-btn.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.profile-btn.primary:hover {
+  background: #1d4ed8;
 }
 
 .profile-btn.danger {
-  border-color: #ef4444;
-  color: #ef4444;
+  background: #ef4444;
+  color: white;
+}
+
+.profile-btn.danger:hover {
+  background: #dc2626;
 }
 
 .profile-btn.secondary {
-  background: #f3f4f6;
-  border: none;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
 }
 
 /* ======================================================
-   ACTIVITY (AUDIT LOG)
-   ====================================================== */
+   ACTIVITY TIMELINE (UPGRADED)
+====================================================== */
 
 .activity-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  position: relative;
 }
 
 .activity-item {
   display: flex;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid #f3f4f6;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #fafafa;
+  border: 1px solid #eef0f3;
+  transition: 0.2s;
 }
 
+.activity-item:hover {
+  background: #f3f4f6;
+}
+
+/* DOT TIMELINE */
 .activity-item .dot {
-  width: 8px;
-  height: 8px;
-  margin-top: 6px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: #3b82f6;
+  margin-top: 6px;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .activity-item p {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   color: #111827;
 }
 
@@ -166,8 +279,80 @@
   color: #6b7280;
 }
 
-/* hover */
-.activity-item:hover {
-  background: #f9fafb;
-  border-radius: 8px;
+/* ======================================================
+   SECURITY CARD ENHANCED
+====================================================== */
+
+.profile-security-warning {
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 6px;
+}
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (max-width: 1024px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-page {
+    padding: 16px;
+  }
+
+  .profile-card {
+    padding: 14px;
+  }
+}
+
+
+/* ======================================================
+   PROFILE INFO HEADER
+====================================================== */
+
+.profile-info-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+/* AVATAR */
+.profile-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* BASIC INFO */
+.profile-basic h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.profile-basic p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ======================================================
+   INFO BODY ROWS
+====================================================== */
+
+.profile-info-body {
+  margin-top: 10px;
 }

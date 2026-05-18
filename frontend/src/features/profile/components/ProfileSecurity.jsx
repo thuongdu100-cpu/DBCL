@@ -1,9 +1,9 @@
 import { useAuth } from "../../../auth/AuthContext";
 import hasPermission from "../../../auth/hasPermission";
 import { PERMISSIONS } from "../../../auth/permissions";
-
+import { useNavigate } from "react-router-dom";
 export default function ProfileSecurity() {
-
+    const navigate = useNavigate();
   const { user } = useAuth();
 
   if (!user) return null;

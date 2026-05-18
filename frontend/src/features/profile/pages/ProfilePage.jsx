@@ -4,7 +4,7 @@ import { ROLE_LABELS } from "../../../auth/roles";
 import ProfileInfo from "../components/ProfileInfo";
 import ProfileActivity from "../components/ProfileActivity";
 import ProfileSecurity from "../components/ProfileSecurity";
-
+import "../styles/profile.css";
 export default function ProfilePage() {
 
   const { user } = useAuth();
