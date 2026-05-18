@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { ASSIGNMENT_STATUS, ASSIGNMENT_PRIORITY } from "../mock/mockAssignment";
+import {
+  ASSIGNMENT_STATUS,
+  ASSIGNMENT_PRIORITY,
+} from "../data/mockAssignments";
 
 // ======================================================
 // FILTER COMPONENT (PURE UI STATE)
@@ -95,10 +98,6 @@ export default function AssignmentFilter({ onFilterChange }) {
         ))}
       </select>
 
-      {/* RESET */}
-      <button onClick={resetFilter}>
-        Reset
-      </button>
 
     </div>
   );

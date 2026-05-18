@@ -7,7 +7,7 @@ export const SIDEBAR_ITEMS = [
   // =========================
   {
     label: "Dashboard",
-    path: "/dashboard",
+    path: "dashboard",
     permission: PERMISSIONS.VIEW_DASHBOARD,
   },
 
@@ -16,13 +16,13 @@ export const SIDEBAR_ITEMS = [
   // =========================
   {
     label: "Quản lý người dùng",
-    path: "/users",
+    path: "users",
     permission: PERMISSIONS.MANAGE_USERS,
   },
 
   {
     label: "Quản lý vai trò",
-    path: "/roles",
+    path: "roles",
     permission: PERMISSIONS.MANAGE_ROLES,
   },
 
@@ -31,7 +31,7 @@ export const SIDEBAR_ITEMS = [
   // =========================
   {
     label: "Bộ tiêu chuẩn",
-    path: "/standard",
+    path: " standard",
     permission: PERMISSIONS.MANAGE_STANDARD,
   },
 
@@ -40,25 +40,25 @@ export const SIDEBAR_ITEMS = [
   // =========================
   {
     label: "Công việc của tôi",
-    path: "/assignments",
+    path: "assignments",
     permission: PERMISSIONS.VIEW_MY_ASSIGNMENTS,
   },
 
   {
     label: "Bảng phân công",
-    path: "/assignment/board",
+    path: "assignment/board",
     permission: PERMISSIONS.MANAGE_ASSIGNMENT,
   },
 
   {
     label: "Tổng quan công việc",
-    path: "/assignment/dashboard",
+    path: "assignment/dashboard",
     permission: PERMISSIONS.VIEW_DASHBOARD,
   },
 
   {
     label: "Lịch sử công việc",
-    path: "/assignment/history",
+    path: "assignment/history",
     permission: PERMISSIONS.MANAGE_ASSIGNMENT,
   },
 
@@ -67,31 +67,31 @@ export const SIDEBAR_ITEMS = [
   // =========================
   {
     label: "Tổng quan minh chứng",
-    path: "/evidence/dashboard",
+    path: "evidence/dashboard",
     permission: PERMISSIONS.VIEW_EVIDENCE,
   },
 
   {
     label: "Kho minh chứng",
-    path: "/evidence/repository",
+    path: "evidence/repository",
     permission: PERMISSIONS.VIEW_EVIDENCE,
   },
 
   {
     label: "Nộp minh chứng",
-    path: "/evidence/submit",
+    path: "evidence/submit",
     permission: PERMISSIONS.UPLOAD_EVIDENCE,
   },
 
   {
     label: "Hàng chờ kiểm duyệt",
-    path: "/evidence/queue",
+    path: "evidence/queue",
     permission: PERMISSIONS.REVIEW_EVIDENCE,
   },
 
   {
     label: "Lịch sử minh chứng",
-    path: "/evidence/history",
+    path: "evidence/history",
     permission: PERMISSIONS.VIEW_EVIDENCE,
   },
 
@@ -100,7 +100,7 @@ export const SIDEBAR_ITEMS = [
   // =========================
   {
     label: "Cải tiến",
-    path: "/improvement",
+    path: "improvement",
     permission: PERMISSIONS.MANAGE_IMPROVEMENT,
   },
 
@@ -109,7 +109,7 @@ export const SIDEBAR_ITEMS = [
   // =========================
   {
     label: "Báo cáo",
-    path: "/reports",
+    path: "reports",
     permission: PERMISSIONS.VIEW_REPORT,
   },
 ];

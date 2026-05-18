@@ -1,62 +1,37 @@
-import {
-  useState,
-  useEffect,
-  useRef,
-} from "react";
-
-import {
-  useNavigate,
-} from "react-router-dom";
-
-import {
-  useAuth,
-} from "../../../auth/AuthContext";
+import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../auth/AuthContext";
 
 export default function Header() {
 
   const [openUser, setOpenUser] = useState(false);
-
   const [openNoti, setOpenNoti] = useState(false);
 
   const userRef = useRef();
-
   const notiRef = useRef();
 
   const navigate = useNavigate();
 
-  // AUTH
   const { user, logout } = useAuth();
 
-  // CLOSE DROPDOWN WHEN CLICK OUTSIDE
+  // CLOSE DROPDOWN OUTSIDE
   useEffect(() => {
 
     const handleClickOutside = (e) => {
 
-      if (
-        userRef.current &&
-        !userRef.current.contains(e.target)
-      ) {
+      if (userRef.current && !userRef.current.contains(e.target)) {
         setOpenUser(false);
       }
 
-      if (
-        notiRef.current &&
-        !notiRef.current.contains(e.target)
-      ) {
+      if (notiRef.current && !notiRef.current.contains(e.target)) {
         setOpenNoti(false);
       }
     };
 
-    document.addEventListener(
-      "mousedown",
-      handleClickOutside
-    );
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () =>
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+      document.removeEventListener("mousedown", handleClickOutside);
 
   }, []);
 
@@ -65,71 +40,34 @@ export default function Header() {
 
       {/* LEFT */}
       <div className="header-title">
-        Hệ thống đánh giá chất lượng 
+        Hệ thống đánh giá chất lượng
       </div>
 
       {/* RIGHT */}
       <div className="header-right">
 
-        {/* SEARCH */}
-        <div className="search-box">
-
-          <input
-            placeholder="Tìm kiếm minh chứng, tiêu chí..."
-          />
-
-          <button>
-            🔍
-          </button>
-
-        </div>
-
         {/* NOTIFICATION */}
-        <div
-          className="icon-wrapper"
-          ref={notiRef}
-        >
+        <div className="icon-wrapper" ref={notiRef}>
 
-          <button
-            onClick={() =>
-              setOpenNoti(!openNoti)
-            }
-          >
+          <button onClick={() => setOpenNoti(!openNoti)}>
             🔔
           </button>
 
           {openNoti && (
             <div className="dropdown">
-
-              <div className="dropdown-item">
-                📌 Có 3 thông báo mới
-              </div>
-
-              <div className="dropdown-item">
-                ✔ Minh chứng cần duyệt
-              </div>
-
-              <div className="dropdown-item">
-                ⚠ Quá hạn đánh giá
-              </div>
-
+              <div className="dropdown-item">📌 Có 3 thông báo mới</div>
+              <div className="dropdown-item">✔ Minh chứng cần duyệt</div>
+              <div className="dropdown-item">⚠ Quá hạn đánh giá</div>
             </div>
           )}
 
         </div>
 
         {/* USER */}
-        <div
-          className="user-wrapper"
-          ref={userRef}
-        >
+        <div className="user-wrapper" ref={userRef}>
 
-          <button
-            onClick={() =>
-              setOpenUser(!openUser)
-            }
-          >
-            👤 {user?.role || "guest"} ▼
+          <button onClick={() => setOpenUser(!openUser)}>
+            👤 {user?.username || "guest"} ({user?.role || "guest"}) ▼
           </button>
 
           {openUser && (
@@ -139,26 +77,22 @@ export default function Header() {
               <div
                 className="dropdown-item"
                 onClick={() => {
-
                   setOpenUser(false);
-
-                  navigate("/dbcl/profile");
+                  navigate("/profile"); 
                 }}
               >
-                Profile
+                Hồ sơ cá nhân
               </div>
 
               {/* LOGOUT */}
               <div
                 className="dropdown-item"
                 onClick={() => {
-
                   logout();
-
                   navigate("/login");
                 }}
               >
-                Logout
+                Đăng xuất
               </div>
 
             </div>
@@ -167,7 +101,6 @@ export default function Header() {
         </div>
 
       </div>
-
     </header>
   );
 }

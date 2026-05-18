@@ -1,7 +1,7 @@
 import AssignmentStatusBadge from "./AssignmentStatusBadge";
 
 // ======================================================
-// ASSIGNMENT CARD (WORK ITEM VIEW)
+// ASSIGNMENT CARD (PURE UI COMPONENT)
 // ======================================================
 
 export default function AssignmentCard({
@@ -22,82 +22,45 @@ export default function AssignmentCard({
     progress,
   } = assignment;
 
-  // ======================================================
-  // PRIORITY CLASS
-  // ======================================================
-
   const getPriorityClass = (priority) => {
     switch (priority) {
       case "critical":
-        return "priority-critical";
+        return "assignment-priority-critical";
       case "high":
-        return "priority-high";
+        return "assignment-priority-high";
       case "medium":
-        return "priority-medium";
+        return "assignment-priority-medium";
       default:
-        return "priority-low";
+        return "assignment-priority-low";
     }
   };
-
-  // ======================================================
-  // RENDER
-  // ======================================================
 
   return (
     <div className={`assignment-card ${getPriorityClass(priority)}`}>
 
-      {/* HEADER */}
       <div className="assignment-card-header">
-
-        <div className="assignment-title">
-          {title}
-        </div>
-
+        
         <AssignmentStatusBadge status={status} />
-
       </div>
+      <div className="assignment-title">{title}</div>
+      <div className="assignment-desc">{description}</div>
 
-      {/* DESCRIPTION */}
-      <div className="assignment-desc">
-        {description}
-      </div>
-
-      {/* META INFO */}
       <div className="assignment-meta">
-
-        <div>
-          👤 {assignedTo?.name || "Unassigned"}
-        </div>
-
-        <div>
-          ⏰ Due: {new Date(dueDate).toLocaleDateString()}
-        </div>
-
-        <div>
-          📊 Progress: {progress}%
-        </div>
-
+        <div>👤 {assignedTo?.name || "Unassigned"}</div>
+        <div>⏰ Due: {new Date(dueDate).toLocaleDateString()}</div>
+        <div>📊 Progress: {progress}%</div>
       </div>
 
-      {/* ACTIONS */}
       <div className="assignment-actions">
-
         <button onClick={() => onOpenDetail(id)}>
           Chi tiết
         </button>
-
-        {status === "assigned" && (
-          <button onClick={() => onStart(id)}>
-            Bắt đầu
-          </button>
-        )}
 
         {status === "in_progress" && (
           <button onClick={() => onSubmit(id)}>
             Gửi duyệt
           </button>
         )}
-
       </div>
 
     </div>

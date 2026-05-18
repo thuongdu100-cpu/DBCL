@@ -39,42 +39,36 @@ function renderRoutes(routeList) {
     );
   });
 }
-
+  const BASENAME =
+  import.meta.env.PROD ? "/dbcl" : "";
 /* =========================================================
    APP ROUTER
 ========================================================= */
 
+
 export default function AppRouter() {
-
   return (
-
-    <BrowserRouter basename="/dbcl">
-
+    <BrowserRouter basename={BASENAME}>
       <Routes>
 
-        {/* LOGIN */}
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="login" element={<LoginPage />} />
 
-        {/* ROOT */}
         <Route
-          path="/"
-          element={<Navigate to="/dashboard" replace />}
-        />
-
-        {/* MAIN APP */}
-        <Route
-          path="/"
+          path=""
           element={
             <ProtectedRoute>
               <DBCLLayout />
             </ProtectedRoute>
           }
         >
+          {/* DEFAULT REDIRECT */}
+          <Route index element={<Navigate to="dashboard" replace />} />
+
+          {/* DYNAMIC ROUTES */}
           {renderRoutes(routes)}
         </Route>
 
       </Routes>
-
     </BrowserRouter>
   );
 }

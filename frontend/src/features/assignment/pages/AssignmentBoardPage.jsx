@@ -1,57 +1,32 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import useAssignmentWorkflow from "../hooks/useAssignmentWorkflow";
 import AssignmentCard from "../components/AssignmentCard";
-import { ASSIGNMENT_STATUS } from "../data/mockAssignments";
+import AssignmentTable from "../components/AssignmentTable";
+import AssignmentDetailModal from "../components/AssignmentDetailModal";
+import { ASSIGNMENT_STATUS, mockAssignments } from "../data/mockAssignments";
 import "../styles/assignment.css";
-// ======================================================
-// BOARD GROUPING LOGIC
-// ======================================================
 
 export default function AssignmentBoardPage() {
 
-  const {
-    assignments,
-    startTask,
-    submitTask,
-  } = useAssignmentWorkflow();
+  const { startTask, submitTask } = useAssignmentWorkflow();
 
-  // ======================================================
-  // GROUP BY STATUS (KANBAN LANE)
-  // ======================================================
+  const [selectedId, setSelectedId] = useState(null);
 
-  const grouped = useMemo(() => {
+  const assignments = mockAssignments;
 
-    return {
-      assigned: assignments.filter(a =>
-        a.status === ASSIGNMENT_STATUS.ASSIGNED
-      ),
+  const grouped = useMemo(() => ({
+    assigned: assignments.filter(a => a.status === ASSIGNMENT_STATUS.ASSIGNED),
+    inProgress: assignments.filter(a => a.status === ASSIGNMENT_STATUS.IN_PROGRESS),
+    waitingReview: assignments.filter(a => a.status === ASSIGNMENT_STATUS.WAITING_REVIEW),
+    done: assignments.filter(a => a.status === ASSIGNMENT_STATUS.DONE),
+    rejected: assignments.filter(a => a.status === ASSIGNMENT_STATUS.REJECTED),
+    overdue: assignments.filter(a => a.status === ASSIGNMENT_STATUS.OVERDUE),
+  }), [assignments]);
 
-      inProgress: assignments.filter(a =>
-        a.status === ASSIGNMENT_STATUS.IN_PROGRESS
-      ),
-
-      waitingReview: assignments.filter(a =>
-        a.status === ASSIGNMENT_STATUS.WAITING_REVIEW
-      ),
-
-      done: assignments.filter(a =>
-        a.status === ASSIGNMENT_STATUS.DONE
-      ),
-
-      rejected: assignments.filter(a =>
-        a.status === ASSIGNMENT_STATUS.REJECTED
-      ),
-
-      overdue: assignments.filter(a =>
-        a.status === ASSIGNMENT_STATUS.OVERDUE
-      ),
-    };
-
-  }, [assignments]);
-
-  // ======================================================
-  // RENDER COLUMN
-  // ======================================================
+  const selected = useMemo(() =>
+    assignments.find(a => a.id === selectedId),
+    [selectedId, assignments]
+  );
 
   const renderColumn = (title, items) => (
     <div className="board-column">
@@ -66,13 +41,9 @@ export default function AssignmentBoardPage() {
           <AssignmentCard
             key={item.id}
             assignment={item}
-
             onStart={startTask}
             onSubmit={submitTask}
-
-            onOpenDetail={(id) => {
-              console.log("open detail:", id);
-            }}
+            onOpenDetail={(id) => setSelectedId(id)}
           />
         ))}
 
@@ -81,33 +52,31 @@ export default function AssignmentBoardPage() {
     </div>
   );
 
-  // ======================================================
-  // BOARD UI
-  // ======================================================
-
   return (
     <div className="assignment-board">
 
       <div className="board-header">
-        <h2>Assignment Workspace</h2>
-        <p>Điều phối và theo dõi toàn bộ công việc</p>
+        <h2>Bảng phân công</h2>
+        <p>Quản lý công việc</p>
       </div>
 
       <div className="board-grid">
-
         {renderColumn("Đã giao", grouped.assigned)}
-
-        {renderColumn("Đang thực hiện", grouped.inProgress)}
-
+        {renderColumn("Đang làm", grouped.inProgress)}
         {renderColumn("Chờ duyệt", grouped.waitingReview)}
-
         {renderColumn("Hoàn thành", grouped.done)}
-
         {renderColumn("Từ chối", grouped.rejected)}
-
         {renderColumn("Quá hạn", grouped.overdue)}
-
       </div>
+
+      <div className="assignment-table-section">
+        <AssignmentTable data={assignments} />
+      </div>
+
+      <AssignmentDetailModal
+        assignment={selected}
+        onClose={() => setSelectedId(null)}
+      />
 
     </div>
   );

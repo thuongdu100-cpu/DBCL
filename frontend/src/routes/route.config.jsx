@@ -15,16 +15,16 @@ import IndicatorPage from "../features/standard/pages/IndicatorPage";
 import IndicatorWorkflowPage from "../features/standard/pages/IndicatorWorkflowPage";
 
 // =========================
-// ASSIGNMENT (FLAT STYLE - FIXED)
+// ASSIGNMENT 
 // =========================
 import AssignmentMyPage from "../features/assignment/pages/AssignmentMyPage";
 import AssignmentBoardPage from "../features/assignment/pages/AssignmentBoardPage";
-import AssignmentDetailPage from "../features/assignment/pages/AssignmentDetailPage";
+import AssignmentDetailPage from "../features/assignment/components/AssignmentDetail";
 import AssignmentDashboardPage from "../features/assignment/pages/AssignmentDashboardPage";
 import AssignmentHistoryPage from "../features/assignment/pages/AssignmentHistoryPage";
 
 // =========================
-// EVIDENCE (OK)
+// EVIDENCE 
 // =========================
 import SubmitEvidencePage from "../features/evidence/pages/SubmitEvidencePage";
 import EvidenceReviewPage from "../features/evidence/pages/EvidenceReviewPage";
@@ -52,13 +52,18 @@ import RoleManagementPage from "../features/role/pages/RoleManagementPage";
 import ImprovementPage from "../features/improvement/pages/ImprovementPage";
 
 // =========================
-// REPORTS (NESTED OK)
+// REPORTS 
 // =========================
 import ReportsPage from "../features/reports/pages/ReportsPage";
 import ReportsEvaluationPage from "../features/reports/pages/ReportsEvaluationPage";
 import ReportsEvidencePage from "../features/reports/pages/ReportsEvidencePage";
 import ReportsImprovementPage from "../features/reports/pages/ReportsImprovementPage";
 import ReportsActivityPage from "../features/reports/pages/ReportsActivityPage";
+
+// =========================
+// PROFILE
+// =========================
+import ProfilePage from "../features/profile/pages/ProfilePage";
 
 export const routes = [
 
@@ -143,13 +148,7 @@ export const routes = [
     element: AssignmentHistoryPage,
     permission: PERMISSIONS.MANAGE_ASSIGNMENT,
   },
-  {
-    path: "assignments/:id",
-    label: "Chi tiết công việc",
-    element: AssignmentDetailPage,
-    permission: PERMISSIONS.MANAGE_ASSIGNMENT,
-    sidebar: false,
-  },
+  
 
   // =========================
   // EVIDENCE
@@ -260,4 +259,14 @@ export const routes = [
       },
     ],
   },
+  // =========================
+  // PROFILE
+  // =========================
+  {
+    path: "profile",
+    label: "Hồ sơ cá nhân",
+    element: ProfilePage,
+    permission: PERMISSIONS.VIEW_PROFILE,
+    sidebar: false,
+  }
 ];

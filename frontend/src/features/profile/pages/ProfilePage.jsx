@@ -1,31 +1,37 @@
-// features/profile/pages/ProfilePage.jsx
+import { useAuth } from "../../../auth/AuthContext";
+import { ROLE_LABELS } from "../../../auth/roles";
+
+import ProfileInfo from "../components/ProfileInfo";
+import ProfileActivity from "../components/ProfileActivity";
+import ProfileSecurity from "../components/ProfileSecurity";
 
 export default function ProfilePage() {
-  return (
-    <div className="profile-layout">
 
-      <div className="panel">
-        <h2>User Profile</h2>
-        <p>Quản lý thông tin cá nhân & bảo mật</p>
+  const { user } = useAuth();
+
+  if (!user) {
+    return <div>Chưa đăng nhập</div>;
+  }
+
+  const roleLabel = ROLE_LABELS[user.role];
+
+  return (
+    <div className="profile-page">
+
+      <div className="profile-header">
+        <h2>Hồ sơ cá nhân</h2>
+        <p>{roleLabel}</p>
       </div>
 
       <div className="profile-grid">
 
-        <div className="panel">
-          <h3>Thông tin cá nhân</h3>
-          <p>Name: Admin</p>
-          <p>Email: admin@dbcl.com</p>
-          <p>Role: QA Officer</p>
+        <div className="profile-left">
+          <ProfileInfo user={user} />
+          <ProfileSecurity role={user.role} />
         </div>
 
-        <div className="panel">
-          <h3>Bảo mật</h3>
-          <button>Đổi mật khẩu</button>
-        </div>
-
-        <div className="panel">
-          <h3>Hoạt động gần đây</h3>
-          <p>Đã duyệt 3 minh chứng</p>
+        <div className="profile-right">
+          <ProfileActivity user={user} />
         </div>
 
       </div>

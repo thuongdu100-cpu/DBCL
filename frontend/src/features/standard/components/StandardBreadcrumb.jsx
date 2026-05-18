@@ -18,7 +18,7 @@ export default function StandardBreadcrumb() {
 
       {/* ROOT */}
       <Link
-        to="/dbcl/standard"
+        to="/standard"
         className="breadcrumb-root"
       >
         Bộ tiêu chuẩn
@@ -32,7 +32,7 @@ export default function StandardBreadcrumb() {
           </span>
 
           <Link
-            to={`/dbcl/standard/${standardId}`}
+            to={`/standard/${standardId}`}
             className="breadcrumb-item"
           >
             {standardId}
@@ -48,7 +48,7 @@ export default function StandardBreadcrumb() {
           </span>
 
           <Link
-            to={`/dbcl/standard/${standardId}/${criteriaId}`}
+            to={`/standard/${standardId}/${criteriaId}`}
             className="breadcrumb-item"
           >
             {criteriaId}
