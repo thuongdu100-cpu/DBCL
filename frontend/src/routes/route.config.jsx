@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 // =========================
 // DASHBOARD
 // =========================
-import StandardDashboard from "../features/dashboard/pages/StandardDashboard";
+import StandardDashboard from "../features/dashboard/pages/Dashboard";
 
 // =========================
 // STANDARD
@@ -20,7 +20,6 @@ import IndicatorWorkflowPage from "../features/standard/pages/IndicatorWorkflowP
 import AssignmentMyPage from "../features/assignment/pages/AssignmentMyPage";
 import AssignmentBoardPage from "../features/assignment/pages/AssignmentBoardPage";
 import AssignmentDetailPage from "../features/assignment/components/AssignmentDetail";
-import AssignmentDashboardPage from "../features/assignment/pages/AssignmentDashboardPage";
 import AssignmentHistoryPage from "../features/assignment/pages/AssignmentHistoryPage";
 
 // =========================
@@ -32,7 +31,6 @@ import EvidenceDetailPage from "../features/evidence/pages/EvidenceDetailPage";
 import EvidenceHistoryPage from "../features/evidence/pages/EvidenceHistoryPage";
 import EvidenceRepositoryPage from "../features/evidence/pages/EvidenceRepositoryPage";
 import EvidenceQueuePage from "../features/evidence/pages/EvidenceQueuePage";
-import EvidenceDashboardPage from "../features/evidence/pages/EvidenceDashboardPage";
 
 // =========================
 // FEEDBACK
@@ -68,7 +66,7 @@ import ProfilePage from "../features/profile/pages/ProfilePage";
 export const routes = [
 
   // =========================
-  // DASHBOARD
+  // ADMIN
   // =========================
   {
     path: "dashboard",
@@ -76,10 +74,6 @@ export const routes = [
     element: StandardDashboard,
     permission: PERMISSIONS.VIEW_DASHBOARD,
   },
-
-  // =========================
-  // ADMIN
-  // =========================
   {
     path: "users",
     label: "Quản lý người dùng",
@@ -137,12 +131,6 @@ export const routes = [
     permission: PERMISSIONS.MANAGE_ASSIGNMENT,
   },
   {
-    path: "assignment/dashboard",
-    label: "Tổng quan công việc",
-    element: AssignmentDashboardPage,
-    permission: PERMISSIONS.VIEW_DASHBOARD,
-  },
-  {
     path: "assignment/history",
     label: "Lịch sử công việc",
     element: AssignmentHistoryPage,
@@ -153,12 +141,6 @@ export const routes = [
   // =========================
   // EVIDENCE
   // =========================
-  {
-    path: "evidence/dashboard",
-    label: "Dashboard minh chứng",
-    element: EvidenceDashboardPage,
-    permission: PERMISSIONS.VIEW_EVIDENCE,
-  },
   {
     path: "evidence/repository",
     label: "Kho minh chứng",

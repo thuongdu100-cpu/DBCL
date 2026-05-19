@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 
 export default function StandardBreadcrumb() {
@@ -8,12 +9,12 @@ export default function StandardBreadcrumb() {
     .split("/")
     .filter(Boolean);
 
-  // /dbcl/standard/S1/C1/I1
-  const standardId = paths[2];
-  const criteriaId = paths[3];
-  const indicatorId = paths[4];
+  const standardId = paths[1];
+  const criteriaId = paths[2];
+  const indicatorId = paths[3];
 
   return (
+
     <div className="stack-header">
 
       {/* ROOT */}
@@ -72,3 +73,4 @@ export default function StandardBreadcrumb() {
     </div>
   );
 }
+

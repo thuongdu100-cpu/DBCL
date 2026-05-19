@@ -1,113 +1,232 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import TableBlock from "../components/TableBlock";
 import StandardBreadcrumb from "../components/StandardBreadcrumb";
+import DetailPanel from "../components/DetailPanel";
+
 import { standardService } from "../services/standard.service";
 
 export default function IndicatorPage() {
 
-  const { standardId, criteriaId } = useParams();
+  const {
+    standardId,
+    criteriaId,
+  } = useParams();
+
   const navigate = useNavigate();
 
-  const [standard, setStandard] = useState(null);
-  const [criteria, setCriteria] = useState(null);
+  const [standard, setStandard] =
+    useState(null);
+
+  const [criteria, setCriteria] =
+    useState(null);
 
   useEffect(() => {
-    standardService.getById(standardId).then(data => {
 
-      setStandard(data);
+    standardService
+      .getById(standardId)
+      .then((data) => {
 
-      const found = data.criteria.find(c => c.id === criteriaId);
-      setCriteria(found);
+        if (!data) {
 
-    });
-  }, [standardId, criteriaId]);
+          setStandard(null);
+          setCriteria(null);
+
+          return;
+        }
+
+        setStandard(data);
+
+        const found =
+          data.criteria.find(
+            c => c.id === criteriaId
+          );
+
+        setCriteria(found || null);
+      });
+
+  }, [
+    standardId,
+    criteriaId,
+  ]);
 
   const refresh = async () => {
-    const fresh = await standardService.getById(standardId);
+
+    const fresh =
+      await standardService.getById(
+        standardId
+      );
+
+    if (!fresh) return;
+
     setStandard(fresh);
-    setCriteria(fresh.criteria.find(c => c.id === criteriaId));
+
+    setCriteria(
+      fresh.criteria.find(
+        c => c.id === criteriaId
+      )
+    );
   };
 
   const handleAdd = async (row) => {
 
+    const fresh =
+      await standardService.getById(
+        standardId
+      );
+
+    if (!fresh) return;
+
     const newIndicator = {
+
       id: `IND-${Date.now()}`,
+
       name: row.name || "",
-      description: row.description || "",
+
+      description:
+        row.description || "",
     };
 
-    const fresh = await standardService.getById(standardId);
+    const updatedCriteria =
+      fresh.criteria.map(c =>
 
-    const updatedCriteria = fresh.criteria.map(c =>
-      c.id === criteriaId
-        ? {
-            ...c,
-            indicators: [...c.indicators, newIndicator],
-          }
-        : c
+        c.id === criteriaId
+          ? {
+
+              ...c,
+
+              indicators: [
+                ...c.indicators,
+                newIndicator,
+              ],
+            }
+          : c
+      );
+
+    await standardService.update(
+      standardId,
+      {
+
+        ...fresh,
+
+        criteria: updatedCriteria,
+      }
     );
-
-    await standardService.update(standardId, {
-      ...fresh,
-      criteria: updatedCriteria,
-    });
 
     refresh();
   };
 
   const handleDelete = async (id) => {
 
-  const fresh = await standardService.getById(standardId);
+    const fresh =
+      await standardService.getById(
+        standardId
+      );
 
-  const updatedCriteria = fresh.criteria.map(c => {
+    if (!fresh) return;
 
-    if (c.id !== criteriaId) return c;
+    const updatedCriteria =
+      fresh.criteria.map(c => {
 
-    return {
-      ...c,
-      indicators: c.indicators.filter(i => i.id !== id),
-    };
-  });
+        if (c.id !== criteriaId)
+          return c;
 
-  await standardService.update(standardId, {
-    ...fresh,
-    criteria: updatedCriteria,
-  });
+        return {
 
-  const refreshed = await standardService.getById(standardId);
+          ...c,
 
-  setStandard(refreshed);
-  setCriteria(refreshed.criteria.find(c => c.id === criteriaId));
-};
+          indicators:
+            c.indicators.filter(
+              i => i.id !== id
+            ),
+        };
+      });
 
-  const handleUpdate = async (id, payload) => {
+    await standardService.update(
+      standardId,
+      {
 
-    const fresh = await standardService.getById(standardId);
+        ...fresh,
 
-    const updatedCriteria = fresh.criteria.map(c => {
-      if (c.id !== criteriaId) return c;
-
-      return {
-        ...c,
-        indicators: c.indicators.map(i =>
-          i.id === id ? { ...i, ...payload } : i
-        ),
-      };
-    });
-
-    await standardService.update(standardId, {
-      ...fresh,
-      criteria: updatedCriteria,
-    });
+        criteria: updatedCriteria,
+      }
+    );
 
     refresh();
   };
 
-  if (!criteria) return null;
+  const handleUpdate = async (
+    id,
+    payload
+  ) => {
+
+    const fresh =
+      await standardService.getById(
+        standardId
+      );
+
+    if (!fresh) return;
+
+    const updatedCriteria =
+      fresh.criteria.map(c => {
+
+        if (c.id !== criteriaId)
+          return c;
+
+        return {
+
+          ...c,
+
+          indicators:
+            c.indicators.map(i =>
+
+              i.id === id
+                ? {
+                    ...i,
+                    ...payload,
+                  }
+                : i
+            ),
+        };
+      });
+
+    await standardService.update(
+      standardId,
+      {
+
+        ...fresh,
+
+        criteria: updatedCriteria,
+      }
+    );
+
+    refresh();
+  };
+
+  if (!criteria) {
+
+    return (
+
+      <div className="standard-page">
+
+        <div className="standard-left">
+
+          <StandardBreadcrumb />
+
+          <div className="workflow-empty">
+            Không tìm thấy tiêu chí
+          </div>
+
+        </div>
+
+      </div>
+    );
+  }
 
   return (
+
     <div className="standard-page">
 
       <div className="standard-left">
@@ -115,16 +234,30 @@ export default function IndicatorPage() {
         <StandardBreadcrumb />
 
         <div className="page-header">
-          <div className="page-subtitle">Chỉ báo</div>
-          <div className="page-title">{criteria.name}</div>
+
+          <div className="page-subtitle">
+            Chỉ báo
+          </div>
+
+          <div className="page-title">
+            {criteria.name}
+          </div>
+
         </div>
 
         <TableBlock
           title="Danh sách chỉ báo"
           data={criteria.indicators}
           columns={[
-            { key: "name", label: "Tên" },
-            { key: "description", label: "Mô tả" },
+            {
+              key: "name",
+              label: "Tên",
+            },
+
+            {
+              key: "description",
+              label: "Mô tả",
+            },
           ]}
           onRowClick={(item) =>
             navigate(
@@ -138,6 +271,12 @@ export default function IndicatorPage() {
 
       </div>
 
+      <DetailPanel
+        standard={standard}
+        criteria={criteria}
+      />
+
     </div>
   );
 }
+

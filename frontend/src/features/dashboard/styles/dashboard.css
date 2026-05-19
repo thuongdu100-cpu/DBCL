@@ -75,21 +75,6 @@
    PANEL
 ========================= */
 
-.panel {
-  background: var(--bg);
-
-  border: 1px solid var(--border);
-
-  border-radius: var(--radius);
-
-  padding: 18px;
-
-  min-height: 340px;
-
-  width: 100%;
-
-  overflow: hidden;
-}
 
 .panel-header {
   display: flex;
@@ -182,92 +167,68 @@
 }
 
 /* =========================
-   BAR CHART
+   EVIDENCE PIE CARD
 ========================= */
 
-.bar-chart {
-  height: 250px;
+.evidence-pie-card {
+  background: var(--bg);
 
-  display: flex;
+  border: 1px solid var(--border);
 
-  align-items: flex-end;
+  border-radius: var(--radius);
 
-  justify-content: space-around;
+  padding: 18px;
 
-  gap: 24px;
-
-  padding-top: 10px;
-}
-
-.bar-item {
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  gap: 10px;
-}
-
-.bar-value {
-  font-size: 14px;
-
-  font-weight: 700;
-
-  color: var(--text);
-}
-
-.bar-wrapper {
-  width: 52px;
-
-  height: 180px;
-
-  background: #e5e7eb;
-
-  border-radius: 10px;
-
-  display: flex;
-
-  align-items: flex-end;
+  min-height: 340px;
 
   overflow: hidden;
 }
 
-.bar-fill {
-  width: 100%;
+/* =========================
+   HEADER
+========================= */
 
-  border-radius: 10px 10px 0 0;
+.evidence-pie-header {
+  display: flex;
 
-  transition: height 0.3s ease;
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid var(--border);
 }
 
-/* COLORS */
+.evidence-pie-title {
+  font-size: 15px;
 
-.bar-fill.success {
-  background: #10b981;
+  font-weight: 600;
+
+  color: var(--text);
 }
 
-.bar-fill.danger {
-  background: #ef4444;
-}
+.evidence-pie-badge {
+  padding: 4px 8px;
 
-.bar-fill.warning {
-  background: #f59e0b;
-}
+  border-radius: 6px;
 
-.bar-label {
-  font-size: 13px;
+  border: 1px solid var(--border);
 
-  text-align: center;
+  background: var(--surface);
+
+  font-size: 12px;
 
   color: var(--muted);
 }
 
 /* =========================
-   PIE CHART
+   PIE LAYOUT
 ========================= */
 
-.pie-wrapper {
+.evidence-pie-wrapper {
   display: flex;
 
   align-items: center;
@@ -279,7 +240,11 @@
   width: 100%;
 }
 
-.pie-chart {
+/* =========================
+   PIE CIRCLE
+========================= */
+
+.evidence-pie-chart {
   width: 180px;
 
   height: 180px;
@@ -287,9 +252,21 @@
   border-radius: 50%;
 
   flex-shrink: 0;
+
+  background:
+    conic-gradient(
+      #2563eb 0% 45%,
+      #f59e0b 45% 65%,
+      #ef4444 65% 80%,
+      #10b981 80% 100%
+    );
 }
 
-.pie-legend {
+/* =========================
+   LEGEND
+========================= */
+
+.evidence-pie-legend {
   flex: 1;
 
   display: flex;
@@ -299,7 +276,7 @@
   gap: 14px;
 }
 
-.legend-item {
+.evidence-legend-item {
   display: flex;
 
   align-items: center;
@@ -313,7 +290,19 @@
   color: var(--text);
 }
 
-.legend-color {
+.evidence-legend-left {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+/* =========================
+   COLORS
+========================= */
+
+.evidence-legend-color {
   width: 14px;
 
   height: 14px;
@@ -323,68 +312,184 @@
   flex-shrink: 0;
 }
 
-/* PIE COLORS */
-
-.legend-color.blue {
+.evidence-legend-color.blue {
   background: #2563eb;
 }
 
-.legend-color.orange {
+.evidence-legend-color.orange {
   background: #f59e0b;
 }
 
-.legend-color.red {
+.evidence-legend-color.red {
   background: #ef4444;
 }
 
-.legend-color.green {
+.evidence-legend-color.green {
   background: #10b981;
 }
 
 /* =========================
-   TREE
+   ASSIGNMENT STATUS CHART
 ========================= */
 
-.tree-container {
-  height: 100%;
-
+.assignment-status-chart {
   display: flex;
-
   flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 10px;
+  gap: 12px;
 }
 
-.tree-node {
-  width: 220px;
+/* =========================
+   STATUS GRID (REPLACES BAR CHART)
+========================= */
 
-  padding: 12px;
+.assignment-status-bar {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+
+  padding-top: 8px;
+}
+
+/* =========================
+   STATUS ITEM (CARD STYLE)
+========================= */
+
+.assignment-status-item {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.assignment-status-item:hover {
+  transform: translateY(-2px);
+  background: var(--surface);
+}
+
+/* VALUE */
+.assignment-status-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* LABEL */
+.assignment-status-label {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* =========================
+   ACTIVE STATE
+========================= */
+
+.assignment-status-item.active {
+  border-color: var(--primary);
+  background: var(--active-bg);
+}
+
+/* =========================
+   COLORS (VALUE ONLY)
+========================= */
+
+.assignment-status-item.success .assignment-status-value {
+  color: #22c55e;
+}
+
+.assignment-status-item.warning .assignment-status-value {
+  color: #f59e0b;
+}
+
+.assignment-status-item.info .assignment-status-value {
+  color: #3b82f6;
+}
+
+.assignment-status-item.danger .assignment-status-value {
+  color: #ef4444;
+}
+
+/* =========================
+   DRILLDOWN LIST
+========================= */
+
+.assignment-drilldown {
+  margin-top: 10px;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
 
   background: var(--surface);
 
-  border: 1px solid var(--border);
+  padding: 12px;
 
-  border-radius: 8px;
+  animation: fadeIn 0.25s ease;
+}
 
-  text-align: center;
+.assignment-drilldown-title {
+  font-size: 13px;
+  font-weight: 600;
 
-  font-size: 14px;
+  margin-bottom: 8px;
 
   color: var(--text);
 }
 
-.tree-arrow {
-  font-size: 18px;
+.assignment-drilldown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-  color: var(--muted);
+.assignment-drilldown-item {
+  padding: 10px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background: var(--bg);
+
+  font-size: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  transition: background 0.2s ease;
+}
+
+.assignment-drilldown-item:hover {
+  background: var(--surface);
 }
 
 /* =========================
-   RESPONSIVE
+   FADE ANIMATION
+========================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   RESPONSIVE (CLEAN MERGED)
 ========================= */
 
 @media (max-width: 1200px) {
@@ -402,7 +507,20 @@
     grid-template-columns: 1fr;
   }
 
-  .pie-wrapper {
+  .assignment-status-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .assignment-status-wrapper {
+    width: 44px;
+    height: 160px;
+  }
+
+  .assignment-status-label {
+    font-size: 11px;
+  }
+
+  .evidence-pie-wrapper {
     flex-direction: column;
   }
 

@@ -1,38 +1,56 @@
-const progressData = [
-  {
-    id: 1,
-    name: "Tiêu chuẩn 1",
-    progress: 85,
-  },
 
-  {
-    id: 2,
-    name: "Tiêu chuẩn 2",
-    progress: 60,
-  },
-
-  {
-    id: 3,
-    name: "Tiêu chuẩn 3",
-    progress: 45,
-  },
-
-  {
-    id: 4,
-    name: "Tiêu chuẩn 4",
-    progress: 92,
-  },
-
-  {
-    id: 5,
-    name: "Tiêu chuẩn 5",
-    progress: 30,
-  },
-];
+import { standards, workflowData }
+from "../../standard/data/mockData";
 
 export default function ProgressChart() {
 
+  const progressData = standards.map(
+    (standard) => {
+
+      const indicators =
+        standard.criteria.flatMap(
+          criteria => criteria.indicators
+        );
+
+      const relatedWorkflow =
+        workflowData.filter(workflow =>
+
+          indicators.some(
+            indicator =>
+              indicator.id === workflow.indicatorId
+          )
+        );
+
+      const totalProgress =
+        relatedWorkflow.reduce(
+          (sum, item) =>
+            sum + item.progress,
+          0
+        );
+
+      const averageProgress =
+        relatedWorkflow.length > 0
+
+          ? Math.round(
+              totalProgress /
+              relatedWorkflow.length
+            )
+
+          : 0;
+
+      return {
+
+        id: standard.id,
+
+        name: standard.name,
+
+        progress: averageProgress,
+      };
+    }
+  );
+
   return (
+
     <div className="panel">
 
       <div className="panel-header">
@@ -73,7 +91,7 @@ export default function ProgressChart() {
               <div
                 className="progress-bar-fill"
                 style={{
-                  width: `${item.progress}%`
+                  width: `${item.progress}%`,
                 }}
               />
 
@@ -88,3 +106,4 @@ export default function ProgressChart() {
     </div>
   );
 }
+

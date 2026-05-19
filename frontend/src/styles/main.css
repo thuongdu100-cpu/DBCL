@@ -345,98 +345,102 @@ p {
   background: var(--surface);
 }
 
-/* =========================
-   LOGIN PAGE - MODERN
-========================= */
-
-/* =========================
-   BACKGROUND
-========================= */
+/* ======================================================
+   LOGIN PAGE
+====================================================== */
 
 .login-page {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background: radial-gradient(
-    circle at top,
-    #eef2ff,
-    #f8fafc,
-    #ffffff
-  );
+  padding: 24px;
+
+  background: #f4f7fb;
 }
 
-/* =========================
-   CARD
-========================= */
+/* ======================================================
+   LOGIN CARD
+====================================================== */
 
 .login-card {
   width: 400px;
 
-  padding: 34px;
+  padding: 32px;
 
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(10px);
+  background: #ffffff;
 
   border: 1px solid #e5e7eb;
   border-radius: 16px;
 
-  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.06);
 
   text-align: center;
 }
 
-/* =========================
+/* ======================================================
    HEADER
-========================= */
+====================================================== */
 
 .login-header h1 {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
+
   color: #111827;
+
   margin-bottom: 6px;
 }
 
 .login-header p {
   font-size: 13px;
   color: #6b7280;
-  margin-bottom: 20px;
+
+  margin-bottom: 24px;
 }
 
-/* =========================
+/* ======================================================
    INPUT
-========================= */
+====================================================== */
 
 .login-input {
   width: 100%;
 
   padding: 12px 14px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid #dbe2ea;
   border-radius: 10px;
+
+  background: #ffffff !important;
+
+  color: #111827;
+  font-size: 14px;
 
   outline: none;
 
-  font-size: 14px;
-
-  background: #fff;
-
-  transition: all 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-/* focus đẹp hơn */
+.login-input::placeholder {
+  color: #9ca3af;
+}
+
 .login-input:focus {
-  border-color: #1f2a44;
-  box-shadow: 0 0 0 4px rgba(31, 42, 68, 0.12);
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
-/* =========================
+/* ======================================================
    BUTTON
-========================= */
+====================================================== */
 
 .login-button {
   width: 100%;
@@ -446,7 +450,7 @@ p {
   border: none;
   border-radius: 10px;
 
-  background: linear-gradient(135deg, #1f2a44, #111827);
+  background: #22316e;
 
   color: white;
 
@@ -455,35 +459,46 @@ p {
 
   cursor: pointer;
 
-  transition: 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
 }
 
-/* hover */
 .login-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(31, 42, 68, 0.25);
+  background: #1b2758;
 }
 
-/* click */
 .login-button:active {
-  transform: scale(0.98);
+  transform: scale(0.99);
 }
 
-/* =========================
+/* ======================================================
    FOOTER
-========================= */
+====================================================== */
 
 .login-footer {
   margin-top: 18px;
+
   font-size: 12px;
   color: #9ca3af;
 }
 
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (max-width: 480px) {
+
+  .login-card {
+    width: 100%;
+    padding: 24px;
+  }
+
+}
 
 /* =========================
    INPUT GLOBAL SYSTEM FIX
 ========================= */
-
 input,
 textarea,
 select {
@@ -495,7 +510,8 @@ select {
   border: 1px solid var(--border);
   border-radius: 8px;
 
-  background: var(--bg);
+  background: #ffffff;
+
   color: var(--text);
 
   outline: none;

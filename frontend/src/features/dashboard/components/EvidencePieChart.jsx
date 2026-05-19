@@ -1,72 +1,107 @@
-const evidenceData = [
-  {
-    label: "Đã upload",
-    value: 240,
-    className: "blue",
-  },
+import { useMemo } from "react";
 
-  {
-    label: "Chờ duyệt",
-    value: 18,
-    className: "orange",
-  },
+import useEvidenceWorkflow
+from "../../evidence/hooks/useEvidenceWorkflow";
 
-  {
-    label: "Thiếu minh chứng",
-    value: 7,
-    className: "red",
-  },
-
-  {
-    label: "Cập nhật hôm nay",
-    value: 12,
-    className: "green",
-  },
-];
+import {
+  getEvidenceStatusChart,
+} from "../../evidence/utils/evidenceAnalytics";
 
 export default function EvidencePieChart() {
 
+  const {
+    evidences,
+  } = useEvidenceWorkflow();
+
+  const chartData = useMemo(() => {
+
+    return getEvidenceStatusChart(evidences);
+
+  }, [evidences]);
+
+  const total = chartData.reduce(
+    (sum, item) => sum + item.value,
+    0
+  );
+
+  const gradient = useMemo(() => {
+
+    if (total === 0) {
+
+      return "#e5e7eb";
+    }
+
+    const colors = {
+      success: "#10b981",
+      danger: "#ef4444",
+      warning: "#f59e0b",
+      pending: "#3b82f6",
+    };
+
+    let currentPercent = 0;
+
+    const segments = chartData.map((item) => {
+
+      const percent =
+        (item.value / total) * 100;
+
+      const start = currentPercent;
+
+      currentPercent += percent;
+
+      return `${colors[item.className]} ${start}% ${currentPercent}%`;
+
+    });
+
+    return `conic-gradient(${segments.join(",")})`;
+
+  }, [chartData, total]);
+
   return (
-    <div className="panel">
 
-      <div className="panel-header">
+    <div className="evidence-pie-card">
 
-        <div className="panel-title">
-          Tổng quan minh chứng
+      <div className="evidence-pie-header">
+
+        <div className="evidence-pie-title">
+          Thống kê minh chứng
         </div>
 
-        <div className="badge">
-          Pie Chart
+        <div className="evidence-pie-badge">
+          Analytics
         </div>
 
       </div>
 
-      <div className="pie-wrapper">
+      <div className="evidence-pie-wrapper">
 
         <div
-          className="pie-chart"
+          className="evidence-pie-chart"
           style={{
-            background:
-              "conic-gradient(#2563eb 0% 75%, #f59e0b 75% 85%, #ef4444 85% 90%, #10b981 90% 100%)"
+            background: gradient,
           }}
         />
 
-        <div className="pie-legend">
+        <div className="evidence-pie-legend">
 
-          {evidenceData.map((item) => (
+          {chartData.map((item) => (
 
             <div
               key={item.label}
-              className="legend-item"
+              className="evidence-legend-item"
             >
 
-              <div
-                className={`legend-color ${item.className}`}
-              />
+              <div className="evidence-legend-left">
 
-              <span>
-                {item.label}
-              </span>
+                <div
+                  className={`evidence-legend-color ${item.className}`}
+                />
+
+                <span>
+                  {item.label}
+                </span>
+
+              </div>
 
               <strong>
                 {item.value}

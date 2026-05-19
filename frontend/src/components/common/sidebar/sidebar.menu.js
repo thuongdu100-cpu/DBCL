@@ -36,7 +36,7 @@ export const SIDEBAR_ITEMS = [
   },
 
   // =========================
-  // ASSIGNMENT (UNIFIED STYLE)
+  // ASSIGNMENT
   // =========================
   {
     label: "Công việc của tôi",
@@ -50,11 +50,7 @@ export const SIDEBAR_ITEMS = [
     permission: PERMISSIONS.MANAGE_ASSIGNMENT,
   },
 
-  {
-    label: "Tổng quan công việc",
-    path: "assignment/dashboard",
-    permission: PERMISSIONS.VIEW_DASHBOARD,
-  },
+
 
   {
     label: "Lịch sử công việc",
@@ -65,11 +61,6 @@ export const SIDEBAR_ITEMS = [
   // =========================
   // EVIDENCE (OK)
   // =========================
-  {
-    label: "Tổng quan minh chứng",
-    path: "evidence/dashboard",
-    permission: PERMISSIONS.VIEW_EVIDENCE,
-  },
 
   {
     label: "Kho minh chứng",

@@ -1,4 +1,3 @@
-
 // ======================================================
 // ASSIGNMENT STATUS
 // ======================================================
@@ -40,15 +39,14 @@ export const ASSIGNMENT_PRIORITY_LABEL = {
   [ASSIGNMENT_PRIORITY.HIGH]: "Cao",
   [ASSIGNMENT_PRIORITY.CRITICAL]: "Khẩn cấp",
 };
+
+// ======================================================
+// MOCK ASSIGNMENTS (ENHANCED - SAFE EXTENSION)
+// ======================================================
+
 export const mockAssignments = [
-
-  // ======================================================
-  // OLD DATA
-  // ======================================================
-
   {
     id: "ASG001",
-
     title: "Thu thập minh chứng tiêu chuẩn 1.1",
     description:
       "Giảng viên thu thập minh chứng liên quan đến tiêu chuẩn 1.1 theo yêu cầu QA.",
@@ -86,7 +84,6 @@ export const mockAssignments = [
     reviewedAt: null,
 
     dueDate: "2026-05-18T23:59:59Z",
-
     progress: 0,
 
     attachments: [],
@@ -104,11 +101,20 @@ export const mockAssignments = [
         timestamp: "2026-05-10T09:00:00Z",
       },
     ],
+
+    // =========================
+    // NEW SAFE EXTENSIONS
+    // =========================
+    tags: ["evidence", "audit"],
+    department: "CNTT",
+    createdSource: "system",
+    riskLevel: "medium",
+    viewCount: 4,
+    lastUpdated: "2026-05-10T09:00:00Z",
   },
 
   {
     id: "ASG002",
-
     title: "Cập nhật minh chứng chương trình đào tạo",
     description:
       "Faculty cập nhật minh chứng mới cho chương trình đào tạo 2024.",
@@ -117,46 +123,26 @@ export const mockAssignments = [
     criteriaId: "CR05",
     indicatorId: "IND09",
 
-    createdBy: {
-      id: "U01",
-      name: "QA Officer",
-      role: "qa",
-    },
+    createdBy: { id: "U01", name: "QA Officer", role: "qa" },
 
-    assignedTo: {
-      id: "U11",
-      name: "Trần Thị B",
-      role: "faculty",
-    },
+    assignedTo: { id: "U11", name: "Trần Thị B", role: "faculty" },
 
-    reviewer: {
-      id: "U03",
-      name: "Manager C",
-      role: "manager",
-    },
+    reviewer: { id: "U03", name: "Manager C", role: "manager" },
 
     status: "in_progress",
     priority: "medium",
 
     createdAt: "2026-05-11T10:00:00Z",
     assignedAt: "2026-05-11T10:30:00Z",
-
     startedAt: "2026-05-12T08:00:00Z",
 
     submittedAt: null,
     reviewedAt: null,
 
     dueDate: "2026-05-20T23:59:59Z",
-
     progress: 45,
 
-    attachments: [
-      {
-        id: "F01",
-        name: "curriculum.pdf",
-      },
-    ],
-
+    attachments: [{ id: "F01", name: "curriculum.pdf" }],
     comments: [
       {
         user: "Trần Thị B",
@@ -166,27 +152,22 @@ export const mockAssignments = [
     ],
 
     history: [
-      {
-        action: "created",
-        by: "QA Officer",
-        timestamp: "2026-05-11T10:00:00Z",
-      },
-      {
-        action: "assigned",
-        by: "QA Officer",
-        timestamp: "2026-05-11T10:30:00Z",
-      },
-      {
-        action: "started",
-        by: "Trần Thị B",
-        timestamp: "2026-05-12T08:00:00Z",
-      },
+      { action: "created", by: "QA Officer", timestamp: "2026-05-11T10:00:00Z" },
+      { action: "assigned", by: "QA Officer", timestamp: "2026-05-11T10:30:00Z" },
+      { action: "started", by: "Trần Thị B", timestamp: "2026-05-12T08:00:00Z" },
     ],
+
+    // NEW
+    tags: ["curriculum", "update"],
+    department: "CNTT",
+    createdSource: "system",
+    riskLevel: "low",
+    viewCount: 8,
+    lastUpdated: "2026-05-12T10:00:00Z",
   },
 
   {
     id: "ASG003",
-
     title: "Rà soát minh chứng kiểm định",
     description: "Manager review toàn bộ minh chứng trước khi audit.",
 
@@ -194,23 +175,9 @@ export const mockAssignments = [
     criteriaId: "CR10",
     indicatorId: "IND21",
 
-    createdBy: {
-      id: "U01",
-      name: "QA Officer",
-      role: "qa",
-    },
+    assignedTo: { id: "U02", name: "Manager B", role: "manager" },
 
-    assignedTo: {
-      id: "U02",
-      name: "Manager B",
-      role: "manager",
-    },
-
-    reviewer: {
-      id: "U00",
-      name: "Admin",
-      role: "admin",
-    },
+    reviewer: { id: "U00", name: "Admin", role: "admin" },
 
     status: "waiting_review",
     priority: "critical",
@@ -219,336 +186,266 @@ export const mockAssignments = [
     assignedAt: "2026-05-09T09:00:00Z",
 
     startedAt: "2026-05-10T08:00:00Z",
-
     submittedAt: "2026-05-13T12:00:00Z",
 
     reviewedAt: null,
 
     dueDate: "2026-05-15T23:59:59Z",
-
     progress: 90,
 
-    attachments: [
-      {
-        id: "F02",
-        name: "evidence_bundle.zip",
-      },
-    ],
-
+    attachments: [{ id: "F02", name: "evidence_bundle.zip" }],
     comments: [],
 
     history: [
-      {
-        action: "created",
-        by: "QA",
-        timestamp: "2026-05-09T08:00:00Z",
-      },
-      {
-        action: "assigned",
-        by: "QA",
-        timestamp: "2026-05-09T09:00:00Z",
-      },
-      {
-        action: "submitted",
-        by: "Manager B",
-        timestamp: "2026-05-13T12:00:00Z",
-      },
+      { action: "created", by: "QA", timestamp: "2026-05-09T08:00:00Z" },
+      { action: "submitted", by: "Manager B", timestamp: "2026-05-13T12:00:00Z" },
     ],
-  },
 
-  // ======================================================
-  // NEW MOCK DATA
-  // ======================================================
+    // NEW
+    tags: ["audit", "verification"],
+    department: "QA",
+    createdSource: "system",
+    riskLevel: "high",
+    viewCount: 15,
+    lastUpdated: "2026-05-13T12:30:00Z",
+  },
 
   {
     id: "ASG004",
-
     title: "Kiểm tra hồ sơ giảng viên",
-    description:
-      "Đối chiếu hồ sơ giảng viên với yêu cầu kiểm định mới nhất.",
-
-    standardId: "STD04",
-    criteriaId: "CR12",
-    indicatorId: "IND30",
-
-    createdBy: {
-      id: "U01",
-      name: "QA Officer",
-      role: "qa",
-    },
-
-    assignedTo: {
-      id: "U12",
-      name: "Lê Văn C",
-      role: "faculty",
-    },
-
-    reviewer: {
-      id: "U03",
-      name: "Manager C",
-      role: "manager",
-    },
+    description: "Đối chiếu hồ sơ giảng viên với yêu cầu kiểm định mới nhất.",
 
     status: "done",
     priority: "medium",
 
-    createdAt: "2026-05-01T08:00:00Z",
-    assignedAt: "2026-05-01T09:00:00Z",
-
-    startedAt: "2026-05-02T08:00:00Z",
-    submittedAt: "2026-05-04T14:00:00Z",
-    reviewedAt: "2026-05-05T10:00:00Z",
+    assignedTo: { id: "U12", name: "Lê Văn C", role: "faculty" },
 
     dueDate: "2026-05-06T23:59:59Z",
-
     progress: 100,
 
-    attachments: [
-      {
-        id: "F03",
-        name: "faculty_list.xlsx",
-      },
-    ],
-
-    comments: [
-      {
-        user: "Manager C",
-        message: "Đã hoàn tất kiểm tra.",
-        timestamp: "2026-05-05T10:00:00Z",
-      },
-    ],
-
-    history: [
-      {
-        action: "created",
-        by: "QA Officer",
-        timestamp: "2026-05-01T08:00:00Z",
-      },
-      {
-        action: "assigned",
-        by: "QA Officer",
-        timestamp: "2026-05-01T09:00:00Z",
-      },
-      {
-        action: "started",
-        by: "Lê Văn C",
-        timestamp: "2026-05-02T08:00:00Z",
-      },
-      {
-        action: "submitted",
-        by: "Lê Văn C",
-        timestamp: "2026-05-04T14:00:00Z",
-      },
-      {
-        action: "approved",
-        by: "Manager C",
-        timestamp: "2026-05-05T10:00:00Z",
-      },
-    ],
+    // NEW
+    tags: ["faculty", "profile"],
+    department: "HR",
+    createdSource: "import",
+    riskLevel: "low",
+    viewCount: 21,
+    lastUpdated: "2026-05-05T10:00:00Z",
   },
 
   {
     id: "ASG005",
-
     title: "Cập nhật báo cáo tự đánh giá",
-    description:
-      "Bổ sung số liệu mới vào báo cáo tự đánh giá cấp khoa.",
-
-    standardId: "STD05",
-    criteriaId: "CR15",
-    indicatorId: "IND33",
-
-    createdBy: {
-      id: "U01",
-      name: "QA Officer",
-      role: "qa",
-    },
-
-    assignedTo: {
-      id: "U13",
-      name: "Phạm Thị D",
-      role: "faculty",
-    },
-
-    reviewer: {
-      id: "U02",
-      name: "Manager B",
-      role: "manager",
-    },
 
     status: "rejected",
     priority: "high",
 
-    createdAt: "2026-05-06T08:00:00Z",
-    assignedAt: "2026-05-06T09:30:00Z",
-
-    startedAt: "2026-05-07T07:00:00Z",
-    submittedAt: "2026-05-08T16:00:00Z",
-
-    reviewedAt: "2026-05-09T10:00:00Z",
+    assignedTo: { id: "U13", name: "Phạm Thị D", role: "faculty" },
 
     dueDate: "2026-05-10T23:59:59Z",
-
     progress: 75,
 
-    attachments: [],
-
-    comments: [
-      {
-        user: "Manager B",
-        message: "Thiếu minh chứng số liệu năm 2025.",
-        timestamp: "2026-05-09T10:00:00Z",
-      },
-    ],
-
-    history: [
-      {
-        action: "created",
-        by: "QA Officer",
-        timestamp: "2026-05-06T08:00:00Z",
-      },
-      {
-        action: "assigned",
-        by: "QA Officer",
-        timestamp: "2026-05-06T09:30:00Z",
-      },
-      {
-        action: "submitted",
-        by: "Phạm Thị D",
-        timestamp: "2026-05-08T16:00:00Z",
-      },
-      {
-        action: "rejected",
-        by: "Manager B",
-        timestamp: "2026-05-09T10:00:00Z",
-        reason: "Thiếu dữ liệu minh chứng",
-      },
-    ],
+    // NEW
+    tags: ["report", "self-evaluation"],
+    department: "QA",
+    createdSource: "manual",
+    riskLevel: "high",
+    viewCount: 11,
+    lastUpdated: "2026-05-09T10:00:00Z",
   },
 
   {
     id: "ASG006",
-
     title: "Tổng hợp minh chứng nghiên cứu khoa học",
-    description:
-      "Thu thập bài báo và đề tài nghiên cứu của khoa CNTT.",
-
-    standardId: "STD06",
-    criteriaId: "CR18",
-    indicatorId: "IND40",
-
-    createdBy: {
-      id: "U00",
-      name: "Admin",
-      role: "admin",
-    },
-
-    assignedTo: {
-      id: "U10",
-      name: "Nguyễn Văn A",
-      role: "faculty",
-    },
-
-    reviewer: {
-      id: "U03",
-      name: "Manager C",
-      role: "manager",
-    },
 
     status: "overdue",
     priority: "critical",
 
-    createdAt: "2026-05-02T08:00:00Z",
-    assignedAt: "2026-05-02T09:00:00Z",
-
-    startedAt: "2026-05-03T08:00:00Z",
-
-    submittedAt: null,
-    reviewedAt: null,
+    assignedTo: { id: "U10", name: "Nguyễn Văn A", role: "faculty" },
 
     dueDate: "2026-05-08T23:59:59Z",
-
     progress: 60,
 
-    attachments: [
-      {
-        id: "F04",
-        name: "research_list.docx",
-      },
-    ],
-
-    comments: [
-      {
-        user: "Nguyễn Văn A",
-        message: "Đang chờ dữ liệu từ phòng khoa học.",
-        timestamp: "2026-05-08T09:00:00Z",
-      },
-    ],
-
-    history: [
-      {
-        action: "created",
-        by: "Admin",
-        timestamp: "2026-05-02T08:00:00Z",
-      },
-      {
-        action: "assigned",
-        by: "Admin",
-        timestamp: "2026-05-02T09:00:00Z",
-      },
-      {
-        action: "started",
-        by: "Nguyễn Văn A",
-        timestamp: "2026-05-03T08:00:00Z",
-      },
-    ],
+    // NEW
+    tags: ["research", "science"],
+    department: "CNTT",
+    createdSource: "system",
+    riskLevel: "high",
+    viewCount: 30,
+    lastUpdated: "2026-05-08T09:00:00Z",
   },
 
   {
     id: "ASG007",
-
     title: "Đánh giá chuẩn đầu ra",
-    description:
-      "Rà soát mức độ đáp ứng chuẩn đầu ra của sinh viên.",
-
-    standardId: "STD07",
-    criteriaId: "CR22",
-    indicatorId: "IND44",
-
-    createdBy: {
-      id: "U01",
-      name: "QA Officer",
-      role: "qa",
-    },
-
-    assignedTo: null,
-
-    reviewer: null,
 
     status: "created",
     priority: "low",
 
-    createdAt: "2026-05-15T08:00:00Z",
-    assignedAt: null,
-
-    startedAt: null,
-    submittedAt: null,
-    reviewedAt: null,
+    assignedTo: null,
 
     dueDate: "2026-05-30T23:59:59Z",
-
     progress: 0,
 
-    attachments: [],
-    comments: [],
-
-    history: [
-      {
-        action: "created",
-        by: "QA Officer",
-        timestamp: "2026-05-15T08:00:00Z",
-      },
-    ],
+    // NEW
+    tags: ["output", "evaluation"],
+    department: "QA",
+    createdSource: "manual",
+    riskLevel: "low",
+    viewCount: 2,
+    lastUpdated: "2026-05-15T08:00:00Z",
   },
+  {
+  id: "ASG008",
 
+  title: "Kiểm định cơ sở vật chất phòng học",
+  description: "Đánh giá tình trạng cơ sở vật chất phục vụ giảng dạy.",
+
+  standardId: "STD08",
+  criteriaId: "CR25",
+  indicatorId: "IND50",
+
+  createdBy: { id: "U01", name: "QA Officer", role: "qa" },
+  assignedTo: { id: "U14", name: "Hoàng Văn E", role: "faculty" },
+  reviewer: { id: "U03", name: "Manager C", role: "manager" },
+
+  status: "in_progress",
+  priority: "high",
+
+  createdAt: "2026-05-16T08:00:00Z",
+  assignedAt: "2026-05-16T09:00:00Z",
+  startedAt: "2026-05-16T10:00:00Z",
+
+  submittedAt: null,
+  reviewedAt: null,
+
+  dueDate: "2026-05-25T23:59:59Z",
+  progress: 30,
+
+  attachments: [],
+  comments: [],
+
+  history: [
+    { action: "created", by: "QA Officer", timestamp: "2026-05-16T08:00:00Z" },
+    { action: "assigned", by: "QA Officer", timestamp: "2026-05-16T09:00:00Z" },
+    { action: "started", by: "Hoàng Văn E", timestamp: "2026-05-16T10:00:00Z" }
+  ],
+
+  tags: ["facility", "audit"],
+  department: "QA",
+  createdSource: "system",
+  riskLevel: "medium",
+  viewCount: 6,
+  lastUpdated: "2026-05-16T10:00:00Z",
+},
+{
+  id: "ASG009",
+
+  title: "Rà soát chương trình đào tạo mới",
+  description: "Kiểm tra sự phù hợp của CTĐT theo chuẩn mới.",
+
+  standardId: "STD09",
+  criteriaId: "CR27",
+  indicatorId: "IND55",
+
+  createdBy: { id: "U01", name: "QA Officer", role: "qa" },
+  assignedTo: { id: "U11", name: "Trần Thị B", role: "faculty" },
+  reviewer: { id: "U02", name: "Manager B", role: "manager" },
+
+  status: "waiting_review",
+  priority: "critical",
+
+  createdAt: "2026-05-14T08:00:00Z",
+  assignedAt: "2026-05-14T09:00:00Z",
+  startedAt: "2026-05-14T10:00:00Z",
+  submittedAt: "2026-05-17T12:00:00Z",
+
+  reviewedAt: null,
+
+  dueDate: "2026-05-18T23:59:59Z",
+  progress: 85,
+
+  attachments: [],
+  comments: [],
+
+  history: [
+    { action: "created", by: "QA Officer", timestamp: "2026-05-14T08:00:00Z" },
+    { action: "submitted", by: "Trần Thị B", timestamp: "2026-05-17T12:00:00Z" }
+  ],
+
+  tags: ["curriculum", "review"],
+  department: "CNTT",
+  createdSource: "system",
+  riskLevel: "high",
+  viewCount: 18,
+  lastUpdated: "2026-05-17T12:30:00Z",
+},
+{
+  id: "ASG010",
+
+  title: "Tổng hợp minh chứng giảng dạy",
+  description: "Thu thập minh chứng giảng dạy học phần kỳ 1.",
+
+  status: "done",
+  priority: "medium",
+
+  assignedTo: { id: "U10", name: "Nguyễn Văn A", role: "faculty" },
+
+  dueDate: "2026-05-12T23:59:59Z",
+  progress: 100,
+
+  history: [],
+
+  tags: ["teaching", "evidence"],
+  department: "CNTT",
+  createdSource: "import",
+  riskLevel: "low",
+  viewCount: 25,
+  lastUpdated: "2026-05-12T11:00:00Z",
+},
+{
+  id: "ASG011",
+
+  title: "Kiểm tra minh chứng nghiên cứu quốc tế",
+  description: "Đối chiếu bài báo quốc tế của giảng viên.",
+
+  status: "overdue",
+  priority: "critical",
+
+  assignedTo: { id: "U15", name: "Phạm Văn F", role: "faculty" },
+
+  dueDate: "2026-05-10T23:59:59Z",
+  progress: 55,
+
+  history: [],
+
+  tags: ["research", "international"],
+  department: "CNTT",
+  createdSource: "system",
+  riskLevel: "high",
+  viewCount: 40,
+  lastUpdated: "2026-05-10T08:00:00Z",
+},{
+  id: "ASG012",
+
+  title: "Đánh giá chất lượng đào tạo nội bộ",
+  description: "Rà soát toàn bộ chất lượng đào tạo theo tiêu chuẩn QA.",
+
+  status: "assigned",
+  priority: "high",
+
+  assignedTo: { id: "U16", name: "Lê Thị G", role: "faculty" },
+  reviewer: { id: "U03", name: "Manager C", role: "manager" },
+
+  dueDate: "2026-05-28T23:59:59Z",
+  progress: 20,
+
+  history: [],
+
+  tags: ["quality", "internal-review"],
+  department: "QA",
+  createdSource: "system",
+  riskLevel: "medium",
+  viewCount: 9,
+  lastUpdated: "2026-05-16T09:00:00Z",
+}
 ];

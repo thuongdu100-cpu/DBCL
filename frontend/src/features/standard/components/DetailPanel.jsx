@@ -73,7 +73,7 @@ export default function DetailPanel({
 
           <button
             onClick={() =>
-              navigate("/dbcl/evidence/submit")
+              navigate("/evidence/submit")
             }
           >
             Minh chứng
@@ -81,7 +81,7 @@ export default function DetailPanel({
 
           <button
             onClick={() =>
-              navigate("/dbcl/feedback")
+              navigate("/feedback")
             }
           >
             Feedback

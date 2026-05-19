@@ -1,19 +1,5 @@
+
 import { standards } from "../data/mockData";
-
-const KEY = "dbcl_standards";
-
-// =========================
-// LOAD / SAVE CORE
-// =========================
-
-function loadData() {
-  const data = localStorage.getItem(KEY);
-  return data ? JSON.parse(data) : standards;
-}
-
-function saveData(data) {
-  localStorage.setItem(KEY, JSON.stringify(data));
-}
 
 // =========================
 // SERVICE
@@ -22,57 +8,59 @@ function saveData(data) {
 export const standardService = {
 
   // GET ALL
-  getAll() {
-    return Promise.resolve(loadData());
+  async getAll() {
+
+    return standards;
   },
 
   // GET BY ID
-  getById(id) {
-    const data = loadData();
-    return Promise.resolve(
-      data.find(item => item.id === id)
+  async getById(id) {
+
+    return standards.find(
+      item => item.id === id
     );
   },
 
   // CREATE
-  create(newItem) {
-    const data = loadData();
-    const updated = [...data, newItem];
+  async create(newItem) {
 
-    saveData(updated);
-    return Promise.resolve(newItem);
+    standards.push(newItem);
+
+    return newItem;
   },
 
   // UPDATE
-  update(id, payload) {
-    const data = loadData();
+  async update(id, payload) {
 
-    const updated = data.map(item =>
-      item.id === id
-        ? { ...item, ...payload }
-        : item
+    const index = standards.findIndex(
+      item => item.id === id
     );
 
-    saveData(updated);
-    return Promise.resolve(updated.find(i => i.id === id));
+    if (index !== -1) {
+
+      standards[index] = {
+        ...standards[index],
+        ...payload,
+      };
+    }
+
+    return standards[index];
   },
 
   // DELETE
-  remove(id) {
-    const data = loadData();
+  async remove(id) {
 
-    const updated = data.filter(
-      item => item.id !== id
+    const index = standards.findIndex(
+      item => item.id === id
     );
 
-    saveData(updated);
-    return Promise.resolve(true);
+    if (index !== -1) {
+
+      standards.splice(index, 1);
+    }
+
+    return true;
   },
 
-  // RESET (DEBUG)
-  reset() {
-    localStorage.removeItem(KEY);
-    return Promise.resolve(standards);
-  }
-
 };
+
