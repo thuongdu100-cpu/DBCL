@@ -1,36 +1,36 @@
-import { useEffect, useState } from "react"; // 🔥 phải có useState
+import { useEffect, useState } from "react";
 import { userService } from "../services/user.service";
-export default function useUsers() {
 
+export default function useUsers() {
   const [users, setUsers] = useState([]);
 
-  const load = async () => {
-    const data = await userService.getAll();
-    setUsers(data);
-  };
-
   useEffect(() => {
-    load();
+    (async () => {
+      const data = await userService.getAll();
+
+      // 🔥 SAFE GUARD
+      setUsers(Array.isArray(data) ? data : []);
+    })();
   }, []);
 
   const createUser = async (data) => {
-    const newData = await userService.create(data);
-    setUsers(newData); // 🔥 không gọi load()
+    const res = await userService.create(data);
+    setUsers(res || []);
   };
 
   const updateUser = async (id, data) => {
-    const newData = await userService.update(id, data);
-    setUsers(newData);
+    const res = await userService.update(id, data);
+    setUsers(res || []);
   };
 
   const deleteUser = async (id) => {
-    const newData = await userService.remove(id);
-    setUsers(newData);
+    const res = await userService.remove(id);
+    setUsers(res || []);
   };
 
   const toggleStatus = async (id) => {
-    const newData = await userService.toggleStatus(id);
-    setUsers(newData);
+    const res = await userService.toggleStatus(id);
+    setUsers(res || []);
   };
 
   return {

@@ -11,9 +11,8 @@ export default function RoleFormModal({
   open,
   onClose,
   onSave,
-  role
+  role,
 }) {
-
   const [form, setForm] = useState(emptyRole);
 
   useEffect(() => {
@@ -39,14 +38,15 @@ export default function RoleFormModal({
   if (!open) return null;
 
   return (
-    <div className="role-modal-overlay">
+    <div className="modal-overlay">
+      <div className="modal-box role-modal-box">
 
-      <div className="role-modal">
-
-        <h3>{role ? "Update Role" : "Create Role"}</h3>
+        <h3 className="modal-title">
+          {role ? "Cập nhật vai trò" : "Tạo vai trò"}
+        </h3>
 
         <input
-          placeholder="Code"
+          placeholder="Role code"
           value={form.code}
           onChange={e =>
             setForm({ ...form, code: e.target.value })
@@ -54,32 +54,35 @@ export default function RoleFormModal({
         />
 
         <input
-          placeholder="Name"
+          placeholder="Tên vai trò"
           value={form.name}
           onChange={e =>
             setForm({ ...form, name: e.target.value })
           }
         />
 
+        {/* PERMISSION MATRIX */}
         <PermissionMatrix
           selected={form.permissions}
           onToggle={togglePermission}
         />
 
-        <div className="role-modal-actions">
+        <div className="modal-actions">
 
-          <button onClick={onClose}>
-            Cancel
+          <button className="action-btn cancel" onClick={onClose}>
+            Hủy
           </button>
 
-          <button onClick={() => onSave(form)}>
-            Save
+          <button
+            className="action-btn create"
+            onClick={() => onSave(form)}
+          >
+            Lưu
           </button>
 
         </div>
 
       </div>
-
     </div>
   );
 }

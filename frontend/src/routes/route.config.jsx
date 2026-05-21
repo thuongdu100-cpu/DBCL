@@ -25,12 +25,7 @@ import AssignmentHistoryPage from "../features/assignment/pages/AssignmentHistor
 // =========================
 // EVIDENCE 
 // =========================
-import SubmitEvidencePage from "../features/evidence/pages/SubmitEvidencePage";
-import EvidenceReviewPage from "../features/evidence/pages/EvidenceReviewPage";
-import EvidenceDetailPage from "../features/evidence/pages/EvidenceDetailPage";
-import EvidenceHistoryPage from "../features/evidence/pages/EvidenceHistoryPage";
 import EvidenceRepositoryPage from "../features/evidence/pages/EvidenceRepositoryPage";
-import EvidenceQueuePage from "../features/evidence/pages/EvidenceQueuePage";
 
 // =========================
 // FEEDBACK
@@ -147,38 +142,7 @@ export const routes = [
     element: EvidenceRepositoryPage,
     permission: PERMISSIONS.VIEW_EVIDENCE,
   },
-  {
-    path: "evidence/submit",
-    label: "Nộp minh chứng",
-    element: SubmitEvidencePage,
-    permission: PERMISSIONS.UPLOAD_EVIDENCE,
-  },
-  {
-    path: "evidence/queue",
-    label: "Hàng chờ kiểm duyệt",
-    element: EvidenceQueuePage,
-    permission: PERMISSIONS.REVIEW_EVIDENCE,
-  },
-  {
-    path: "evidence/review/:id",
-    label: "Kiểm duyệt minh chứng",
-    element: EvidenceReviewPage,
-    permission: PERMISSIONS.REVIEW_EVIDENCE,
-    sidebar: false,
-  },
-  {
-    path: "evidence/history",
-    label: "Lịch sử minh chứng",
-    element: EvidenceHistoryPage,
-    permission: PERMISSIONS.VIEW_EVIDENCE,
-  },
-  {
-    path: "evidence/:id",
-    label: "Chi tiết minh chứng",
-    element: EvidenceDetailPage,
-    permission: PERMISSIONS.VIEW_EVIDENCE,
-    sidebar: false,
-  },
+  
 
   // =========================
   // FEEDBACK

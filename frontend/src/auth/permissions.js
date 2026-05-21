@@ -1,64 +1,54 @@
 export const PERMISSIONS = {
 
   // =========================
-  // DASHBOARD
+  // SYSTEM
   // =========================
-  VIEW_DASHBOARD: "view_dashboard",
+  DASHBOARD_VIEW: "dashboard:view",
 
   // =========================
-  // USER & ROLE (ADMIN SYSTEM)
+  // USER / ROLE
   // =========================
-  MANAGE_USERS: "manage_users",
-  MANAGE_ROLES: "manage_roles",
-  ASSIGN_ROLE_TO_USER: "assign_role_to_user",
-  VIEW_ROLE_DETAIL: "view_role_detail",
-  UPDATE_ROLE_PERMISSIONS: "update_role_permissions",
+  USER_MANAGE: "user:manage",
+  ROLE_MANAGE: "role:manage",
+  ROLE_ASSIGN: "role:assign",
+  ROLE_VIEW: "role:view",
+  ROLE_PERMISSION_UPDATE: "role:permission:update",
 
   // =========================
-  // STANDARD MANAGEMENT
+  // STANDARD
   // =========================
-  MANAGE_STANDARD: "manage_standard",
-  VIEW_STANDARD_DETAIL: "view_standard_detail",
-  UPDATE_STANDARD: "update_standard",
-  IMPORT_EVIDENCE_CATEGORY: "import_evidence_category",
+  STANDARD_MANAGE: "standard:manage",
+  STANDARD_VIEW: "standard:view",
+  STANDARD_UPDATE: "standard:update",
+  STANDARD_IMPORT: "standard:import",
 
   // =========================
   // ASSIGNMENT
   // =========================
-  MANAGE_ASSIGNMENT: "manage_assignment",
-  VIEW_MY_ASSIGNMENTS: "view_my_assignments",
-  TAKE_ASSIGNMENT: "take_assignment",
-  UPDATE_ASSIGNMENT_STATUS: "update_assignment_status",
+  ASSIGNMENT_MANAGE: "assignment:manage",
+  ASSIGNMENT_VIEW_MY: "assignment:view_my",
+  ASSIGNMENT_TAKE: "assignment:take",
+  ASSIGNMENT_UPDATE: "assignment:update",
 
   // =========================
-  // EVIDENCE WORKFLOW (CORE)
+  // EVIDENCE
   // =========================
-  VIEW_EVIDENCE: "view_evidence",
-  UPLOAD_EVIDENCE: "upload_evidence",
-
-  SUBMIT_EVIDENCE: "submit_evidence",
-  RESUBMIT_EVIDENCE: "resubmit_evidence",
-  RECALL_EVIDENCE: "recall_evidence",
-  
-  REVIEW_EVIDENCE: "review_evidence",
-  APPROVE_EVIDENCE: "approve_evidence",
-  REJECT_EVIDENCE: "reject_evidence",
-
-  COMMENT_EVIDENCE: "comment_evidence",
-
-  WAIT_REVIEW_EVIDENCE: "wait_review_evidence",
-  RECEIVE_FEEDBACK_EVIDENCE: "receive_feedback_evidence",
+  EVIDENCE_VIEW: "evidence:view",
+  EVIDENCE_UPLOAD: "evidence:upload",
+  EVIDENCE_SUBMIT: "evidence:submit",
+  EVIDENCE_REVIEW: "evidence:review",
+  EVIDENCE_APPROVE: "evidence:approve",
+  EVIDENCE_REJECT: "evidence:reject",
+  EVIDENCE_COMMENT: "evidence:comment",
 
   // =========================
   // IMPROVEMENT
   // =========================
-  MANAGE_IMPROVEMENT: "manage_improvement",
+  IMPROVEMENT_MANAGE: "improvement:manage",
 
   // =========================
-  // REPORTS & ANALYTICS
+  // REPORT
   // =========================
-  VIEW_REPORT: "view_report",
-  VIEW_STATISTICS: "view_statistics",
-  EXPORT_REPORT: "export_report",
-  FILTER_REPORT: "filter_report",
+  REPORT_VIEW: "report:view",
+  REPORT_EXPORT: "report:export",
 };

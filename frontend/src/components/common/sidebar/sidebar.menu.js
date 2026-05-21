@@ -2,105 +2,75 @@ import { PERMISSIONS } from "../../../auth/permissions";
 
 export const SIDEBAR_ITEMS = [
 
-  // =========================
-  // DASHBOARD
-  // =========================
   {
     label: "Dashboard",
     path: "dashboard",
-    permission: PERMISSIONS.VIEW_DASHBOARD,
+    permission: PERMISSIONS.DASHBOARD_VIEW,
   },
 
-  // =========================
-  // SYSTEM ADMIN
-  // =========================
   {
     label: "Quản lý người dùng",
     path: "users",
-    permission: PERMISSIONS.MANAGE_USERS,
+    permission: PERMISSIONS.USER_MANAGE,
   },
 
   {
     label: "Quản lý vai trò",
     path: "roles",
-    permission: PERMISSIONS.MANAGE_ROLES,
+    permission: PERMISSIONS.ROLE_MANAGE,
   },
 
-  // =========================
-  // STANDARD
-  // =========================
   {
     label: "Bộ tiêu chuẩn",
-    path: " standard",
-    permission: PERMISSIONS.MANAGE_STANDARD,
+    path: "standard",
+    permission: PERMISSIONS.STANDARD_MANAGE,
   },
 
-  // =========================
-  // ASSIGNMENT
-  // =========================
   {
     label: "Công việc của tôi",
     path: "assignments",
-    permission: PERMISSIONS.VIEW_MY_ASSIGNMENTS,
+    permission: PERMISSIONS.ASSIGNMENT_VIEW_MY,
   },
 
   {
     label: "Bảng phân công",
     path: "assignment/board",
-    permission: PERMISSIONS.MANAGE_ASSIGNMENT,
+    permission: PERMISSIONS.ASSIGNMENT_MANAGE,
   },
-
-
 
   {
     label: "Lịch sử công việc",
     path: "assignment/history",
-    permission: PERMISSIONS.MANAGE_ASSIGNMENT,
+    permission: PERMISSIONS.ASSIGNMENT_MANAGE,
   },
-
-  // =========================
-  // EVIDENCE (OK)
-  // =========================
 
   {
     label: "Kho minh chứng",
     path: "evidence/repository",
-    permission: PERMISSIONS.VIEW_EVIDENCE,
+    permission: PERMISSIONS.EVIDENCE_VIEW,
   },
 
   {
     label: "Nộp minh chứng",
     path: "evidence/submit",
-    permission: PERMISSIONS.UPLOAD_EVIDENCE,
+    permission: PERMISSIONS.EVIDENCE_UPLOAD,
   },
 
   {
     label: "Hàng chờ kiểm duyệt",
     path: "evidence/queue",
-    permission: PERMISSIONS.REVIEW_EVIDENCE,
+    permission: PERMISSIONS.EVIDENCE_REVIEW,
   },
 
-  {
-    label: "Lịch sử minh chứng",
-    path: "evidence/history",
-    permission: PERMISSIONS.VIEW_EVIDENCE,
-  },
-
-  // =========================
-  // IMPROVEMENT
-  // =========================
   {
     label: "Cải tiến",
     path: "improvement",
-    permission: PERMISSIONS.MANAGE_IMPROVEMENT,
+    permission: PERMISSIONS.IMPROVEMENT_MANAGE,
   },
 
-  // =========================
-  // REPORTS
-  // =========================
   {
     label: "Báo cáo",
     path: "reports",
-    permission: PERMISSIONS.VIEW_REPORT,
+    permission: PERMISSIONS.REPORT_VIEW,
   },
 ];

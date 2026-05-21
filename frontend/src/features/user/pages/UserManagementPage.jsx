@@ -1,9 +1,9 @@
 import { useState } from "react";
-import UserHeader from "../components/UserHeader";
-import UserToolbar from "../components/UserToolbar";
+
+import UserCreateModal from "../components/UserCreateModal";
 import UserTable from "../components/UserTable";
-import UserFormModal from "../components/UserFormModal";
 import useUsers from "../hooks/useUsers";
+import {mockUsers} from "../mock/users.mock";
 import "../styles/user.css";
 
 export default function UserManagementPage() {
@@ -16,67 +16,93 @@ export default function UserManagementPage() {
   } = useUsers();
 
   const [search, setSearch] = useState("");
-  const [openModal, setOpenModal] = useState(false);
+  const [openCreate, setOpenCreate] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
 
-  const handleCreate = () => {
-    setEditingUser(null);
-    setOpenModal(true);
-  };
-
-  const handleEdit = (user) => {
-    setEditingUser(user);
-    setOpenModal(true);
-  };
-
-  const handleSave = async (data) => {
-    if (editingUser) {
-      await updateUser(editingUser.id, data);
-    } else {
-      await createUser(data);
-    }
-
-    setOpenModal(false);
-    setEditingUser(null);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-    setEditingUser(null);
-  };
-
   const filtered = users.filter(u =>
-    u.username?.includes(search) ||
-    u.email?.includes(search) ||
-    u.fullName?.includes(search)
+    u.username?.toLowerCase().includes(search.toLowerCase()) ||
+    u.email?.toLowerCase().includes(search.toLowerCase()) ||
+    u.fullName?.toLowerCase().includes(search.toLowerCase())
   );
+
+  /* =========================
+     HANDLERS
+  ========================= */
+
+  const handleCreate = async (data) => {
+    await createUser(data);
+    setOpenCreate(false);
+  };
+
+  const handleEditOpen = (user) => {
+    setEditingUser(user);
+    setOpenEdit(true);
+  };
+
+  const handleUpdate = async (data) => {
+    await updateUser(editingUser.id, data);
+    setOpenEdit(false);
+    setEditingUser(null);
+  };
 
   return (
     <div className="user-page">
 
-      <UserHeader />
+      {/* HEADER */}
+      <div className="user-header">
 
-      <UserToolbar
-        search={search}
-        setSearch={setSearch}
-        onCreate={handleCreate}
-      />
+        <div className="user-title-group">
+          <div className="user-title">Quản lý người dùng</div>
+          <div className="user-subtitle">
+            Quản lý tài khoản và phân quyền hệ thống
+          </div>
+        </div>
 
+        <div className="toolbar-actions">
+
+          <input
+            className="user-search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Tìm username, email..."
+          />
+
+          <button
+            className="action-btn create"
+            onClick={() => setOpenCreate(true)}
+          >
+            + Tạo User
+          </button>
+
+        </div>
+      </div>
+
+      {/* TABLE */}
       <UserTable
         users={filtered}
-        onUpdate={updateUser}      // 🔥 đổi từ onEdit → onUpdate
+        onEdit={handleEditOpen}
         onDelete={deleteUser}
         onToggleStatus={toggleStatus}
       />
 
-      {openModal && (
-        <UserFormModal
-          key={editingUser ? editingUser.id : "create"} 
-          initialData={editingUser}
-          onSubmit={handleSave}
-          onClose={handleCloseModal}
-        />
-      )}
+      {/* CREATE MODAL */}
+      <UserCreateModal
+        open={openCreate}
+        onClose={() => setOpenCreate(false)}
+        onCreate={handleCreate}
+      />
+
+      {/* EDIT MODAL (same UI as create) */}
+      <UserCreateModal
+        open={openEdit}
+        initialData={editingUser}
+        onClose={() => {
+          setOpenEdit(false);
+          setEditingUser(null);
+        }}
+        onCreate={handleUpdate}
+      />
 
     </div>
   );

@@ -4,11 +4,11 @@ export default function DetailPanel({
   standard,
   criteria,
   indicator,
+  onOpenEvidenceForm,
 }) {
 
-  const navigate = useNavigate();
-
   return (
+
     <div className="col-detail">
 
       {/* TITLE */}
@@ -18,9 +18,12 @@ export default function DetailPanel({
 
       {/* STANDARD */}
       {standard && (
+
         <div className="detail-card">
 
-          <div className="detail-label">Bộ tiêu chuẩn</div>
+          <div className="detail-label">
+            Bộ tiêu chuẩn
+          </div>
 
           <div className="detail-value">
             {standard.name}
@@ -31,13 +34,17 @@ export default function DetailPanel({
           </div>
 
         </div>
+
       )}
 
       {/* CRITERIA */}
       {criteria && (
+
         <div className="detail-card">
 
-          <div className="detail-label">Tiêu chí</div>
+          <div className="detail-label">
+            Tiêu chí
+          </div>
 
           <div className="detail-value">
             {criteria.name}
@@ -48,13 +55,17 @@ export default function DetailPanel({
           </div>
 
         </div>
+
       )}
 
       {/* INDICATOR */}
       {indicator && (
+
         <div className="detail-card">
 
-          <div className="detail-label">Chỉ báo</div>
+          <div className="detail-label">
+            Chỉ báo
+          </div>
 
           <div className="detail-value">
             {indicator.name}
@@ -65,29 +76,26 @@ export default function DetailPanel({
           </div>
 
         </div>
+
       )}
 
       {/* ACTIONS */}
       {indicator && (
+
         <div className="detail-actions">
 
           <button
-            onClick={() =>
-              navigate("/evidence/submit")
-            }
+            onClick={onOpenEvidenceForm}
           >
             Minh chứng
           </button>
 
-          <button
-            onClick={() =>
-              navigate("/feedback")
-            }
-          >
+          <button>
             Feedback
           </button>
 
         </div>
+
       )}
 
     </div>

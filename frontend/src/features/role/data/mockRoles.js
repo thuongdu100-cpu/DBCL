@@ -1,24 +1,14 @@
+import { PERMISSIONS } from "../auth/permissions";
+
 export const mockRoles = [
   {
     id: 1,
     code: "admin",
     name: "Quản trị hệ thống",
     description: "Toàn quyền hệ thống",
-    users: ["admin", "qa"], // 👈 fake user mapping
+    users: ["admin", "qa"],
     status: "ACTIVE",
-    permissions: [
-      "view_dashboard",
-      "manage_users",
-      "manage_roles",
-      "manage_standard",
-      "manage_evaluation",
-      "manage_assignment",
-      "view_evidence",
-      "upload_evidence",
-      "review_evidence",
-      "manage_improvement",
-      "view_report",
-    ],
+    permissions: Object.values(PERMISSIONS), // 🔥 FULL quyền
   },
 
   {
@@ -29,15 +19,13 @@ export const mockRoles = [
     users: ["qa"],
     status: "ACTIVE",
     permissions: [
-      "view_dashboard",
-      "manage_standard",
-      "manage_evaluation",
-      "manage_assignment",
-      "view_evidence",
-      "upload_evidence",
-      "review_evidence",
-      "manage_improvement",
-      "view_report",
+      PERMISSIONS.VIEW_DASHBOARD,
+      PERMISSIONS.MANAGE_STANDARD,
+      PERMISSIONS.VIEW_EVIDENCE,
+      PERMISSIONS.UPLOAD_EVIDENCE,
+      PERMISSIONS.REVIEW_EVIDENCE,
+      PERMISSIONS.MANAGE_IMPROVEMENT,
+      PERMISSIONS.VIEW_REPORT,
     ],
   },
 
@@ -49,10 +37,10 @@ export const mockRoles = [
     users: ["manager"],
     status: "ACTIVE",
     permissions: [
-      "view_dashboard",
-      "review_evidence",
-      "manage_improvement",
-      "view_report",
+      PERMISSIONS.VIEW_DASHBOARD,
+      PERMISSIONS.REVIEW_EVIDENCE,
+      PERMISSIONS.MANAGE_IMPROVEMENT,
+      PERMISSIONS.VIEW_REPORT,
     ],
   },
 
@@ -64,9 +52,9 @@ export const mockRoles = [
     users: ["faculty"],
     status: "ACTIVE",
     permissions: [
-      "view_dashboard",
-      "view_evidence",
-      "upload_evidence",
+      PERMISSIONS.VIEW_DASHBOARD,
+      PERMISSIONS.VIEW_EVIDENCE,
+      PERMISSIONS.UPLOAD_EVIDENCE,
     ],
   },
 
@@ -78,8 +66,8 @@ export const mockRoles = [
     users: ["leader"],
     status: "ACTIVE",
     permissions: [
-      "view_dashboard",
-      "view_report",
+      PERMISSIONS.VIEW_DASHBOARD,
+      PERMISSIONS.VIEW_REPORT,
     ],
   },
 ];

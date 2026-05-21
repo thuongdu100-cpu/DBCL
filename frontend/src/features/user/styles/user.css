@@ -1,135 +1,221 @@
 
-/* =========================
-   WRAPPER
-========================= */
+/* =========================================================
+   USER PAGE
+========================================================= */
+
+.user-page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  width: 100%;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 0;
+}
+
+.user-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.user-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.3px;
+}
+
+.user-subtitle {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.user-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 12px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.user-search {
+  flex: 1;
+  max-width: 360px;
+
+  padding: 10px 14px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  font-size: 13px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.user-search:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
 
 .user-table-wrapper {
   width: 100%;
   overflow-x: auto;
 
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg);
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
 
-/* =========================
-   TABLE BASE
-========================= */
+/* =========================================================
+   TABLE
+========================================================= */
 
 .user-table {
   width: 100%;
   min-width: 900px;
 
   border-collapse: collapse;
-
-  table-layout: fixed; /* FIX LAYOUT SHIFT */
+  table-layout: fixed;
 }
-
-/* =========================
-   HEADER
-========================= */
 
 .user-table thead {
   background: #f8fafc;
 }
 
 .user-table th {
+  padding: 14px 14px;
   text-align: left;
-  padding: 12px 14px;
-
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
+  text-transform: uppercase;
 
-  color: #374151;
-  border-bottom: 1px solid var(--border);
+  color: #475569;
+
+  border-bottom: 1px solid #e5e7eb;
 }
 
-/* =========================
-   ROW
-========================= */
-
-.user-row {
-  transition: background 0.15s ease;
+/* 🔥 FIX: đảm bảo th căn trái đúng yêu cầu */
+.user-table th,
+.user-table td {
+  text-align: left;
 }
 
-.user-row td {
-  padding: 12px 14px;
+.user-table td {
+  padding: 14px 14px;
 
   font-size: 14px;
-  text-align: left; /* 🔥 FIX CĂN TRÁI TOÀN BỘ */
-
-  vertical-align: middle;
+  color: #0f172a;
 
   border-bottom: 1px solid #f1f5f9;
 }
 
-/* hover row */
-.user-row:hover {
+.user-table tbody tr:hover {
   background: #f8fafc;
 }
 
-/* =========================
-   EDIT STATE
-========================= */
+/* =========================================================
+   ROW STATE
+========================================================= */
+
+.user-row {
+  transition: 0.15s ease;
+}
 
 .user-row.is-editing {
   background: #eff6ff;
 }
 
-/* =========================
+/* =========================================================
    INPUT / SELECT
-========================= */
+========================================================= */
 
 .user-row input,
 .user-row select {
   width: 100%;
-  padding: 6px 8px;
+
+  padding: 7px 10px;
 
   font-size: 13px;
 
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
 
   outline: none;
-  background: var(--bg);
+
+  background: #fff;
+
+  transition: 0.2s ease;
 }
 
 .user-row input:focus,
 .user-row select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* =========================
+/* =========================================================
    ACTION CELL
-========================= */
+========================================================= */
 
 .user-row td:last-child {
-  width: 180px;
+  width: 200px;
 }
 
-/* wrapper actions */
 .table-actions {
   display: flex;
   gap: 6px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 
-  opacity: 0;               /* 🔥 ẨN MẶC ĐỊNH */
+  opacity: 0;
   transform: translateY(2px);
 
   transition: 0.15s ease;
 }
 
-/* 🔥 SHOW ACTION WHEN HOVER ROW */
 .user-row:hover .table-actions {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* =========================
-   ACTION BUTTON BASE
-========================= */
+/* =========================================================
+   BUTTON SYSTEM
+========================================================= */
 
 .action-btn {
   display: inline-flex;
@@ -137,68 +223,62 @@
   justify-content: center;
 
   padding: 6px 10px;
+
   font-size: 12px;
   font-weight: 600;
 
-  border-radius: 6px;
+  border-radius: 8px;
+
   cursor: pointer;
 
   border: 1px solid transparent;
 
-  transition: all 0.15s ease;
+  transition: 0.15s ease;
 }
 
-/* hover effect */
 .action-btn:hover {
   transform: translateY(-1px);
   filter: brightness(0.95);
 }
 
-/* =========================
-   BUTTON VARIANTS
-========================= */
+/* variants */
+.action-btn.create {
+  background: #2563eb;
+  color: white;
+}
 
-/* EDIT */
 .action-btn.edit {
   background: #dbeafe;
   color: #2563eb;
   border-color: #bfdbfe;
 }
 
-/* SAVE */
 .action-btn.save {
   background: #dcfce7;
   color: #16a34a;
   border-color: #86efac;
 }
 
-/* CANCEL */
 .action-btn.cancel {
   background: #f3f4f6;
   color: #374151;
-  border-color: #e5e7eb;
 }
 
-/* LOCK */
 .action-btn.lock {
   background: #ffedd5;
   color: #ea580c;
-  border-color: #fed7aa;
 }
 
-/* DELETE */
 .action-btn.delete {
   background: #fee2e2;
   color: #dc2626;
-  border-color: #fecaca;
 }
 
-/* =========================
-   BADGE SYSTEM
-========================= */
+/* =========================================================
+   BADGES
+========================================================= */
 
 .role-badge {
-  display: inline-block;
   padding: 4px 10px;
 
   font-size: 12px;
@@ -219,57 +299,252 @@
   color: #dc2626;
   font-weight: 600;
 }
+/* =========================
+   MODAL OVERLAY (FIX POPUP CENTER)
+========================= */
 
+.modal-overlay {
+  position: fixed;
+  inset: 0;
 
-.user-toolbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
-  padding: 12px 0;
-  gap: 12px;
+  background: rgba(15, 23, 42, 0.6);
+
+  z-index: 9999;
 }
 
-/* search */
-.user-search {
-  flex: 1;
-  max-width: 320px;
+/* =========================
+   MODAL BOX (CENTER POPUP)
+========================= */
 
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+.modal-box {
+  width: 100%;
+  max-width: 520px;
+
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 22px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+
+  animation: popup 0.18s ease;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   FORM ELEMENTS INSIDE MODAL
+========================= */
+
+.modal-box input,
+.modal-box select {
+  padding: 10px 12px;
+
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+
+  outline: none;
+  font-size: 13px;
+}
+
+.modal-box input:focus,
+.modal-box select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+/* =========================
+   MODAL ACTIONS
+========================= */
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+  .user-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar-actions {
+    justify-content: flex-end;
+  }
+
+  .user-table {
+    min-width: 700px;
+  }
+
+  .table-actions {
+    opacity: 1;
+    transform: none;
+  }
+
+  .user-create-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* popup nổi chính giữa màn to rõ ràng (center popup UI) */
+
+.user-popup-overlay {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+
+  z-index: 999;
+}
+
+/* POPUP CENTER */
+.user-popup {
+  width: 100%;
+  max-width: 520px;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.2);
+
+  animation: popupCenterIn 0.18s ease;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+/* HEADER */
+.user-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 20px;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.user-popup-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.user-popup-subtitle {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.user-popup-close {
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #f3f4f6;
+
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  transition: 0.15s ease;
+}
+
+.user-popup-close:hover {
+  background: #e5e7eb;
+}
+
+/* BODY */
+.user-popup-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 20px;
+}
+
+.user-popup-body input,
+.user-popup-body select {
+  padding: 10px 12px;
+
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
 
   font-size: 13px;
+
   outline: none;
-}
 
-.user-search:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
-}
-
-/* right side */
-.toolbar-actions {
-  margin-left: auto;
-  display: flex;
-  gap: 8px;
-}
-
-/* create button */
-.action-btn.create {
-  background: var(--primary);
-  color: white;
-  border: 1px solid transparent;
-
-  padding: 8px 14px;
-  border-radius: 8px;
-
-  font-weight: 600;
-  cursor: pointer;
   transition: 0.2s ease;
 }
 
-.action-btn.create:hover {
-  filter: brightness(0.9);
-  transform: translateY(-1px);
+.user-popup-body input:focus,
+.user-popup-body select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ROW */
+.user-popup-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* ACTIONS */
+.user-popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  padding: 16px 20px;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+/* ANIMATION */
+@keyframes popupCenterIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }

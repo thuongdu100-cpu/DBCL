@@ -2,33 +2,56 @@ import { mockUsers } from "../mock/users.mock";
 
 const KEY = "dbcl_users";
 
-// =========================
-// STORAGE HELPERS
-// =========================
-
+/* =========================
+   SAFE LOAD (FIX FULL)
+========================= */
 function load() {
-  const data = localStorage.getItem(KEY);
+  const raw = localStorage.getItem(KEY);
 
-  if (!data) {
+  // 🔥 CHƯA CÓ DATA → seed mock
+  if (!raw) {
     localStorage.setItem(KEY, JSON.stringify(mockUsers));
     return mockUsers;
   }
 
-  return JSON.parse(data);
+  try {
+    const parsed = JSON.parse(raw);
+
+    // 🔥 NOT ARRAY → reset
+    if (!Array.isArray(parsed)) {
+      localStorage.setItem(KEY, JSON.stringify(mockUsers));
+      return mockUsers;
+    }
+
+    // 🔥 EMPTY ARRAY → seed lại mock
+    if (parsed.length === 0) {
+      localStorage.setItem(KEY, JSON.stringify(mockUsers));
+      return mockUsers;
+    }
+
+    return parsed;
+  } catch (e) {
+    console.error("LOCALSTORAGE PARSE ERROR:", e);
+
+    localStorage.setItem(KEY, JSON.stringify(mockUsers));
+    return mockUsers;
+  }
 }
 
+/* =========================
+   SAVE
+========================= */
 function save(data) {
   localStorage.setItem(KEY, JSON.stringify(data));
 }
 
-// =========================
-// SERVICE LAYER
-// =========================
-
+/* =========================
+   SERVICE
+========================= */
 export const userService = {
 
   async getAll() {
-    return load(); // ✅ OK
+    return load();
   },
 
   async create(payload) {
@@ -81,5 +104,3 @@ export const userService = {
     return updated;
   },
 };
-
-

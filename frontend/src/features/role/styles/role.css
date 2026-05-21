@@ -1,105 +1,127 @@
-/* =========================
-   ROLE MODULE ROOT (ISOLATED)
-========================= */
+/* =========================================================
+   ROLE MODULE ROOT (MATCH USER STYLE SYSTEM)
+========================================================= */
 
 .role-page {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
   width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden;
+  padding: 0;
+
   font-family: system-ui, Arial;
-  color: #111827;
+  color: #0f172a;
 }
 
 /* =========================
-   HEADER
+   ROLE HEADER (MATCH USER STYLE)
 ========================= */
 
 .role-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+
+  padding: 16px 0;
+  margin-bottom: 10px;
 }
 
-/* =========================
-   BUTTON (MODULE ONLY)
-========================= */
+/* TITLE STYLE (same as user-title-group) */
+.role-header h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
 
-.role-page button {
-  padding: 6px 10px;
+/* optional subtitle support (if you add later) */
+.role-subtitle {
   font-size: 13px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: white;
-  cursor: pointer;
-  transition: 0.2s ease;
+  color: #64748b;
+  margin-top: 4px;
 }
 
-.role-page button:hover {
-  background: #f3f4f6;
+/* container alignment giống user toolbar right side */
+.role-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* =========================
-   TABLE WRAPPER (PRO CLEAN)
-========================= */
+/* =========================================================
+   TABLE WRAPPER (MATCH USER TABLE STYLE)
+========================================================= */
 
 .role-table-wrapper {
   width: 100%;
   overflow-x: auto;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: #fff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
 
 /* TABLE */
 .role-table {
   width: 100%;
   min-width: 720px;
+
   border-collapse: collapse;
   table-layout: fixed;
 }
 
-/* HEADER */
+/* HEADER (MATCH USER TABLE STYLE) */
 .role-table th {
   text-align: left;
-  padding: 14px 12px;
+  padding: 14px;
+
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.4px;
-  color: #6b7280;
-  background: #f9fafb;
-  border-bottom: 1px solid var(--border);
+  text-transform: uppercase;
+
+  color: #475569;
+
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 /* ROW */
 .role-row td {
-  padding: 14px 12px;
+  padding: 14px;
+
   font-size: 14px;
+  color: #0f172a;
+
   border-bottom: 1px solid #f1f5f9;
+
   vertical-align: middle;
-  color: #111827;
 }
 
-/* ROW HOVER */
+/* HOVER SAME AS USER */
 .role-row:hover {
   background: #f8fafc;
-  transition: 0.15s ease;
 }
 
-/* =========================
-   STATUS (PILL STYLE)
-========================= */
+/* =========================================================
+   STATUS (MATCH USER BADGE STYLE)
+========================================================= */
 
 .role-status-active,
 .role-status-inactive {
   display: inline-flex;
   align-items: center;
+
   padding: 4px 10px;
-  border-radius: 999px;
+
   font-size: 12px;
   font-weight: 600;
+
+  border-radius: 999px;
 }
 
 .role-status-active {
@@ -112,9 +134,9 @@
   color: #dc2626;
 }
 
-/* =========================
-   ACTIONS (PRO BUTTON SYSTEM)
-========================= */
+/* =========================================================
+   ACTION SYSTEM (MATCH USER ACTION BUTTONS)
+========================================================= */
 
 .role-actions {
   display: flex;
@@ -122,110 +144,102 @@
   align-items: center;
 }
 
-/* BASE */
+/* BASE BUTTON (MATCH USER .action-btn) */
 .role-action-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  padding: 6px 12px;
+  padding: 6px 10px;
+
   font-size: 12px;
   font-weight: 600;
 
   border-radius: 8px;
-  border: 1px solid transparent;
+
   cursor: pointer;
+  border: 1px solid transparent;
 
   transition: all 0.15s ease;
   white-space: nowrap;
 }
 
-/* HOVER EFFECT */
 .role-action-btn:hover {
   transform: translateY(-1px);
+  filter: brightness(0.95);
 }
 
-/* EDIT */
+/* EDIT (same tone as USER edit) */
 .role-action-edit {
-  background: #eff6ff;
+  background: #dbeafe;
   color: #2563eb;
   border: 1px solid #bfdbfe;
 }
 
-.role-action-edit:hover {
-  background: #dbeafe;
-}
-
-/* LOCK */
+/* OPTIONAL FUTURE ACTIONS */
 .role-action-lock {
-  background: #fff7ed;
+  background: #ffedd5;
   color: #ea580c;
   border: 1px solid #fed7aa;
 }
 
-/* DELETE */
 .role-action-delete {
-  background: #fef2f2;
+  background: #fee2e2;
   color: #dc2626;
   border: 1px solid #fecaca;
 }
 
-/* =========================
-   PERMISSION MATRIX (FIXED + CLEAN)
-========================= */
+/* =========================================================
+   PERMISSION MATRIX (MATCH USER INPUT STYLE)
+========================================================= */
 
 .role-perm-matrix {
   display: flex;
   flex-direction: column;
   gap: 12px;
+
   margin-top: 10px;
 }
 
-/* GROUP */
 .role-perm-group {
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
   padding: 12px;
+
   background: #fafafa;
 
   max-height: 45vh;
   overflow-y: auto;
-  overflow-x: hidden;
-
-  box-sizing: border-box;
 }
 
-/* TITLE */
 .role-perm-title {
   font-size: 13px;
   font-weight: 700;
   margin-bottom: 10px;
 }
 
-/* GRID AUTO FLOW */
+/* GRID LIKE USER FORM FEEL */
 .role-perm-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 8px;
-  width: 100%;
-  box-sizing: border-box;
 }
 
-/* ITEM */
+/* ITEM (MATCH INPUT FEEL FROM USER MODAL) */
 .role-perm-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 
-  padding: 6px 10px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  padding: 8px 10px;
 
-  font-size: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
   background: white;
 
-  min-width: 0;
-  overflow: hidden;
+  font-size: 12px;
 }
 
 /* TEXT */
@@ -235,38 +249,114 @@
   white-space: nowrap;
 }
 
-/* =========================
-   MODAL (RESPONSIVE CLEAN)
-========================= */
+/* =========================================================
+   MODAL (MATCH USER MODAL STYLE EXACTLY)
+========================================================= */
 
 .role-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  padding: 16px;
-  box-sizing: border-box;
+  background: rgba(15, 23, 42, 0.55);
+
+  z-index: 999;
 }
 
 .role-modal {
   width: min(92vw, 650px);
   max-height: 80vh;
+
   overflow-y: auto;
 
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
+  background: #ffffff;
 
-  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 16px;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
+/* INPUT STYLE MATCH USER MODAL */
+.role-modal input,
+.role-modal select {
+  padding: 10px 12px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  font-size: 13px;
+
+  outline: none;
+}
+
+.role-modal input:focus,
+.role-modal select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ACTIONS */
 .role-modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  margin-top: 15px;
+
+  margin-top: 10px;
+}
+
+/* =========================
+   ROLE MODAL (UNIFIED UI STYLE)
+========================= */
+
+.role-modal-box {
+  width: min(92vw, 720px);
+  max-height: 85vh;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  border-radius: 16px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(15, 23, 42, 0.55);
+
+  z-index: 999;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* INPUT CLEAN LIKE USER MODULE */
+.role-modal-box input {
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 13px;
+  outline: none;
+}
+
+.role-modal-box input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
 }

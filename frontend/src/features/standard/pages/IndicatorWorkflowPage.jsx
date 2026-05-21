@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import {
@@ -12,6 +12,9 @@ import WorkflowStatusBadge from "../components/WorkflowStatusBadge";
 import SummaryCard from "../components/SummaryCard";
 import DetailPanel from "../components/DetailPanel";
 
+import EvidenceSubmitForm from
+  "../../evidence/components/EvidenceSubmitForm";
+
 import "../styles/standard.css";
 
 export default function IndicatorWorkflowPage() {
@@ -21,6 +24,9 @@ export default function IndicatorWorkflowPage() {
     criteriaId,
     indicatorId,
   } = useParams();
+
+  const [showEvidenceForm, setShowEvidenceForm] =
+    useState(false);
 
   const standard =
     standards.find(
@@ -141,6 +147,13 @@ export default function IndicatorWorkflowPage() {
 
           </div>
 
+          {/* EVIDENCE FORM */}
+          {showEvidenceForm && (
+
+            <EvidenceSubmitForm />
+
+          )}
+
         </div>
 
       </div>
@@ -149,9 +162,11 @@ export default function IndicatorWorkflowPage() {
         standard={standard}
         criteria={criteria}
         indicator={indicator}
+        onOpenEvidenceForm={() =>
+          setShowEvidenceForm(true)
+        }
       />
 
     </div>
   );
 }
-

@@ -140,7 +140,20 @@ export default function useEvidenceWorkflow() {
     approveEvidence,
     rejectEvidence,
 
+    selectedEvidence,
     selectEvidence,
+
+    approveEvidence,
+    rejectEvidence,
+
+    selectedEvidence,
+    selectEvidence,
+
+    approveEvidence,
+    rejectEvidence,
+
+    stats,
+    evidences,
 
     stats,
   };

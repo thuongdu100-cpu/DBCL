@@ -2,7 +2,7 @@ import UserRow from "./UserRow";
 
 export default function UserTable({
   users,
-  onUpdate,
+  onEdit,
   onDelete,
   onToggleStatus,
 }) {
@@ -30,7 +30,7 @@ export default function UserTable({
               key={user.id}
               user={user}
               index={index}
-              onUpdate={onUpdate}   // 🔥 FIX HERE
+              onEdit={onEdit}
               onDelete={onDelete}
               onToggleStatus={onToggleStatus}
             />
